@@ -1,5 +1,6 @@
 import * as React from "react"
 import Home from '../components/Home';
+import '../styles/global.css'
 
 const IndexPage = () => { 
   return (
