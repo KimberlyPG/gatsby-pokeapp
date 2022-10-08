@@ -1,6 +1,14 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.yourdomain.tld`,
+    title: "My Homepage",
+    description: "This is where I write my thoughts.",
   },
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-source-pokeapi`,
+      options: {
+        nbOfPokemons: 251,
+      },
+    },
+  ],
 }
