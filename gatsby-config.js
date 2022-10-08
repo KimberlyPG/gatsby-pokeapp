@@ -5,6 +5,8 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-postcss',
+    'gatsby-source-pokemons',
+    `gatsby-source-pokedex`,
     {
       resolve: `gatsby-source-pokeapi`,
       options: {
