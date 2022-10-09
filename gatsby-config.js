@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: `gatsby-source-pokeapi`,
       options: {
-        nbOfPokemons: 251,
+        nbOfPokemons: 800,
       },
     },
   ],
