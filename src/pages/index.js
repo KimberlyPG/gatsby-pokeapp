@@ -5,10 +5,7 @@ import '../styles/global.css'
 
 const IndexPage = () => {  
   return (
-    <div className='grid grid-cols-5'>
-      Pokemon list
-      <Home />
-    </div>
+    <Home />
   )
 }
 
