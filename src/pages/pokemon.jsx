@@ -4,7 +4,7 @@ import { navigate } from "gatsby";
 import PokemonStats from "../components/Pokemon-stats";
 
 import { typeColor } from "../utils/types-colors";
-import axios from "axios";
+import { pokemonColor } from "../utils/pokemon-colors";
 
 const Pokemon = ({ location }) => {
     const { state = {} } = location
@@ -13,7 +13,8 @@ const Pokemon = ({ location }) => {
 
     const sprites_dreamWorld = data?.sprites?.other.dream_world.front_default;
     const sprites_home = data?.sprites?.other.home.front_default;
- 
+    const description_format = JSON.stringify(pokemonDescription?.flavor_text_entries?.[0].flavor_text)?.toString().replaceAll("\\n", " ").replace("\\f", " ").replace("POKéMON", "pokémon");
+
     useEffect(() => {
         const getPokemonData = async () => {
             await fetch(`https://pokeapi.co/api/v2/pokemon/${state.data.name}`)
@@ -22,6 +23,7 @@ const Pokemon = ({ location }) => {
           }
           getPokemonData(); 
     },[])
+    console.log("data", data)
 
     useEffect(() => {
         const getPokemonDataDescription = async () => {
@@ -39,18 +41,19 @@ const Pokemon = ({ location }) => {
         <div className='grid bg-sky-900 h-10 items-center border-b place-items-end'>
             <button className="text-white mr-5" onClick={() => navigate('/')}>Home</button>
         </div>
-        <h3 className="flex text-gray-600 text-2xl justify-center pt-5 font-semibold">{state.data.name}</h3>
+        <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{state.data.name} N.°{data.id}</h3>
         <div className="flex justify-center p-5">
-            <div className="grid w-60 h-full border rounded place-content-center p-5 bg-gray-100">
+            <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                 {sprites_dreamWorld !== null ? (
                     <img
-                        className="border rounded w-92 h-92" 
+                        style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
+                        className="border rounded bg-gray-200" 
                         src={sprites_dreamWorld} 
                         alt="pokemon image" 
                     />
                 ):(
                     <img
-                        className="border rounded w-92" 
+                        className="border rounded" 
                         src={sprites_home} 
                         alt="pokemon image" 
                     />
@@ -59,7 +62,7 @@ const Pokemon = ({ location }) => {
                 <PokemonStats stats={state.data.stats} />
             </div>
             <div className="border w-96 p-3">
-                <p className="text-sm">{pokemonDescription?.flavor_text_entries?.[0].flavor_text}</p>
+                <p>{description_format && JSON.parse(description_format)}</p>
                 <h3 className="text-gray-600 text-sm mt-2 text-gray-500">Type</h3>
                 {state.data.types.map((item) => (
                     <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item)}`}}>{item}</p>
