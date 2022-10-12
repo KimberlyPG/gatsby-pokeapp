@@ -38,7 +38,7 @@ const Pokemon = ({ location }) => {
 
     return (
         <>
-            <div className="flex bg-blue-500 ml-10 mt-10 w-24 text-white justify-center items-center p-2 rounded-xl space-x-2">
+            <div className="flex bg-blue-500 ml-10 mt-10 w-24 text-white justify-center items-center p-2 rounded-xl space-x-2 cursor-pointer">
                 <IoIosArrowDropleftCircle  className="text-xl"/>
                 <button className="font-bold" onClick={() => navigate('/')}>Home</button>
             </div>
