@@ -1,7 +1,6 @@
 import { navigate } from 'gatsby';
 import * as React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { TbPokeball } from "react-icons/tb";
 
 import PokemonCard from './Pokemon-card';
 import pokeball from '../assets/pokeball.png'
@@ -28,16 +27,7 @@ const Home = () => {
         }
       }
     `);
-    console.log("query", query)
-    
-    // const generations = () => {
-    //   const gen1 = 150;
-    //   let firstGen[];
-    //   query.forEach(query.allPokemon.nodes) {
-    //     firstGen
-    //   }
-    // }
-
+   
     const handleChange = (event) => {
         event.preventDefault();
         const pokeName = event.target.value;

@@ -15,15 +15,20 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@apollo/client": "^3.7.0",
     "axios": "^1.1.2",
     "gatsby": "^4.24.3",
     "gatsby-source-pokeapi": "^0.1.0",
     "gatsby-source-pokedex": "^1.0.3",
     "gatsby-source-pokemons": "^1.1.5",
     "gatsby-source-rest-api": "^0.2.3",
+    "graphql": "^15.8.0",
+    "isomorphic-fetch": "^3.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "save": "^2.9.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",

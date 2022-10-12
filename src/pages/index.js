@@ -1,10 +1,12 @@
-import * as React from "react"
+import * as React from "react";
+
 import Home from '../components/Home';
 import '../styles/global.css'
 
-const IndexPage = () => { 
+const IndexPage = () => {  
   return (
-    <div>
+    <div className='grid grid-cols-5'>
+      Pokemon list
       <Home />
     </div>
   )

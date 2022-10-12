@@ -4,26 +4,22 @@ import { navigate } from "gatsby";
 import PokemonStats from "../components/Pokemon-stats";
 
 import { typeColor } from "../utils/types-colors";
-
 import axios from "axios";
-import { siteMetadata } from "../../gatsby-config";
 
 const Pokemon = ({ location }) => {
     const { state = {} } = location
     const [data, setData] = useState();
     
-    useEffect(() => {
-        const getPokemonData = async () => {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${state.data.name}`,
-            ).then(console.log("res", response))
-            
-            setData(response)
-            getPokemonData(); 
-        }
-    }, [])
-
-    console.log("data", data)
-    console.log("state", state.data.types)
+    // useEffect(() => {
+    //     const getPokemonData = async () => {
+    //         await fetch(`https://pokeapi.co/api/v2/pokemon/${state.data.name}`)
+    //         .then(res => res.json())
+    //         .then(data => setData(data))
+    //       }
+    //       getPokemonData(); 
+    // },[])
+  
+    // console.log("data", data)
 
     return (
         <>

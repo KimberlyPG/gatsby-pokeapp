@@ -18,6 +18,7 @@ module.exports = {
       options: {
         endpoints: [
           'https://beta.pokeapi.co/graphql/v1beta',
+          // 'https://zelda.fanapis.com/api/graphql'
         ],
       },
     }
