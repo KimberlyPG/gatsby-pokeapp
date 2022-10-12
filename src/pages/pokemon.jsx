@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { navigate } from "gatsby";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
 
 import PokemonStats from "../components/Pokemon-stats";
 
@@ -33,42 +34,42 @@ const Pokemon = ({ location }) => {
           }
           getPokemonDataDescription(); 
     },[])
-  
     console.log("pokemonDescription", pokemonDescription)
 
     return (
         <>
-        <div className='grid bg-sky-900 h-10 items-center border-b place-items-end'>
-            <button className="text-white mr-5" onClick={() => navigate('/')}>Home</button>
-        </div>
-        <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{state.data.name} N.°{data.id}</h3>
-        <div className="flex justify-center p-5">
-            <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
-                {sprites_dreamWorld !== null ? (
-                    <img
-                        style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
-                        className="border rounded bg-gray-200" 
-                        src={sprites_dreamWorld} 
-                        alt="pokemon image" 
-                    />
-                ):(
-                    <img
-                        className="border rounded" 
-                        src={sprites_home} 
-                        alt="pokemon image" 
-                    />
-                )
-                }
-                <PokemonStats stats={state.data.stats} />
+            <div className="flex bg-blue-500 ml-10 mt-10 w-24 text-white justify-center items-center p-2 rounded-xl space-x-2">
+                <IoIosArrowDropleftCircle  className="text-xl"/>
+                <button className="font-bold" onClick={() => navigate('/')}>Home</button>
             </div>
-            <div className="border w-96 p-3">
-                <p>{description_format && JSON.parse(description_format)}</p>
-                <h3 className="text-gray-600 text-sm mt-2 text-gray-500">Type</h3>
-                {state.data.types.map((item) => (
-                    <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item)}`}}>{item}</p>
-                ))}
+            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{state.data.name} N.°{data.id}</h3>
+            <div className="flex justify-center p-5">
+                <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
+                    {sprites_dreamWorld !== null ? (
+                        <img
+                            style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
+                            className="border rounded bg-gray-200" 
+                            src={sprites_dreamWorld} 
+                            alt="pokemon image" 
+                        />
+                    ):(
+                        <img
+                            className="border rounded" 
+                            src={sprites_home} 
+                            alt="pokemon image" 
+                        />
+                    )
+                    }
+                    <PokemonStats stats={state.data.stats} />
+                </div>
+                <div className="border w-96 p-3">
+                    <p>{description_format && JSON.parse(description_format)}</p>
+                    <h3 className="text-gray-600 text-sm mt-2 text-gray-500">Type</h3>
+                    {state.data.types.map((item) => (
+                        <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item)}`}}>{item}</p>
+                    ))}
+                </div>
             </div>
-        </div>
         </>
     )
 }
