@@ -63,11 +63,13 @@ const Pokemon = ({ location }) => {
                     <PokemonStats stats={state.data.stats} />
                 </div>
                 <div className="border w-96 p-3">
-                    <p>{description_format && JSON.parse(description_format)}</p>
-                    <h3 className="text-gray-600 text-sm mt-2 text-gray-500">Type</h3>
-                    {state.data.types.map((item) => (
-                        <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item)}`}}>{item}</p>
-                    ))}
+                    <p className="grid text-gray-600 justify-items-center">{description_format && JSON.parse(description_format)}</p>
+                    <h3 className="text-gray-600 text-sm mt-5 text-gray-500">Type</h3>
+                    <div className="flex">
+                        {state.data.types.map((item) => (
+                            <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item)}`}}>{item}</p>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
