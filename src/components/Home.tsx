@@ -3,10 +3,10 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import PokemonCard from './Pokemon-card';
 import pokeball from '../assets/pokeball.png'
-import { TbPokeball } from "react-icons/tb";
 
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import SearchResults from './Search-results';
 
 export interface HomeProps {
   allPokemon: AllPokemon;
@@ -115,14 +115,7 @@ const Home: FC<HomeProps> = () => {
           </form> 
           <ul className='bg-white border w-80 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-11'>
               {filteredData.map((item) => (
-                <li className='flex items-center'>
-                      <img
-                        className='flex justify-center w-12'               
-                        src={item.image} 
-                        alt={`${item.name} image`} 
-                    />
-                    <h1 className='text-gray-500'>{item.name}</h1>
-                </li>
+                <SearchResults key={item.name} item={item}/>
               ))}
           </ul>           
         </div>
