@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { TbPokeball } from "react-icons/tb";
 import { Link } from "gatsby"
 

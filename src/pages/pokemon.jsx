@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { navigate } from "gatsby";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 
