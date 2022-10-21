@@ -12,7 +12,7 @@ export interface HomeProps {
 export interface AllPokemon {
   nodes: Node[];
   key: string;
-  item: {}
+  item: Node[];
 }
 
 export interface Node {
@@ -54,8 +54,8 @@ export interface PokemonTypes {
 
 
 const Home: FC<HomeProps> = () => {
-  const [filteredData, setFilteredData] = React.useState<Node[]>([]);
-  
+  const [filteredData, setFilteredData] = React.useState<AllPokemon[]>([]);
+  console.log("filtered", filteredData);
   const query =  useStaticQuery(graphql`
   query HomeQuery { 
     allPokemon {
@@ -79,8 +79,9 @@ const Home: FC<HomeProps> = () => {
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         const pokeName = event.target.value;
+        console.log("pokename", pokeName)
         const filtered = query.allPokemon.nodes.filter((item: Node) => {
-          return item.name.includes(pokeName);
+          if(pokeName !== '') return item.name.includes(pokeName);
         })
           setFilteredData(filtered);
     }
@@ -101,21 +102,31 @@ const Home: FC<HomeProps> = () => {
           <button className='text-yellow-400'>Gen3</button>
         </div>
 
-        <form className='flex justify-center p-5'>
-            <input 
-                className="bg-gray-200 rounded lg:w-80 text-black pl-3 sm:w-60 xs:w-24"
-                aria-label="Search"
-                onChange={handleChange} 
-                placeholder="search a pokemon"
-            />          
-            {/* <button type="submit">search</button> */}
-        </form> 
-        
+        <div className='flex flex-col items-center'>
+          <form className='flex flex-col justify-center p-5 items-center'>
+              <input 
+                  className="bg-gray-200 rounded lg:w-80 text-black pl-3 sm:w-60 xs:w-24 outline-0"
+                  aria-label="Search"
+                  onChange={handleChange} 
+                  placeholder="search a pokemon"
+              />          
+          </form> 
+          <ul className='bg-white border w-80 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-11'>
+              {filteredData.map((item) => (
+                <li className='flex items-center'>
+                      <img
+                        className='flex justify-center w-12'               
+                        src={item.image} 
+                        alt={`${item.name} image`} 
+                    />
+                    <h1 className='text-gray-500'>{item.name}</h1>
+                </li>
+              ))}
+          </ul>           
+        </div>
+      
         <div className='grid grid-cols-9 mt-5 place-items-center'>
-          {filteredData.length > 0 ? filteredData.map((item: Node) => (
-            <PokemonCard key={item.name} item={item}/>        
-          )) :
-          query.allPokemon.nodes.map((item: Node) => (
+          {query.allPokemon.nodes.map((item: Node) => (
             <PokemonCard key={item.name} item={item}/> 
           ))         
         }

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { TbPokeball } from "react-icons/tb";
 import { Link } from "gatsby"
+import { Node } from '../types';
 
 const PokemonCard = ({ item }) => {
-
+    // console.log("item",item)
     return (
         <div>
             <Link to='/pokemon' state={{ data: item}}> 
