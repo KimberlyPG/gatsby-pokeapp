@@ -1,6 +1,7 @@
-import React from "react";
+import React, {FC} from "react";
+import { Node } from "../types";
 
-const PokemonStats = ({ stats }) => {
+const PokemonStats: FC<Node> = ({ stats }) => {
     return (
         <div className="text-xs mt-2">
             <div className="bg-green-400 text-white w-4/5 font-semibold">BASE STATS</div>

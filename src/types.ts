@@ -5,7 +5,7 @@ export interface HomeProps {
 export interface AllPokemon {
 nodes: Node[];
 key: string;
-item: {}
+item: Node
 }
 
 export interface Node {
