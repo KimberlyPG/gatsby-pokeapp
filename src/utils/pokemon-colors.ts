@@ -1,4 +1,4 @@
-export const pokemonColor = (color) => {
+export const pokemonColor = (color: string) => {
     let newColor = '';
 
     switch(color) {
