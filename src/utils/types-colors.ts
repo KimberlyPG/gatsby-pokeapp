@@ -1,4 +1,4 @@
-export const typeColor = (item) => {
+export const typeColor = (item: string) => {
     let color = '';
 
     switch(item) {
