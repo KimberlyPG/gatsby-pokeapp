@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import { navigate } from "gatsby";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 
@@ -42,7 +42,7 @@ const Pokemon = ({ location }) => {
                 <IoIosArrowDropleftCircle  className="text-xl"/>
                 <button className="font-bold" onClick={() => navigate('/')}>Home</button>
             </div>
-            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{state.data.name} N.°{data.id}</h3>
+            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{state.data.name.charAt(0).toUpperCase() + state.data.name.slice(1)} N.°{data.id}</h3>
             <div className="flex justify-center p-5">
                 <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                     {sprites_dreamWorld !== null ? (
