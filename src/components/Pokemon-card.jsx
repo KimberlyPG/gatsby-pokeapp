@@ -16,7 +16,7 @@ const PokemonCard = ({ item }) => {
                             src={item.image} 
                             alt={`${item.name} image`} 
                         />
-                        <h1 className='text-gray-500'>{item.name}</h1>
+                        <h1 className='text-gray-500'>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h1>
                     </div>
                 </div>
             </Link>

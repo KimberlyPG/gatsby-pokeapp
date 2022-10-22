@@ -4,61 +4,15 @@ import { graphql, useStaticQuery } from 'gatsby'
 import PokemonCard from './Pokemon-card';
 import pokeball from '../assets/pokeball.png'
 
+import { HomeProps } from '../types';
+import { Node } from '../types';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import SearchResults from './Search-results';
 
-export interface HomeProps {
-  allPokemon: AllPokemon;
-}
-
-export interface AllPokemon {
-  nodes: Node[];
-  key: string;
-  item: Node[];
-}
-
-export interface Node {
-  name:  string;
-  stats: Stats;
-  types: PokemonTypes[];
-  image: string;
-}
-
-export interface Stats {
-  attack:          number;
-  defense:         number;
-  special_attack:  number;
-  hp:              number;
-  special_defense: number;
-  speed:           number;
-}
-
-export interface PokemonTypes {
-  Bug: string;
-  Dark: string;
-  Dragon: string;
-  Electric: string;
-  Fairy: string;
-  Fighting: string;
-  Fire: string;
-  Flying: string;
-  Ghost: string;
-  Grass: string;
-  Ground: string;
-  Ice: string;
-  Normal: string;
-  Poison: string;
-  Psychic: string;
-  Rock: string;
-  Steel: string;
-  Water: string;
-}
-
-
 const Home: FC<HomeProps> = () => {
   const [filteredData, setFilteredData] = React.useState<Node[]>([]);
-  console.log("filtered", filteredData);
+
   const query =  useStaticQuery(graphql`
   query HomeQuery { 
     allPokemon {
@@ -104,6 +58,7 @@ const Home: FC<HomeProps> = () => {
           <div className='flex text-white text-3xl font-bold'>Pokedex</div>
         </div>
 
+            {/* <img src={pikachu} className="w-12" />  */}
         <div className='flex flex-col items-center'>
           <form className='flex flex-row justify-center p-5'>
               <input 
@@ -111,7 +66,7 @@ const Home: FC<HomeProps> = () => {
                   aria-label="Search"
                   onChange={handleChange} 
                   placeholder="search a pokemon"
-              />  
+              /> 
           </form> 
           <ul className='bg-white border w-80 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-11'>
               {filteredData.map((item) => (
@@ -122,10 +77,9 @@ const Home: FC<HomeProps> = () => {
       
         <div className='flex justify-end items-center pr-10 space-x-2'>
           <p className='text-gray-400 text-xl'>Generations</p>
-          <Dropdown options={options} value={defaultOption} placeholder="Select an option" className='w-32'
-           />        
+          <Dropdown options={options} value={defaultOption} placeholder="Select an option" className='w-32' />        
         </div>
-        <div className='grid grid-cols-9 mt-5 place-items-center'>
+        <div className='grid grid-cols-11 mt-5 place-items-center'>
           {query.allPokemon.nodes.map((item: Node) => (
             <PokemonCard key={item.name} item={item}/> 
           ))         
