@@ -1,9 +1,9 @@
 import React, {FC} from 'react'
 import { TbPokeball } from "react-icons/tb";
 import { Link } from "gatsby"
-import { Node } from '../types';
+import { AllPokemon } from '../types';
 
-const PokemonCard = ({ item }) => {
+const PokemonCard: FC<AllPokemon> = ({ item }) => {
 
     return (
         <div>

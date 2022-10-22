@@ -1,14 +1,14 @@
 import React, {FC, ChangeEvent} from 'react';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 import { graphql, useStaticQuery } from 'gatsby'
+
+import SearchResults from './Search-results';
 
 import PokemonCard from './Pokemon-card';
 import pokeball from '../assets/pokeball.png'
-
 import { HomeProps } from '../types';
 import { Node } from '../types';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-import SearchResults from './Search-results';
 
 const Home: FC<HomeProps> = () => {
   const [filteredData, setFilteredData] = React.useState<Node[]>([]);
@@ -58,7 +58,6 @@ const Home: FC<HomeProps> = () => {
           <div className='flex text-white text-3xl font-bold'>Pokedex</div>
         </div>
 
-            {/* <img src={pikachu} className="w-12" />  */}
         <div className='flex flex-col items-center'>
           <form className='flex flex-row justify-center p-5'>
               <input 
@@ -70,7 +69,7 @@ const Home: FC<HomeProps> = () => {
           </form> 
           <ul className='bg-white border w-80 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-11'>
               {filteredData.map((item) => (
-                <SearchResults key={item.name} item={item}/>
+                <SearchResults key={item.name} item={item} nodes={[]} />
               ))}
           </ul>           
         </div>
@@ -81,7 +80,7 @@ const Home: FC<HomeProps> = () => {
         </div>
         <div className='grid grid-cols-11 mt-5 place-items-center'>
           {query.allPokemon.nodes.map((item: Node) => (
-            <PokemonCard key={item.name} item={item}/> 
+            <PokemonCard key={item.name} item={item} nodes={[]} /> 
           ))         
         }
         </div>
