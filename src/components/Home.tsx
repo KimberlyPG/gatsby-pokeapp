@@ -40,7 +40,7 @@ const Home: FC<HomeProps> = () => {
    
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
-        const pokeName = event.target.value;
+        const pokeName = event.target.value.toLowerCase();
         const filtered = query.allPokemon.nodes.filter((item: Node) => {
           if(pokeName !== '') return item.name.includes(pokeName);
         })
