@@ -11,7 +11,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
 
     return (
         <div>
-            <Link to='/pokemon' state={{ data: item}}> 
+            <Link to={`/pokemon/${item.name}`} > 
                 <div className='bg-gray-100 h-36 w-36 rounded-lg cursor-pointer hover:bg-gray-200 mb-5'>
                     <TbPokeball className='text-gray-400 m-1' />
                     <div className='grid place-items-center'>

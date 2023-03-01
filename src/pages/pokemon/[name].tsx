@@ -2,13 +2,13 @@ import React, { useEffect, useState, FC } from "react";
 import { navigate } from "gatsby";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 
-import PokemonStats from "../components/PokemonStats";
+import PokemonStats from "../../components/PokemonStats";
 
-import { typeColor } from "../utils/types-colors";
-import { pokemonColor } from "../utils/pokemon-colors";
+import { typeColor } from "../../utils/types-colors";
+import { pokemonColor } from "../../utils/pokemon-colors";
 
-const Pokemon = ({ location }) => {
-    const { state = {} } = location
+const Pokemon = ({ params }) => {
+    const pokemonName = params.name;
     const [data, setData] = useState('');
     const [pokemonDescription, setPokemonDescription] = useState('');
 
@@ -18,17 +18,17 @@ const Pokemon = ({ location }) => {
 
     useEffect(() => {
         const getPokemonData = async () => {
-            await fetch(`https://pokeapi.co/api/v2/pokemon/${state.data.name}`)
+            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
             .then(res => res.json())
             .then(data => setData(data))
           }
           getPokemonData(); 
     },[])
-    console.log("data", data)
+    console.log("pokemonData", data)
 
     useEffect(() => {
         const getPokemonDataDescription = async () => {
-            await fetch(`https://pokeapi.co/api/v2/pokemon-species/${state.data.name}`)
+            await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
             .then(res => res.json())
             .then(response => setPokemonDescription(response))
           }
@@ -42,7 +42,7 @@ const Pokemon = ({ location }) => {
                 <IoIosArrowDropleftCircle  className="text-xl"/>
                 <button className="font-bold" onClick={() => navigate('/')}>Home</button>
             </div>
-            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{state.data.name.charAt(0).toUpperCase() + state.data.name.slice(1)} N.°{data.id}</h3>
+            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)} N.°{data.id}</h3>
             <div className="flex justify-center p-5">
                 <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                     {sprites_dreamWorld !== null ? (
@@ -60,14 +60,16 @@ const Pokemon = ({ location }) => {
                         />
                     )
                     }
-                    <PokemonStats stats={state.data.stats} />
+                    <PokemonStats stats={data.stats} />
                 </div>
                 <div className="border w-96 p-3">
                     <p className="grid text-gray-600 justify-items-center">{description_format && JSON.parse(description_format)}</p>
                     <h3 className="text-gray-600 text-sm mt-5 text-gray-500">Type</h3>
                     <div className="flex">
-                        {state.data.types.map((item) => (
-                            <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item)}`}}>{item}</p>
+                        {data?.types?.map((item) => (
+                            <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item.type.name)}`}}>
+                                {item.type.name}
+                            </p>
                         ))}
                     </div>
                 </div>

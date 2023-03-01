@@ -13,14 +13,5 @@ module.exports = {
         nbOfPokemons: 800,
       },
     },
-    {
-      resolve: 'gatsby-source-rest-api',
-      options: {
-        endpoints: [
-          'https://beta.pokeapi.co/graphql/v1beta',
-          // 'https://zelda.fanapis.com/api/graphql'
-        ],
-      },
-    }
   ],
 }
