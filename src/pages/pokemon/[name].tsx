@@ -1,19 +1,29 @@
 import React, { useEffect, useState, FC } from "react";
-import { navigate } from "gatsby";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { navigate } from "gatsby";
+import { PageProps } from "gatsby";
 
 import PokemonStats from "../../components/PokemonStats";
 
 import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
+import { PokemonData, PokemonDescription } from "../../types";
 
-const Pokemon = ({ params }) => {
-    const pokemonName = params.name as string;
-    const [data, setData] = useState('');
-    const [pokemonDescription, setPokemonDescription] = useState('');
+interface Name {
+    name: string;
+}
 
-    const sprites_dreamWorld = data?.sprites?.other.dream_world.front_default;
-    const sprites_home = data?.sprites?.other.home.front_default;
+interface PokemonProps {
+    params: Name;
+}
+
+const Pokemon = ({ params }: PageProps<PokemonProps>) => {
+    const pokemonName = params.name;
+    const [data, setData] = useState<PokemonData>({});
+    const [pokemonDescription, setPokemonDescription] = useState<PokemonDescription>({});
+
+    const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
+    const sprites_home = data?.sprites?.other?.home.front_default;
     const description_format = JSON.stringify(pokemonDescription?.flavor_text_entries?.[0].flavor_text)?.toString().replaceAll("\\n", " ").replace("\\f", " ").replace("POKéMON", "pokémon");
 
     useEffect(() => {
@@ -24,7 +34,6 @@ const Pokemon = ({ params }) => {
           }
           getPokemonData(); 
     },[])
-    console.log("pokemonData", data)
 
     useEffect(() => {
         const getPokemonDataDescription = async () => {
@@ -34,7 +43,6 @@ const Pokemon = ({ params }) => {
           }
           getPokemonDataDescription(); 
     },[])
-    console.log("pokemonDescription", pokemonDescription)
 
     return (
         <>
@@ -42,7 +50,7 @@ const Pokemon = ({ params }) => {
                 <IoIosArrowDropleftCircle  className="text-xl"/>
                 <button className="font-bold" onClick={() => navigate('/')}>Home</button>
             </div>
-            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)} N.°{data.id}</h3>
+            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)} N.°{data?.id}</h3>
             <div className="flex justify-center p-5">
                 <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                     {sprites_dreamWorld !== null ? (
