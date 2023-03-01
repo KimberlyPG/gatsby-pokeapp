@@ -1,8 +1,8 @@
 import React, {FC} from "react";
-import { Stats } from "../types";
+import { Stat } from "../types";
 
 interface PokemonStatsProps {
-    stats: Stats
+    stats: Stat[];
 }
 
 const PokemonStats: FC<PokemonStatsProps> = ({ stats }) => {

@@ -8,7 +8,7 @@ import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
 
 const Pokemon = ({ params }) => {
-    const pokemonName = params.name;
+    const pokemonName = params.name as string;
     const [data, setData] = useState('');
     const [pokemonDescription, setPokemonDescription] = useState('');
 
