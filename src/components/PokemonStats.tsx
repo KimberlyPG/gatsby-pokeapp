@@ -1,7 +1,11 @@
 import React, {FC} from "react";
-import { Node } from "../types";
+import { Stats } from "../types";
 
-const PokemonStats: FC<Node> = ({ stats }) => {
+interface PokemonStatsProps {
+    stats: Stats
+}
+
+const PokemonStats: FC<PokemonStatsProps> = ({ stats }) => {
     return (
         <div className="text-xs mt-2">
             <div className="bg-green-400 text-white w-4/5 font-semibold">BASE STATS</div>
