@@ -1,8 +1,12 @@
 import React, {FC} from 'react'
 import { Link } from 'gatsby';
-import { AllPokemon } from '../types';
+import { Node } from '../types';
 
-const SearchResults: FC<AllPokemon> = ({ item }) => {
+type SearchResultsProps = {
+    item: Node
+}
+
+const SearchResults: FC<SearchResultsProps> = ({ item }) => {
   return (
     <Link to='/pokemon' state={{ data: item}}> 
         <li className='flex items-center cursor-pointer hover:bg-gray-100'>

@@ -3,9 +3,9 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { graphql, useStaticQuery } from 'gatsby'
 
-import SearchResults from './Search-results';
+import SearchResults from './SearchResults';
 
-import PokemonCard from './Pokemon-card';
+import PokemonCard from './PokemonCard';
 import pokeball from '../assets/pokeball.png'
 import { HomeProps } from '../types';
 import { Node } from '../types';

@@ -2,7 +2,7 @@ import React, { useEffect, useState, FC } from "react";
 import { navigate } from "gatsby";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 
-import PokemonStats from "../components/Pokemon-stats";
+import PokemonStats from "../components/PokemonStats";
 
 import { typeColor } from "../utils/types-colors";
 import { pokemonColor } from "../utils/pokemon-colors";
