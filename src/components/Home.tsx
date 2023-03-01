@@ -69,7 +69,7 @@ const Home: FC<HomeProps> = () => {
           </form> 
           <ul className='bg-white border w-80 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-11'>
               {filteredData.map((item) => (
-                <SearchResults key={item.name} item={item} nodes={[]} />
+                <SearchResults key={item.name} item={item} />
               ))}
           </ul>           
         </div>
@@ -80,7 +80,7 @@ const Home: FC<HomeProps> = () => {
         </div>
         <div className='grid grid-cols-11 mt-5 place-items-center'>
           {query.allPokemon.nodes.map((item: Node) => (
-            <PokemonCard key={item.name} item={item} nodes={[]} /> 
+            <PokemonCard key={item.name} item={item} /> 
           ))         
         }
         </div>
