@@ -7,6 +7,7 @@ import PokemonStats from "../../components/PokemonStats";
 
 import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
+import { getPokemonData } from "../../api/getPokemonData";
 import { PokemonData, PokemonDescription } from "../../types";
 
 interface Name {
@@ -27,22 +28,9 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
     const description_format = JSON.stringify(pokemonDescription?.flavor_text_entries?.[0].flavor_text)?.toString().replaceAll("\\n", " ").replace("\\f", " ").replace("POKéMON", "pokémon");
 
     useEffect(() => {
-        const getPokemonData = async () => {
-            await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-            .then(res => res.json())
-            .then(data => setData(data))
-          }
-          getPokemonData(); 
-    },[])
-
-    useEffect(() => {
-        const getPokemonDataDescription = async () => {
-            await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
-            .then(res => res.json())
-            .then(response => setPokemonDescription(response))
-          }
-          getPokemonDataDescription(); 
-    },[])
+        getPokemonData(pokemonName, "pokemon", setData);
+        getPokemonData(pokemonName, "pokemon-species", setPokemonDescription);
+    },[pokemonName])
 
     return (
         <>
