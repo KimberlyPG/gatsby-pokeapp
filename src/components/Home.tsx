@@ -33,11 +33,6 @@ const Home: FC<HomeProps> = () => {
       }
     `);
 
-    const options = [
-      'I', 'II', 'III'
-    ];
-    const defaultOption = options[0];
-   
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         const pokeName = event.target.value.toLowerCase();
@@ -73,11 +68,7 @@ const Home: FC<HomeProps> = () => {
               ))}
           </ul>           
         </div>
-      
-        <div className='flex justify-end items-center pr-10 space-x-2'>
-          <p className='text-gray-400 text-xl'>Generations</p>
-          <Dropdown options={options} value={defaultOption} placeholder="Select an option" className='w-32' />        
-        </div>
+
         <div className='grid grid-cols-11 mt-5 place-items-center'>
           {query.allPokemon.nodes.map((item: Node) => (
             <PokemonCard key={item.name} item={item} /> 
