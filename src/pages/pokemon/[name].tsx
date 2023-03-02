@@ -54,6 +54,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
         getPokemonData(pokemonName, "pokemon-species", setPokemonDescription);
     },[pokemonName])
     console.log("data", data)
+    console.log("des", pokemonDescription)
 
     return (
         <>
@@ -92,15 +93,29 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     <PokemonStats stats={data.stats} />
                 </div>
                 <div className="border w-96 p-3 bg-gray-100 bg-gray-100 bg-opacity-60">
-                    <p className="grid text-gray-600 justify-items-center">{description_format && JSON.parse(description_format)}</p>
+                    <p className="grid text-gray-600 text-lg justify-items-center mt-4">{description_format && JSON.parse(description_format)}</p>
                     <h3 className="text-gray-600 text-sm mt-5 text-gray-500">Type</h3>
                     <div className="flex">
                         {data?.types?.map((item) => (
-                            <p className="rounded-lg text-white w-20 text-center m-2" style={{backgroundColor: `${typeColor(item.type.name)}`}}>
+                            <p 
+                                className="rounded-lg text-white text-lg  w-20 text-center mr-4 mt-3 px-3" 
+                                style={{backgroundColor: `${typeColor(item.type.name)}`}}
+                            >
                                 {item.type.name}
                             </p>
                         ))}
                     </div>
+                    <div className="bg-blue-400 rounded-lg mt-5 p-5">
+                        <div>
+                            <p className="text-blue-800 text-sm ">Weight</p>
+                            <p className="text-white text-sm ">{data.weight}</p>
+                        </div>
+                        <div>
+                            <p className="text-blue-800 text-sm">Height</p>
+                            <p className="text-white text-sm">{data.height}</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </>
