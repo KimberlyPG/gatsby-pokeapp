@@ -4,11 +4,10 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import PokemonCard from './PokemonCard';
 
-import { HomeProps } from '../types/types';
 import { Node } from '../types/types';
 import Topbar from './Topbar';
 
-const Home: FC<HomeProps> = () => {
+const Home: FC = () => {
   
   const query =  useStaticQuery(graphql`
   query HomeQuery { 

@@ -53,8 +53,6 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
         getPokemonData(pokemonName, "pokemon", setData);
         getPokemonData(pokemonName, "pokemon-species", setPokemonDescription);
     },[pokemonName])
-    console.log("data", data)
-    console.log("des", pokemonDescription)
 
     return (
         <>

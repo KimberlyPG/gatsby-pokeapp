@@ -23,7 +23,7 @@ const Topbar: FC<TopbarProps> = ({ query }) => {
     }
 
   return (
-    <div className='flex h-20 items-center bg-cyan-700'>
+    <div className='flex h-17 items-center bg-cyan-700'>
         <div className='flex justify-center items-center space-x-3 ml-6'>
             <img 
                 className='h-12'
