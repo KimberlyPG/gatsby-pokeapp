@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {FC, ReactNode} from 'react'
 
 import { pokemonColor } from '../utils/pokemon-colors'
+import { PokemonDescription } from '../types/types';
 
-const PokemonContainer = ({ children, pokemonDescription }) => {
+interface PokemonContainerProps {
+    children: ReactNode;
+    pokemonDescription: PokemonDescription;
+}
+
+const PokemonContainer: FC<PokemonContainerProps> = ({ children, pokemonDescription }) => {
   return (
     <div className="flex justify-center p-5"
         style={{
