@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import { Link } from 'gatsby';
-import { Node } from '../types';
+import { Node } from '../types/types';
 
 type SearchResultsProps = {
     item: Node

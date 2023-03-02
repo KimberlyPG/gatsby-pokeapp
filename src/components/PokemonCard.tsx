@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import { TbPokeball } from "react-icons/tb";
 import { Link } from "gatsby"
-import { Node } from '../types';
+import { Node } from '../types/types';
 
 interface PokemonCardProps {
     item: Node;

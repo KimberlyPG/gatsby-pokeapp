@@ -7,8 +7,8 @@ import SearchResults from './SearchResults';
 
 import PokemonCard from './PokemonCard';
 import pokeball from '../assets/pokeball.png'
-import { HomeProps } from '../types';
-import { Node } from '../types';
+import { HomeProps } from '../types/types';
+import { Node } from '../types/types';
 
 const Home: FC<HomeProps> = () => {
   const [filteredData, setFilteredData] = React.useState<Node[]>([]);
@@ -69,7 +69,7 @@ const Home: FC<HomeProps> = () => {
           </ul>           
         </div>
 
-        <div className='grid grid-cols-11 mt-5 place-items-center'>
+        <div className='grid xl:grid-cols-11 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 mt-5 place-items-center'>
           {query.allPokemon.nodes.map((item: Node) => (
             <PokemonCard key={item.name} item={item} /> 
           ))         
