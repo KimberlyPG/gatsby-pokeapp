@@ -1,12 +1,12 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
 
-import Home from '../components/Home';
+import PokemonList from '../components/PokemonList';
 import '../styles/global.css'
 
 const IndexPage = () => {  
   return (
-    <Home />
+    <PokemonList />
   )
 }
 

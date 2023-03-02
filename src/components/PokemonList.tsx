@@ -7,7 +7,7 @@ import PokemonCard from './PokemonCard';
 import { Node } from '../types/types';
 import Topbar from './Topbar';
 
-const Home: FC = () => {
+const PokemonList: FC = () => {
   
   const query =  useStaticQuery(graphql`
   query HomeQuery { 
@@ -43,4 +43,4 @@ const Home: FC = () => {
 }
 
 
-export default Home;
+export default PokemonList;
