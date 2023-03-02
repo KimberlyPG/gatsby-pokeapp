@@ -1,7 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
-import { navigate } from "gatsby";
-import { PageProps } from "gatsby";
+import { navigate, PageProps } from "gatsby";
 
 import PokemonStats from "../../components/PokemonStats";
 
@@ -64,19 +63,17 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             </div>
             <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)} N.°{data?.id}</h3>
             <div className="flex justify-center p-5"
-            style={{
-                backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`, 
-                backgroundImage:`linear-gradient(0deg, rgba(244, 244, 244,0.8), rgba(244, 244, 244,0.8)), 
-                url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-5.jpg)`,
-                backgroundAttachment: 'fixed',
-                backgroundSize: 'contain', 
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat',
-            }}
-            
+                style={{
+                    backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`, 
+                    backgroundImage:`linear-gradient(0deg, rgba(244, 244, 244,0.8), rgba(244, 244, 244,0.8)), 
+                    url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-5.jpg)`,
+                    backgroundAttachment: 'fixed',
+                    backgroundSize: 'contain', 
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat',
+                }}
             >
-                <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100"
-                    >
+                <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                     {sprites_dreamWorld !== null ? (
                         <img
                             style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
