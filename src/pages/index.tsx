@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PageProps } from "gatsby";
 
 import PokemonList from '../components/PokemonList';
 import '../styles/global.css'
