@@ -1,25 +1,28 @@
-import React, {FC, ChangeEvent} from 'react';
+import React, {FC, ChangeEvent, useContext} from 'react';
 
 import SearchResults from './SearchResults';
 
 import pokeball from '../assets/pokeball.png'
 import { Node } from '../types/types';
 import { HomeProps } from '../types/types';
+import { PokemonContext } from '../context/pokemon.context';
 
 interface TopbarProps {
     query: HomeProps;
 }
 
-const Topbar: FC<TopbarProps> = ({ query }) => {
+const Topbar: FC<TopbarProps> = () => {
+    const { allPokemon } = useContext(PokemonContext);
+
     const [filteredData, setFilteredData] = React.useState<Node[]>([]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         const pokeName = event.target.value.toLowerCase();
-        const filtered = query.allPokemon.nodes.filter((item: Node) => {
-          if(pokeName !== '') return item.name.includes(pokeName);
+        const filtered = allPokemon.nodes.filter((item: Node) => {
+            if(pokeName !== '') return item.name.includes(pokeName);
         })
-          setFilteredData(filtered);
+            setFilteredData(filtered);
     }
 
   return (
@@ -46,7 +49,7 @@ const Topbar: FC<TopbarProps> = ({ query }) => {
                     {filteredData.map((item) => (
                         <SearchResults key={item.name} item={item} />
                     ))}
-                </ul>  
+            </ul>  
             }         
         </div>
     </div>
