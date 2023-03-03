@@ -45,6 +45,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             }
         ],
     });
+    const [evolution, setEvolution] = useState();
 
     const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
     const sprites_home = data?.sprites?.other?.home.front_default;
@@ -54,6 +55,17 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
         getPokemonData(pokemonName, "pokemon", setData);
         getPokemonData(pokemonName, "pokemon-species", setPokemonDescription);
     },[pokemonName])
+
+    useEffect(() => {
+        const getPokemonEvolutions = async() => {
+            await fetch(pokemonDescription?.evolution_chain?.url)
+            .then(res => res.json())
+            .then(data => setEvolution(data))
+          }
+          getPokemonEvolutions();
+    }, [data])
+
+    console.log("evo", evolution)
 
     return (
         <>
@@ -100,7 +112,6 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                             <p className="text-white text-sm">{data.height}</p>
                         </div>
                     </div>
-
                 </div>
             </PokemonContainer>
         </>
