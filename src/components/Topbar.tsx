@@ -7,11 +7,7 @@ import { Node } from '../types/types';
 import { HomeProps } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
 
-interface TopbarProps {
-    query: HomeProps;
-}
-
-const Topbar: FC<TopbarProps> = () => {
+const Topbar = () => {
     const { allPokemon } = useContext(PokemonContext);
 
     const [filteredData, setFilteredData] = React.useState<Node[]>([]);
