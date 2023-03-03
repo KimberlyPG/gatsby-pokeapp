@@ -8,7 +8,7 @@ type SearchResultsProps = {
 
 const SearchResults: FC<SearchResultsProps> = ({ item }) => {
   return (
-    <Link to='/pokemon' state={{ data: item}}> 
+    <Link to={`/pokemon/${item.name}`} state={{ data: item}}> 
         <li className='flex items-center cursor-pointer hover:bg-gray-100'>
                 <img
                 className='flex justify-center w-12'               

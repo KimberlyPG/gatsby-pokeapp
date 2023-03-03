@@ -1,10 +1,10 @@
-import React, {FC, ChangeEvent, useContext} from 'react';
+import React, { ChangeEvent, useContext} from 'react';
+import { Link } from 'gatsby';
 
 import SearchResults from './SearchResults';
 
 import pokeball from '../assets/pokeball.png'
 import { Node } from '../types/types';
-import { HomeProps } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
 
 const Topbar = () => {
@@ -23,21 +23,23 @@ const Topbar = () => {
 
     return (
         <div className='flex h-17 items-center bg-cyan-700'>
-            <div className='flex justify-center items-center space-x-3 ml-6'>
-                <img 
-                    className='h-12'
-                    src={pokeball} 
-                    alt="pokeball image" 
-                />
-                <div className='flex text-white text-3xl font-bold'>Pokedex</div>
-            </div>
+            <Link to="/">
+                <div className='flex justify-center items-center space-x-3 ml-6'>
+                    <img 
+                        className='h-12'
+                        src={pokeball} 
+                        alt="pokeball image" 
+                    />
+                    <div className='flex text-white text-3xl font-bold'>Pokedex</div>
+                </div>
+            </Link>
             <div className='flex justify-center w-full'>
                 <form className='flex flex-row justify-center p-5'>
                     <input 
                         className="bg-gray-200 rounded lg:w-80 text-black pl-3 sm:w-60 xs:w-24 outline-0"
                         aria-label="Search"
                         onChange={handleChange} 
-                        placeholder="search a pokemon"
+                        placeholder="Search a pokemon..."
                     /> 
                 </form> 
                 {filteredData.length > 0 &&
