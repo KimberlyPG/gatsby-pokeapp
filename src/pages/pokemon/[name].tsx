@@ -57,10 +57,10 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     return (
         <>
-            <div className="flex bg-blue-500 ml-10 mt-10 w-24 text-white justify-center items-center p-2 rounded-xl space-x-2 cursor-pointer">
+            {/* <div className="flex bg-blue-500 ml-10 mt-10 w-24 text-white justify-center items-center p-2 rounded-xl space-x-2 cursor-pointer">
                 <IoIosArrowDropleftCircle  className="text-xl"/>
                 <button className="font-bold" onClick={() => navigate('/')}>Home</button>
-            </div>
+            </div> */}
             <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)} N.°{data?.id}</h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
                 <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
