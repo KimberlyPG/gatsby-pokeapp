@@ -115,21 +115,21 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     </div>
                 </div>
             </PokemonContainer>
-            <div>
-                <div>
-                    <p>Evolutions</p> 
-                    <div>
-                        {evolution.chain &&
-                            <div>
-                                <p>{evolution.chain.species.name}</p>
-                                <img 
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
-                                    alt="" 
-                                />
-                            </div>
-                        }
+            <p className="bg-gray-700 text-white font-semibold w-32 flex justify-center p-1 rounded-sm text-lg mx-40 mt-2">Evolutions</p> 
+            <div className="flex bg-gray-100 justify-center mx-40">
+                <div className="flex">
+                    {evolution.chain &&
+                        <div>
+                            <p>{evolution.chain.species.name}</p>
+                            <img 
+                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
+                                alt="" 
+                            />
+                        </div>
+                    }
+                    <div className="flex-row">
                         {evolution?.chain?.evolves_to?.map((item) => (
-                            <div>
+                            <div className="flex flex-row">
                                 <p>{item.species.name}</p>
                                 <img 
                                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
@@ -146,7 +146,6 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                             ))} 
                             </div>
                         ))} 
-
                     </div>
                 </div>
             </div>
