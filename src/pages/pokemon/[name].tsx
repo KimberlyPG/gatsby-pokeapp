@@ -115,38 +115,75 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     </div>
                 </div>
             </PokemonContainer>
-            <p className="bg-gray-700 text-white font-semibold w-32 flex justify-center p-1 rounded-sm text-lg mt-2">Evolutions</p> 
-            <div className="flex bg-gray-600 justify-center w-2/4 py-10">
-                <div className="flex space-x-10">
+
+            <div className="justify-center w-2/4 mt-4 mx-auto">
+            <p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-lg">Evolutions</p> 
+                <div className="flex space-x-16 py-10 px-20 items-center bg-gray-200 bg-opacity-70 mb-5 rounded-tr-2xl rounded-bl-2xl">
                     {evolution.chain &&
-                        <div className="rounded-lg p-4 border-2">
-                            <p className="text-white">{evolution.chain.species.name}</p>
-                            <img 
-                                className="w-48"
-                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
-                                alt="" 
-                            />
+                        <div>
+                            <div className="rounded-full p-4"
+                                style={{
+                                    backgroundImage:`
+                                    url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
+                                    backgroundSize: 'contain', 
+                                    backgroundPosition: 'center center',
+                                    backgroundRepeat: 'no-repeat',
+                                }}  
+                            >
+                                <img 
+                                    className="w-48"
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
+                                    alt="" 
+                                />
+                            </div>
+                            <p className="flex text-gray-700 text-xl justify-center">
+                                {evolution.chain.species.name.charAt(0).toUpperCase() + evolution.chain.species.name.slice(1)}
+                            </p>
                         </div>
                     }
-                    <div className="flex-row">
+                    <div className="flex flex-col">
                         {evolution?.chain?.evolves_to?.map((item) => (
-                            <div className="flex flex-row space-x-10">
-                                <div className="rounded-lg p-4 border-2">
-                                    <p className="text-white">{item.species.name}</p>
-                                    <img 
-                                        className="w-48"
-                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
-                                        alt="" 
-                                    />
-                                </div>
-                                {item.evolves_to?.map((element) => (
-                                    <div className="rounded-lg p-4 border-2">
-                                        <p className="text-white">{element.species.name}</p>
+                            <div className="flex flex-row space-x-16">
+                                <div>
+                                    <div className="rounded-lg p-4"
+                                        style={{
+                                            backgroundImage:`
+                                            url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
+                                            backgroundSize: 'contain', 
+                                            backgroundPosition: 'center center',
+                                            backgroundRepeat: 'no-repeat',
+                                        }}                             
+                                    >
                                         <img 
                                             className="w-48"
-                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.species.url.slice(42, -1)}.png`} 
+                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
                                             alt="" 
-                                            />
+                                        />
+                                    </div>
+                                    <p className="flex text-gray-700 text-xl justify-center">
+                                        {item.species.name.charAt(0).toUpperCase() + item.species.name.slice(1)}
+                                    </p>
+                                </div>
+                                {item.evolves_to?.map((element) => (
+                                    <div>
+                                        <div className="rounded-full p-4"
+                                            style={{
+                                                backgroundImage:`
+                                                url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
+                                                backgroundSize: 'contain', 
+                                                backgroundPosition: 'center center',
+                                                backgroundRepeat: 'no-repeat',
+                                            }}  
+                                        >                                   
+                                            <img 
+                                                className="w-48"
+                                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.species.url.slice(42, -1)}.png`} 
+                                                alt="" 
+                                                />
+                                        </div>
+                                        <p className="flex text-gray-700 text-xl justify-center">
+                                            {item.species.name.charAt(0).toUpperCase() + item.species.name.slice(1)}
+                                        </p>
                                     </div>
                                 ))} 
                             </div>
