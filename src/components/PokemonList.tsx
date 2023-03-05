@@ -18,6 +18,7 @@ const PokemonList: FC = () => {
 	query HomeQuery { 
 		allPokemon {
 			nodes {
+				id
 				name
 				stats {
 				attack
@@ -33,7 +34,7 @@ const PokemonList: FC = () => {
 			}
 		}
 	`);
-
+		console.log(query.allPokemon)
     return (
 		<>
 			<div className='grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 mt-5 place-items-center ml-32 mr-32'>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState} from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useState} from 'react';
 import { Link, navigate } from 'gatsby';
 
 import SearchResults from './SearchResults';
@@ -22,11 +22,12 @@ const Topbar = () => {
         })
             setFilteredData(filtered);
     }
-
-    const handleSubmit = () => {
-        navigate(`/search/results/${name}`)
+console.log(name)
+    const handleSubmit = (event: FormEvent<HTMLFormElement>)=> {
+        event.preventDefault();
+        navigate(`/search/${name}`, { state: [filteredData] })
     }
-
+    console.log("filtered", filteredData);
     return (
         <div className='flex h-14 items-center shadow-md'>
             <Link to="/">
