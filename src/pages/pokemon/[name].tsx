@@ -8,7 +8,7 @@ import Evolutions from "../../components/Evolutions";
 import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
-import { PokemonData, PokemonDescription } from "../../types/types";
+import { PokemonData, PokemonDescription, Evolution } from "../../types/types";
 
 interface Name {
     name: string;
@@ -45,7 +45,15 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             }
         ],
     });
-    const [evolutionChain, setEvolutionChain] = useState([]);
+    const [evolutionChain, setEvolutionChain] = useState<Evolution>({
+        chain: {
+            evolves_to: [],
+            species: {
+                name: "",
+                url: ""
+            }
+        }
+    });
 
     const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
     const sprites_home = data?.sprites?.other?.home.front_default;
@@ -58,12 +66,13 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     useEffect(() => {
         const getPokemonEvolutions = async() => {
-            await fetch(pokemonDescription?.evolution_chain?.url)
+            await fetch(pokemonDescription?.evolution_chain?.url as string)
             .then(res => res.json())
             .then(data => setEvolutionChain(data))
           }
           getPokemonEvolutions();      
     }, [pokemonDescription])
+    console.log(evolutionChain)
 
     return (
         <>
