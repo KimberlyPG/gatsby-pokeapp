@@ -34,7 +34,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.1.0",
     "react-dropdown": "^1.11.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.8.0",
     "save": "^2.9.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tsconfig.json": "^1.0.11"

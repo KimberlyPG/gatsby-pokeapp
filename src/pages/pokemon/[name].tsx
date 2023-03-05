@@ -1,5 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import { PageProps } from "gatsby";
+import { AiOutlineRight } from 'react-icons/ai';
 
 import PokemonContainer from "../../components/PokemonContainer";
 import PokemonStats from "../../components/PokemonStats";
@@ -8,6 +9,7 @@ import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
 import { PokemonData, PokemonDescription } from "../../types/types";
+import EvolutionImg from "../../components/EvolutionImg";
 
 interface Name {
     name: string;
@@ -117,74 +119,20 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             </PokemonContainer>
 
             <div className="justify-center w-2/4 mt-4 mx-auto">
-            <p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-lg">Evolutions</p> 
+                <p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-lg">Evolutions</p> 
                 <div className="flex space-x-16 py-10 px-20 items-center bg-gray-200 bg-opacity-70 mb-5 rounded-tr-2xl rounded-bl-2xl">
                     {evolution.chain &&
-                        <div>
-                            <div className="rounded-full p-4"
-                                style={{
-                                    backgroundImage:`
-                                    url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
-                                    backgroundSize: 'contain', 
-                                    backgroundPosition: 'center center',
-                                    backgroundRepeat: 'no-repeat',
-                                }}  
-                            >
-                                <img 
-                                    className="w-48"
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
-                                    alt="" 
-                                />
-                            </div>
-                            <p className="flex text-gray-700 text-xl justify-center">
-                                {evolution.chain.species.name.charAt(0).toUpperCase() + evolution.chain.species.name.slice(1)}
-                            </p>
-                        </div>
+                    <>
+                        <EvolutionImg url={evolution.chain.species.url} name={evolution.chain.species.name} />
+                        <AiOutlineRight />
+                    </>
                     }
                     <div className="flex flex-col">
                         {evolution?.chain?.evolves_to?.map((item) => (
                             <div className="flex flex-row space-x-16">
-                                <div>
-                                    <div className="rounded-lg p-4"
-                                        style={{
-                                            backgroundImage:`
-                                            url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
-                                            backgroundSize: 'contain', 
-                                            backgroundPosition: 'center center',
-                                            backgroundRepeat: 'no-repeat',
-                                        }}                             
-                                    >
-                                        <img 
-                                            className="w-48"
-                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
-                                            alt="" 
-                                        />
-                                    </div>
-                                    <p className="flex text-gray-700 text-xl justify-center">
-                                        {item.species.name.charAt(0).toUpperCase() + item.species.name.slice(1)}
-                                    </p>
-                                </div>
+                                <EvolutionImg url={item.species.url} name={item.species.name} />
                                 {item.evolves_to?.map((element) => (
-                                    <div>
-                                        <div className="rounded-full p-4"
-                                            style={{
-                                                backgroundImage:`
-                                                url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
-                                                backgroundSize: 'contain', 
-                                                backgroundPosition: 'center center',
-                                                backgroundRepeat: 'no-repeat',
-                                            }}  
-                                        >                                   
-                                            <img 
-                                                className="w-48"
-                                                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.species.url.slice(42, -1)}.png`} 
-                                                alt="" 
-                                                />
-                                        </div>
-                                        <p className="flex text-gray-700 text-xl justify-center">
-                                            {item.species.name.charAt(0).toUpperCase() + item.species.name.slice(1)}
-                                        </p>
-                                    </div>
+                                    <EvolutionImg url={element.species.url} name={element.species.name} />
                                 ))} 
                             </div>
                         ))} 
