@@ -42,7 +42,7 @@ const Topbar = () => {
             <div className='flex justify-center w-full'>
                 <form className='flex flex-row justify-center p-5' onSubmit={handleSubmit}>
                     <input 
-                        className="bg-gray-200 rounded lg:w-80 text-black pl-3 sm:w-60 xs:w-24 outline-0"
+                        className="shadow-sm bg-gray-200 rounded-lg lg:w-80 text-black pl-3 sm:w-60 xs:w-24 outline-0"
                         aria-label="Search"
                         onChange={handleChange} 
                         placeholder="Search a pokemon..."

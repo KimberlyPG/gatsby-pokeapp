@@ -15,24 +15,24 @@ const PokemonList: FC = () => {
 	}, [])
 
   const query =  useStaticQuery(graphql`
-  query HomeQuery { 
-    allPokemon {
-      nodes {
-        name
-        stats {
-          attack
-          defense
-          special_attack
-          hp
-          special_defense
-          speed
-            }
-            types
-            image
-          }
-        }
-      }
-    `);
+	query HomeQuery { 
+		allPokemon {
+			nodes {
+				name
+				stats {
+				attack
+				defense
+				special_attack
+				hp
+				special_defense
+				speed
+					}
+					types
+					image
+				}
+			}
+		}
+	`);
 
     return (
 		<>
