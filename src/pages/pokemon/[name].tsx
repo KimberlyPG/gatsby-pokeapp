@@ -1,15 +1,14 @@
 import React, { useEffect, useState, FC } from "react";
 import { PageProps } from "gatsby";
-import { AiOutlineRight } from 'react-icons/ai';
 
 import PokemonContainer from "../../components/PokemonContainer";
 import PokemonStats from "../../components/PokemonStats";
+import Evolutions from "../../components/Evolutions";
 
 import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
 import { PokemonData, PokemonDescription } from "../../types/types";
-import EvolutionImg from "../../components/EvolutionImg";
 
 interface Name {
     name: string;
@@ -46,7 +45,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             }
         ],
     });
-    const [evolution, setEvolution] = useState([]);
+    const [evolutionChain, setEvolutionChain] = useState([]);
 
     const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
     const sprites_home = data?.sprites?.other?.home.front_default;
@@ -61,14 +60,10 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
         const getPokemonEvolutions = async() => {
             await fetch(pokemonDescription?.evolution_chain?.url)
             .then(res => res.json())
-            .then(data => setEvolution(data))
+            .then(data => setEvolutionChain(data))
           }
           getPokemonEvolutions();      
     }, [pokemonDescription])
-
-    console.log("des", pokemonDescription)
-    console.log("evo", evolution)
-    console.log("data", data.sprites)
 
     return (
         <>
@@ -117,29 +112,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     </div>
                 </div>
             </PokemonContainer>
-
-            <div className="justify-center w-2/4 mt-4 mx-auto">
-                <p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-2xl">Evolutions</p> 
-                <div className="flex space-x-16 py-10 px-20 items-center bg-gray-200 bg-opacity-70 mb-5 rounded-tr-2xl rounded-bl-2xl">
-                    {evolution.chain &&
-                    <>
-                        <EvolutionImg url={evolution.chain.species.url} name={evolution.chain.species.name} />
-                        <AiOutlineRight className="text-4xl"/>
-                    </>
-                    }
-                    <div className="flex flex-col">
-                        {evolution?.chain?.evolves_to?.map((item) => (
-                            <div className="flex flex-row space-x-16 items-center">
-                                <EvolutionImg url={item.species.url} name={item.species.name} />
-                                <AiOutlineRight className="text-4xl"/>
-                                {item.evolves_to?.map((element) => (
-                                    <EvolutionImg url={element.species.url} name={element.species.name} />
-                                ))} 
-                            </div>
-                        ))} 
-                    </div>
-                </div>
-            </div>
+            <Evolutions evolutionChain={evolutionChain} />
         </>
     )
 }
