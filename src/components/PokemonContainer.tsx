@@ -2,6 +2,7 @@ import React, {FC, ReactNode} from 'react'
 
 import { pokemonColor } from '../utils/pokemon-colors'
 import { PokemonDescription } from '../types/types';
+import pokeballBg from "../assets/pokeballBg.jpg"
 
 interface PokemonContainerProps {
     children: ReactNode;
@@ -14,7 +15,7 @@ const PokemonContainer: FC<PokemonContainerProps> = ({ children, pokemonDescript
         style={{
             backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`, 
             backgroundImage:`linear-gradient(0deg, rgba(244, 244, 244,0.8), rgba(244, 244, 244,0.8)), 
-            url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-5.jpg)`,
+            url(${pokeballBg})`,
             backgroundAttachment: 'fixed',
             backgroundSize: 'contain', 
             backgroundPosition: 'center center',
