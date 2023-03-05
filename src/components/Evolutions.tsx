@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { AiOutlineRight } from 'react-icons/ai';
 
 import EvolutionImg from './EvolutionImg'
 
-const Evolutions = ({ evolutionChain }) => {
+import { Evolution } from '../types/types';
+
+interface EvolutionProps {
+	evolutionChain: Evolution
+}	
+
+const Evolutions: FC<EvolutionProps> = ({ evolutionChain }) => {
 	return (
 		<div className="justify-center w-2/4 mt-4 mx-auto">
 			<p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-2xl">Evolutions</p> 
@@ -30,4 +36,4 @@ const Evolutions = ({ evolutionChain }) => {
 	)
 }
 
-export default Evolutions
+export default Evolutions;

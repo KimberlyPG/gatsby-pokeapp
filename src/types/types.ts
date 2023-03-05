@@ -303,15 +303,15 @@ export interface Variety {
 }
 
 export interface Evolution {
-    baby_trigger_item: null;
+    baby_trigger_item?: null;
     chain:             Chain;
-    id:                number;
+    id?:                number;
 }
 
 export interface Chain {
-    evolution_details: EvolutionDetail[];
+    evolution_details?: EvolutionDetail[];
     evolves_to:        Chain[];
-    is_baby:           boolean;
+    is_baby?:           boolean;
     species:           Species;
 }
 
@@ -338,5 +338,5 @@ export interface EvolutionDetail {
 
 export interface Species {
     name: string;
-    url:  string;
+    url?:  string;
 }
