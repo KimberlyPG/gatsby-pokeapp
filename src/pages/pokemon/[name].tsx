@@ -115,13 +115,14 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     </div>
                 </div>
             </PokemonContainer>
-            <p className="bg-gray-700 text-white font-semibold w-32 flex justify-center p-1 rounded-sm text-lg mx-40 mt-2">Evolutions</p> 
-            <div className="flex bg-gray-100 justify-center mx-40">
-                <div className="flex">
+            <p className="bg-gray-700 text-white font-semibold w-32 flex justify-center p-1 rounded-sm text-lg mt-2">Evolutions</p> 
+            <div className="flex bg-gray-600 justify-center w-2/4 py-10">
+                <div className="flex space-x-10">
                     {evolution.chain &&
-                        <div>
-                            <p>{evolution.chain.species.name}</p>
+                        <div className="rounded-lg p-4 border-2">
+                            <p className="text-white">{evolution.chain.species.name}</p>
                             <img 
+                                className="w-48"
                                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
                                 alt="" 
                             />
@@ -129,21 +130,25 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     }
                     <div className="flex-row">
                         {evolution?.chain?.evolves_to?.map((item) => (
-                            <div className="flex flex-row">
-                                <p>{item.species.name}</p>
-                                <img 
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
-                                    alt="" 
-                                />
-                            {item.evolves_to?.map((element) => (
-                                <div>
-                                    <p>{element.species.name}</p>
+                            <div className="flex flex-row space-x-10">
+                                <div className="rounded-lg p-4 border-2">
+                                    <p className="text-white">{item.species.name}</p>
                                     <img 
-                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.species.url.slice(42, -1)}.png`} 
+                                        className="w-48"
+                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
                                         alt="" 
-                                        />
+                                    />
                                 </div>
-                            ))} 
+                                {item.evolves_to?.map((element) => (
+                                    <div className="rounded-lg p-4 border-2">
+                                        <p className="text-white">{element.species.name}</p>
+                                        <img 
+                                            className="w-48"
+                                            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.species.url.slice(42, -1)}.png`} 
+                                            alt="" 
+                                            />
+                                    </div>
+                                ))} 
                             </div>
                         ))} 
                     </div>
