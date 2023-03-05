@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { Link } from 'gatsby'
 
+import pokeballIcon from "../assets/pokeballTransparent.jpg";
+
 interface EvolutionCardProps {
     url: string;
     name: string;
@@ -12,8 +14,7 @@ const EvolutionCard: FC<EvolutionCardProps> = ({ url, name }) => {
         <Link to={`/pokemon/${name}`}>
             <div className="rounded-full p-4"
                 style={{
-                    backgroundImage:`
-                    url(https://icon-library.com/images/pokeball-icon-transparent/pokeball-icon-transparent-28.jpg)`,
+                    backgroundImage: `url(${pokeballIcon})`,
                     backgroundSize: 'contain', 
                     backgroundPosition: 'center center',
                     backgroundRepeat: 'no-repeat',

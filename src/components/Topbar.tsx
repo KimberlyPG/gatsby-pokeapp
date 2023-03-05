@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useContext} from 'react';
-import { Link } from 'gatsby';
+import React, { ChangeEvent, useContext, useState} from 'react';
+import { Link, navigate } from 'gatsby';
 
 import SearchResults from './SearchResults';
 
@@ -11,14 +11,20 @@ const Topbar = () => {
     const { allPokemon } = useContext(PokemonContext);
 
     const [filteredData, setFilteredData] = React.useState<Node[]>([]);
+    const [name, setName] = useState<string>("");
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
+        setName(event.target.value.toLowerCase());
         const pokeName = event.target.value.toLowerCase();
         const filtered = allPokemon.nodes.filter((item: Node) => {
             if(pokeName !== '') return item.name.includes(pokeName);
         })
             setFilteredData(filtered);
+    }
+
+    const handleSubmit = () => {
+        navigate(`/search/results/${name}`)
     }
 
     return (
@@ -34,7 +40,7 @@ const Topbar = () => {
                 </div>
             </Link>
             <div className='flex justify-center w-full'>
-                <form className='flex flex-row justify-center p-5'>
+                <form className='flex flex-row justify-center p-5' onSubmit={handleSubmit}>
                     <input 
                         className="bg-gray-200 rounded lg:w-80 text-black pl-3 sm:w-60 xs:w-24 outline-0"
                         aria-label="Search"
