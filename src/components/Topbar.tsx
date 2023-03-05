@@ -3,8 +3,7 @@ import { Link, navigate } from 'gatsby';
 
 import SearchResults from './SearchResults';
 
-import pokeball from '../assets/pokeball.png'
-import pokemonLogo from "../assets/pokemonLogo"
+import pokeball from '../assets/pokeballTransparent.jpg'
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
 
@@ -29,15 +28,15 @@ const Topbar = () => {
     }
 
     return (
-        <div className='flex h-17 items-center bg-gray-700'>
+        <div className='flex h-14 items-center shadow-md'>
             <Link to="/">
                 <div className='flex justify-center items-center space-x-3 ml-6'>
                     <img 
-                        className='h-10'
+                        className='h-6'
                         src={pokeball} 
                         alt="pokeball image" 
                     />
-                    <div className='flex text-white text-3xl font-bold'>Pokedex</div>
+                    <div className='flex text-gray-700 text-xl font-bold'>Pokedex</div>
                 </div>
             </Link>
             <div className='flex justify-center w-full'>
