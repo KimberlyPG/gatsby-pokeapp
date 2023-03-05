@@ -1,7 +1,12 @@
+import React, { FC } from 'react'
 import { Link } from 'gatsby'
-import React from 'react'
 
-const EvolutionImg = ({ url, name }) => {
+interface EvolutionCardProps {
+    url: string;
+    name: string;
+}
+
+const EvolutionCard: FC<EvolutionCardProps> = ({ url, name }) => {
   return (
     <div>
         <Link to={`/pokemon/${name}`}>
@@ -28,4 +33,4 @@ const EvolutionImg = ({ url, name }) => {
   )
 }
 
-export default EvolutionImg
+export default EvolutionCard;
