@@ -119,18 +119,19 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             </PokemonContainer>
 
             <div className="justify-center w-2/4 mt-4 mx-auto">
-                <p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-lg">Evolutions</p> 
+                <p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-2xl">Evolutions</p> 
                 <div className="flex space-x-16 py-10 px-20 items-center bg-gray-200 bg-opacity-70 mb-5 rounded-tr-2xl rounded-bl-2xl">
                     {evolution.chain &&
                     <>
                         <EvolutionImg url={evolution.chain.species.url} name={evolution.chain.species.name} />
-                        <AiOutlineRight />
+                        <AiOutlineRight className="text-4xl"/>
                     </>
                     }
                     <div className="flex flex-col">
                         {evolution?.chain?.evolves_to?.map((item) => (
-                            <div className="flex flex-row space-x-16">
+                            <div className="flex flex-row space-x-16 items-center">
                                 <EvolutionImg url={item.species.url} name={item.species.name} />
+                                <AiOutlineRight className="text-4xl"/>
                                 {item.evolves_to?.map((element) => (
                                     <EvolutionImg url={element.species.url} name={element.species.name} />
                                 ))} 
