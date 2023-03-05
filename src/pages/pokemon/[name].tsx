@@ -1,6 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
-import { IoIosArrowDropleftCircle } from "react-icons/io";
-import { navigate, PageProps } from "gatsby";
+import { PageProps } from "gatsby";
 
 import PokemonContainer from "../../components/PokemonContainer";
 import PokemonStats from "../../components/PokemonStats";
@@ -45,7 +44,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             }
         ],
     });
-    const [evolution, setEvolution] = useState();
+    const [evolution, setEvolution] = useState([]);
 
     const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
     const sprites_home = data?.sprites?.other?.home.front_default;
@@ -62,10 +61,12 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             .then(res => res.json())
             .then(data => setEvolution(data))
           }
-          getPokemonEvolutions();
-    }, [data])
+          getPokemonEvolutions();      
+    }, [pokemonDescription])
 
+    console.log("des", pokemonDescription)
     console.log("evo", evolution)
+    console.log("data", data.sprites)
 
     return (
         <>
@@ -114,6 +115,41 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     </div>
                 </div>
             </PokemonContainer>
+            <div>
+                <div>
+                    <p>Evolutions</p> 
+                    <div>
+                        {evolution.chain &&
+                            <div>
+                                <p>{evolution.chain.species.name}</p>
+                                <img 
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evolution.chain.species.url.slice(42, -1)}.png`} 
+                                    alt="" 
+                                />
+                            </div>
+                        }
+                        {evolution?.chain?.evolves_to?.map((item) => (
+                            <div>
+                                <p>{item.species.name}</p>
+                                <img 
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.species.url.slice(42, -1)}.png`} 
+                                    alt="" 
+                                />
+                            {item.evolves_to?.map((element) => (
+                                <div>
+                                    <p>{element.species.name}</p>
+                                    <img 
+                                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.species.url.slice(42, -1)}.png`} 
+                                        alt="" 
+                                        />
+                                </div>
+                            ))} 
+                            </div>
+                        ))} 
+
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
