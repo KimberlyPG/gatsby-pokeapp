@@ -22,7 +22,7 @@ const Topbar = () => {
         })
             setFilteredData(filtered);
     }
-console.log(name)
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
         navigate(`/search/${name}`, { state: [filteredData] })

@@ -1,25 +1,40 @@
-import React, { FC } from 'react'
+import React, { FC, MouseEventHandler } from 'react'
 
 import { typeColor } from '../utils/types-colors'
 import { PokemonTypes as Types } from '../types/types'
-import { Node } from '../types/types'
 
 interface PokemonTypesProps {
     types: Types[];
+    parent: string;
+    handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const PokemonTypes: FC<PokemonTypesProps> = ({ types }) => {
+const PokemonTypes: FC<PokemonTypesProps> = ({ types, parent, handleClick }) => {
+
     return (
         <>
             <div className="flex space-x-2">
-                {types.map((item) => (
-                    <p 
-                        className="rounded-lg text-white text-sm text-center px-2" 
-                        style={{backgroundColor: `${typeColor(item)}`, opacity: 0.7}}
-                    >
-                        {item}
-                    </p>
-                ))}
+                {parent === "PokemonList" ? (
+                    types.map((item) => (
+                        <button 
+                            className={`text-white text-sm text-center rounded-lg px-3 py-1 text-lg border-2 hover:opacity-50 `} 
+                            style={{backgroundColor: `${typeColor(item)}`}}
+                            value={item}
+                            onClick={handleClick}
+                        >
+                            {item}
+                        </button>
+                    ))
+                ):(
+                    types.map((item) => (
+                        <p 
+                            className={`text-white text-sm text-center opacity-80 rounded-lg px-2`} 
+                            style={{backgroundColor: `${typeColor(item)}`}}
+                        >
+                            {item}
+                        </p>
+                    ))
+                )}
             </div>
         </>
     )

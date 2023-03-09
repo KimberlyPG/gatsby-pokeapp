@@ -3,55 +3,58 @@ export const typeColor = (item: string) => {
 
     switch(item) {
         case 'flying': 
-            color = 'PowderBlue'
+            color = '#8899FF'
             break;
         case 'normal':
-            color = 'RosyBrown'
+            color = '#AAAA99'
             break;
         case 'fire':
-            color = 'Tomato'
+            color = '#FF4422'
             break;
         case 'bug':
-            color = 'SeaGreen'
+            color = '#AABB22'
             break;
         case 'electric':
-            color = 'Gold'
+            color = '#FFCC33'
             break;
         case 'dark':
-            color = 'Black'
+            color = '#775544'
             break;
         case'dragon':
-            color = 'CornflowerBlue'
+            color = '#7766EE'
             break;
         case 'fairy':
-            color = 'DeepPink'
+            color = '#EE99EE'
             break;
         case 'fighting':
-            color = 'Chocolate'
+            color = '#BB5544'
             break;
         case 'ghost':
-            color = 'DarkSlateBlue'
+            color = '#6666BB'
             break;
         case 'grass':
-            color = 'ForestGreen'
+            color = '#77CC55'
             break;
         case 'ground':
-            color = 'SaddleBrown'
+            color = '#DDBB55'
+            break;
+        case 'ice':
+            color = '#66CCFF'
             break;
         case 'poison':
-            color = 'RebeccaPurple'
+            color = '#AA5599'
             break;
         case 'psychic':
-            color = 'Magenta'
+            color = '#FF5599'
             break;
         case 'rock':
-            color = 'SaddleBrown'
+            color = '#BBAA66'
             break;
-        case 'steal':
-            color = 'SlateGray'
+        case 'steel':
+            color = '#AAAABB'
             break;
         case 'water':
-            color = 'RoyalBlue'
+            color = '#3399FF'
             break;
     }
     return color;
