@@ -27,7 +27,7 @@ console.log(name)
         event.preventDefault();
         navigate(`/search/${name}`, { state: [filteredData] })
     }
-    console.log("filtered", filteredData);
+
     return (
         <div className='flex h-14 items-center shadow-md'>
             <Link to="/">

@@ -339,3 +339,39 @@ export interface Species {
     name: string;
     url?:  string;
 }
+
+export interface ResultsLocation {
+    pathname: string;
+    search:   string;
+    hash:     string;
+    href:     string;
+    origin:   string;
+    protocol: string;
+    host:     string;
+    hostname: string;
+    port:     string;
+    state:    State;
+    key:      string;
+}
+
+export interface State {
+    "0": The0[];
+    key: string;
+}
+
+export interface The0 {
+    id:    string;
+    name:  string;
+    stats: Stats;
+    types: string[];
+    image: string;
+}
+
+export interface Stats {
+    attack:          number;
+    defense:         number;
+    special_attack:  number;
+    hp:              number;
+    special_defense: number;
+    speed:           number;
+}

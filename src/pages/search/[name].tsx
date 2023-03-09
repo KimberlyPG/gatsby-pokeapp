@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'gatsby';
 
 import PokemonTypes from '../../components/PokemonTypes';
+import { ResultsLocation } from '../../types/types';
 
-const Results = ({ location, params }) => {
+interface Name {
+    name: string;
+}
+
+interface ResultsProps {
+    location: ResultsLocation;
+    params: Name;
+}
+
+const Results: FC<ResultsProps> = ({ location, params }) => {
     const { state } = location;
     const pokemonName = params.name;
 
