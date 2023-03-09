@@ -60,7 +60,7 @@ const PokemonList: FC = () => {
 		<>
 			<div className='flex ml-32 mr-32 mt-5'>
 				<button 
-                    className="text-white text-sm text-center rounded-lg px-3 py-1 text-lg hover:opacity-50 text-gray-700 mr-2 border-2 cursor-pointer" 
+                    className="text-white text-sm text-center text-bold rounded-lg px-3 py-1 text-lg hover:opacity-50 text-gray-700 mr-2 border-2 cursor-pointer" 
                     onClick={handleClick}
 					value="all"
                 >

@@ -1,16 +1,15 @@
 import React, { FC, MouseEventHandler } from 'react'
 
 import { typeColor } from '../utils/types-colors'
-import { PokemonTypes as Types } from '../types/types'
 
 interface PokemonTypesProps {
-    types: Types[];
+    types: string[];
     parent: string;
     handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const PokemonTypes: FC<PokemonTypesProps> = ({ types, parent, handleClick }) => {
-
+    console.log("types", types)
     return (
         <>
             <div className="flex space-x-2">

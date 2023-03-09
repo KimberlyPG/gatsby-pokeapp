@@ -10,7 +10,7 @@ export interface Node {
     name:  string;
     id: string;
     stats: Stats;
-    types: PokemonTypes[];
+    types: string[];
     image: string;
 }
 
@@ -21,27 +21,6 @@ export interface Stats {
     hp:              number;
     special_defense: number;
     speed:           number;
-}
-
-export interface PokemonTypes {
-    Bug: string;
-    Dark: string;
-    Dragon: string;
-    Electric: string;
-    Fairy: string;
-    Fighting: string;
-    Fire: string;
-    Flying: string;
-    Ghost: string;
-    Grass: string;
-    Ground: string;
-    Ice: string;
-    Normal: string;
-    Poison: string;
-    Psychic: string;
-    Rock: string;
-    Steel: string;
-    Water: string;
 }
 
 export interface PokemonData {
