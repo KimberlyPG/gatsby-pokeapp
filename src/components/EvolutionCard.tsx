@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import pokeballIcon from "../assets/pokeballTransparent.jpg";
 
 interface EvolutionCardProps {
-    url?: string;
+    url: string;
     name: string;
 }
 

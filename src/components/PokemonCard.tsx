@@ -21,7 +21,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                             alt={`${item.name} image`} 
                         />
                         <h1 className='text-gray-500'>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h1>
-                        <PokemonTypes key={item.id} types={item.types} parent="PokemonCard" />
+                        <PokemonTypes types={item.types} parent="PokemonCard" handleClick={() => null} />
                     </div>
                 </div>
             </Link>

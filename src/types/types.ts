@@ -50,11 +50,6 @@ export interface Ability {
     slot:      number;
 }
 
-export interface Species {
-    name: string;
-    url?:  string;
-}
-
 export interface GameIndex {
     game_index: number;
     version:    Species;
@@ -316,7 +311,7 @@ export interface EvolutionDetail {
 
 export interface Species {
     name: string;
-    url?:  string;
+    url:  string;
 }
 
 export interface ResultsLocation {
