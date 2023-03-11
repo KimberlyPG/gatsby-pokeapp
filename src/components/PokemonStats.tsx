@@ -12,8 +12,6 @@ const PokemonStats: FC<PokemonStatsProps> = ({ stats, id }) => {
     return (
         <div className="text-xs mt-2">
             {stats?.map((item) => (
-                <>
-                {console.log(item)}
                 <div key={id+item.stat.name} className="flex items-center">
                     <p className="text-gray-400 w-36">{item.stat.name}</p>
                     <p className="text-gray-700 w-10 font-bold">{item.base_stat}</p>
@@ -21,7 +19,6 @@ const PokemonStats: FC<PokemonStatsProps> = ({ stats, id }) => {
                         <LinearProgress variant="determinate" value={item.base_stat*100/255} />
                     </Box>
                 </div>
-                </>
             ))}
         </div>
     )

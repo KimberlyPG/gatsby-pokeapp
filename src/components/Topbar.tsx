@@ -53,7 +53,7 @@ const Topbar = () => {
                 {filteredData.length > 0 &&
                     <ul className='bg-white border w-80 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-11'>
                         {filteredData.map((item) => (
-                            <SearchResults key={item.name} item={item} />
+                            <SearchResults key={item.id} item={item} />
                         ))}
                 </ul>  
                 }         
