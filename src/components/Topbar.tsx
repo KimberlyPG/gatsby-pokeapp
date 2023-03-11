@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FormEvent, useContext, useState} from 'react';
 import { Link, navigate } from 'gatsby';
+import { StaticImage } from "gatsby-plugin-image"
 
 import SearchResults from './SearchResults';
 
-import pokeball from '../assets/pokeballTransparent.jpg'
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
 
@@ -26,15 +26,16 @@ const Topbar = () => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
         navigate(`/search/${name}`, { state: [filteredData] })
+        setFilteredData([]);
     }
 
     return (
         <div className='flex h-14 items-center shadow-md'>
             <Link to="/">
                 <div className='flex justify-center items-center space-x-3 ml-6'>
-                    <img 
-                        className='h-6'
-                        src={pokeball} 
+                    <StaticImage 
+                        className='h-6 w-6'
+                        src="../assets/pokeballTransparent.jpg" 
                         alt="pokeball image" 
                     />
                     <div className='flex text-gray-700 text-xl font-bold'>Pokedex</div>
@@ -57,6 +58,7 @@ const Topbar = () => {
                 </ul>  
                 }         
             </div>
+            
         </div>
     )
 }

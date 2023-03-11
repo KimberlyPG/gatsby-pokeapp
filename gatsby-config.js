@@ -1,12 +1,15 @@
+const path = require(`path`);
+
 module.exports = {
   siteMetadata: {
-    title: "My Homepage",
-    description: "This is where I write my thoughts.",
+    title: "Pokemon site",
+    description: "information about 800 pokemon",
   },
   plugins: [
     'gatsby-plugin-postcss',
-    'gatsby-source-pokemons',
-    `gatsby-source-pokedex`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-pokeapi`,
       options: {

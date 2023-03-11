@@ -30,7 +30,7 @@ export interface PokemonData {
     game_indices?:             GameIndex[];
     height?:                   number;
     held_items?:               HeldItem[];
-    id?:                       number;
+    id:                       number;
     is_default?:               boolean;
     location_area_encounters?: string;
     moves?:                    Move[];

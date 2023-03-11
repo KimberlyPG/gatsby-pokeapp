@@ -1,6 +1,7 @@
 import React, {FC} from 'react'
 import { TbPokeball } from "react-icons/tb";
 import { Link } from "gatsby"
+
 import { Node } from '../types/types';
 import PokemonTypes from './PokemonTypes';
 
@@ -17,7 +18,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                     <div className='grid place-items-center pb-5'>
                         <img
                             className='flex justify-center'               
-                            src={item.image} 
+                            src={item.image}
                             alt={`${item.name} image`} 
                         />
                         <h1 className='text-gray-500'>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h1>

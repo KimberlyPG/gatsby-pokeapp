@@ -26,7 +26,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
             {state[0].length > 0 ? (
                 state[0].map((item) => (
                     <Link to={`/pokemon/${item.name}`}>
-                        <div className='flex w-96 bg-gray-100 hover:bg-gray-300 rounded-2xl mx-auto items-center my-10'>
+                        <div key={item.id} className='flex w-96 bg-gray-100 hover:bg-gray-300 rounded-2xl mx-auto items-center my-10'>
                             <img
                                 className='flex justify-center'               
                                 src={item.image} 
@@ -34,7 +34,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                             />
                             <div className='flex flex-col space-y-4'>
                                 <h1 className='text-gray-500 text-xl'>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h1>
-                                <PokemonTypes key={item.id} types={item.types} />
+                                <PokemonTypes types={item.types} parent="pokemon" handleClick={() => null} />
                             </div>
                         </div>
                     </Link>

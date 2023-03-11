@@ -21,6 +21,7 @@ interface PokemonProps {
 const Pokemon = ({ params }: PageProps<PokemonProps>) => {
     const pokemonName = params.name;
     const [data, setData] = useState<PokemonData>({
+        id: 0,
         sprites: {
             other: {
                 dream_world: {
@@ -72,7 +73,6 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
           }
           getPokemonEvolutions();      
     }, [pokemonDescription])
-    console.log(evolutionChain)
 
     return (
         <>
@@ -94,7 +94,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                         />
                     )
                     }
-                    <PokemonStats stats={data.stats} />
+                    <PokemonStats stats={data.stats} id={data.id} />
                 </div>
                 <div className="border w-96 p-3 bg-gray-100 bg-gray-100 bg-opacity-60">
                     <p className="grid text-gray-600 text-lg justify-items-center mt-4">{description_format && JSON.parse(description_format)}</p>
@@ -102,6 +102,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     <div className="flex">
                         {data?.types?.map((item) => (
                             <p 
+                                key={item.type.name+item.slot}
                                 className="rounded-lg text-white text-lg  w-20 text-center mr-4 mt-3 px-3" 
                                 style={{backgroundColor: `${typeColor(item.type.name)}`}}
                             >

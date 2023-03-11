@@ -1,5 +1,4 @@
 import React, {FC, MouseEvent, useContext, useEffect, useState} from 'react';
-import 'react-dropdown/style.css';
 import { graphql, useStaticQuery } from 'gatsby'
 
 import PokemonCard from './PokemonCard';
@@ -23,7 +22,7 @@ const PokemonList: FC = () => {
 			setPokemonFilter(query.allPokemon.nodes);
 		}
 		else {
-			const filtered = query.allPokemon.nodes.filter((item) => {
+			const filtered = query.allPokemon.nodes.filter((item: Node) => {
 				return item.types.includes(typeSelected);
 			})
 			setPokemonFilter(filtered)
@@ -37,15 +36,15 @@ const PokemonList: FC = () => {
 				id
 				name
 				stats {
-				attack
-				defense
-				special_attack
-				hp
-				special_defense
-				speed
+					attack
+					defense
+					special_attack
+					hp
+					special_defense
+					speed
 					}
-					types
-					image
+				types
+				image 
 				}
 			}
 		}
@@ -70,7 +69,7 @@ const PokemonList: FC = () => {
 			</div>
 			<div className='grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 mt-7 place-items-center ml-32 mr-32'>
 				{pokemonFilter?.map((item: Node) => (
-					<PokemonCard key={item.name} item={item} /> 
+					<PokemonCard key={item.id} item={item} /> 
 				))}
 			</div>
 		</>

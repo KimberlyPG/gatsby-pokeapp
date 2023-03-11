@@ -19,14 +19,14 @@ const Evolutions: FC<EvolutionProps> = ({ evolutionChain }) => {
 				}
 				<div className="flex flex-col">
 					{evolutionChain?.chain?.evolves_to.length > 0 && evolutionChain?.chain?.evolves_to?.map((item) => (
-						<div className="flex flex-row space-x-16 items-center">
+						<div key={item.species.name} className="flex flex-row space-x-16 items-center">
 							<AiOutlineRight className="text-4xl"/>
 							<EvolutionCard url={item.species.url} name={item.species.name} />
 							{item.evolves_to.length > 0 && item.evolves_to?.map((element) => (
-								<>
+								<div key={item.species.name}>
 									<AiOutlineRight className="text-4xl"/>
 									<EvolutionCard url={element.species.url} name={element.species.name} />
-								</>
+								</div>
 							))} 
 						</div>
 					))} 
