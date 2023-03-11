@@ -27,4 +27,4 @@ const PokemonContainer: FC<PokemonContainerProps> = ({ children, pokemonDescript
   )
 }
 
-export default PokemonContainer
+export default PokemonContainer;

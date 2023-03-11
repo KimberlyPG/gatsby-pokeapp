@@ -40,4 +40,4 @@ const PokemonTypes: FC<PokemonTypesProps> = ({ types, parent, handleClick }) => 
     )
 }
 
-export default PokemonTypes
+export default PokemonTypes;
