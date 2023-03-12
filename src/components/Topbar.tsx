@@ -42,7 +42,7 @@ const Topbar = () => {
                     <p className='flex text-gray-700 text-xl font-bold'>Pokedex</p>
                 </div>
             </Link>
-            <div className='flex justify-center w-full'>
+            <div className='flex justify-center w-full z-auto'>
                 <form className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24' onSubmit={handleSubmit}>
                     <AiOutlineSearch className='text-gray-500 text-xl'/>
                     <input 
@@ -53,7 +53,7 @@ const Topbar = () => {
                     /> 
                 </form> 
                 {filteredData.length > 0 &&
-                    <ul className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9'>
+                    <ul className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'>
                         {filteredData.map((item) => (
                             <SearchResults key={item.id} item={item} />
                         ))}
