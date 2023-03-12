@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext, useState} from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useEffect, useState, useRef} from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
 import { Link, navigate } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
@@ -7,34 +7,72 @@ import SearchResults from './SearchResults';
 
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
+import { useKeyPress } from "../utils/useKeyPress";
 
 const Topbar = () => {
     const { allPokemon } = useContext(PokemonContext);
+    const selectRef = useRef<HTMLUListElement>(null);
 
     const [filteredData, setFilteredData] = React.useState<Node[]>([]);
-    const [name, setName] = useState<string>("");
+    const [inputText, setinputText] = useState<string>("");
+    const [selectedName, setSelectedName] = useState<string>("");
+    const downPress = useKeyPress("ArrowDown");
+    const upPress = useKeyPress("ArrowUp");
+    const [cursor, setCursor] = useState(-1);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
-        setName(event.target.value.toLowerCase());
+        setinputText(event.target.value.toLowerCase());
         const pokeName = event.target.value.toLowerCase();
         const filtered = allPokemon.nodes.filter((item: Node) => {
             if(pokeName !== '') return item.name.includes(pokeName);
         })
             setFilteredData(filtered);
     }
+    
+    const deleteFilteredData = () => {
+        setFilteredData([]);
+    }
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
-        navigate(`/search/${name}`, { state: [filteredData] })
-        setName("");
-        setFilteredData([]);
+        if(cursor > -1) {
+            navigate(`/pokemon/${selectedName}`);
+            setCursor(-1);
+            setinputText(selectedName);
+        } else {
+            navigate(`/search/${inputText}`, { state: [filteredData] });
+        }
+        deleteFilteredData();
     }
 
-    const deleteFilteredData = () => {
-        setName("");
-        setFilteredData([]);
-    }
+    useEffect(() => {
+        if (filteredData.length && downPress) {
+          setCursor(prevState => prevState < filteredData.length - 1 ? prevState + 1 : prevState);
+        }
+        setSelectedName(filteredData[cursor]?.name);
+      }, [downPress]);
+
+    useEffect(() => {
+        if (filteredData.length && upPress) {
+            setCursor(prevState => (prevState > -1 ? prevState - 1 : prevState));
+        }
+        setSelectedName(filteredData[cursor]?.name);
+    }, [upPress]);
+
+    const scroll = () => {
+        setTimeout(() => {
+            setChange();
+          }, 100);
+    };
+
+    function setChange() {
+        const selected = (selectRef?.current?.querySelector(".bg-blue-200"));
+        selected?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        })
+    };
 
     return (
         <div className='flex h-14 items-center shadow-md'>
@@ -57,15 +95,24 @@ const Topbar = () => {
                     <input 
                         className="bg-gray-100 text-black pl-3 outline-0"
                         aria-label="Search"
-                        value={name}
+                        value={cursor > -1 ? selectedName : inputText}
                         onChange={handleChange} 
+                        onKeyDown={scroll}
                         placeholder="Search a pokemon..."
                     /> 
                 </form> 
                 {filteredData.length > 0 &&
-                    <ul className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'>
-                        {filteredData.map((item) => (
-                            <SearchResults key={item.id} item={item} deleteFilteredData={deleteFilteredData} />
+                    <ul 
+                        className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
+                        ref={selectRef}
+                    >
+                        {filteredData.map((item, i) => (
+                                <SearchResults 
+                                    key={item.id} 
+                                    item={item} 
+                                    deleteFilteredData={deleteFilteredData} 
+                                    active={i === cursor}
+                                />
                         ))}
                     </ul>  
                 }         
