@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext, useEffect, useState, useRef} from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useEffect, useState, useRef, MouseEvent } from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
 import { Link, navigate } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
@@ -7,7 +7,8 @@ import SearchResults from './SearchResults';
 
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
-import { useKeyPress } from "../utils/useKeyPress";
+import { useKeyPress } from "./hooks/useKeyPress";
+import { useClickOutsideSearchList } from './hooks/useClickOutsideSearchList';
 
 const Topbar = () => {
     const { allPokemon } = useContext(PokemonContext);
@@ -18,16 +19,47 @@ const Topbar = () => {
     const [selectedName, setSelectedName] = useState<string>("");
     const downPress = useKeyPress("ArrowDown");
     const upPress = useKeyPress("ArrowUp");
-    const [cursor, setCursor] = useState(-1);
+    const [cursor, setCursor] = useState<number>(-1);
+    const [cursorHover, setCursorHover] = useState<Node>({
+        name: '',
+        id: '',
+        stats: {
+            attack:          0,
+            defense:         0,
+            special_attack:  0,
+            hp:              0,
+            special_defense: 0,
+            speed:           0,
+        },
+        types: [],
+        image: '',
+    });
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        setinputText(event.target.value.toLowerCase());
-        const pokeName = event.target.value.toLowerCase();
+    const checkClickOutside = useClickOutsideSearchList(selectRef);
+    if(checkClickOutside) {
+        deleteFilteredData();
+    }
+
+    const filterPokemonOptions = (pokeName: string) => {
         const filtered = allPokemon.nodes.filter((item: Node) => {
             if(pokeName !== '') return item.name.includes(pokeName);
         })
             setFilteredData(filtered);
+    }
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        setinputText(event.target.value.toLowerCase());
+        setSelectedName(event.target.value.toLowerCase());
+        const pokeName = event.target.value.toLowerCase();
+        filterPokemonOptions(pokeName);
+    }
+
+    const handleClick = (event: MouseEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        setinputText(event.target.value.toLowerCase());
+        const pokeName = event.target.value.toLowerCase();
+        filterPokemonOptions(pokeName);
     }
     
     const deleteFilteredData = () => {
@@ -60,6 +92,12 @@ const Topbar = () => {
         setSelectedName(filteredData[cursor]?.name);
     }, [upPress]);
 
+    useEffect(() => {
+        if (filteredData.length && cursorHover) {
+          setCursor(filteredData.indexOf(cursorHover));
+        }
+      }, [cursorHover]);
+
     const scroll = () => {
         setTimeout(() => {
             setChange();
@@ -67,7 +105,7 @@ const Topbar = () => {
     };
 
     function setChange() {
-        const selected = (selectRef?.current?.querySelector(".bg-blue-200"));
+        const selected = (selectRef?.current?.querySelector(".bg-gray-100"));
         selected?.scrollIntoView({
             behavior: "smooth",
             block: "start"
@@ -96,6 +134,7 @@ const Topbar = () => {
                         className="bg-gray-100 text-black pl-3 outline-0"
                         aria-label="Search"
                         value={cursor > -1 ? selectedName : inputText}
+                        onClick={handleClick}
                         onChange={handleChange} 
                         onKeyDown={scroll}
                         placeholder="Search a pokemon..."
@@ -112,6 +151,7 @@ const Topbar = () => {
                                     item={item} 
                                     deleteFilteredData={deleteFilteredData} 
                                     active={i === cursor}
+                                    setCursorHover={setCursorHover}
                                 />
                         ))}
                     </ul>  
