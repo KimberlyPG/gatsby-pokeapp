@@ -27,6 +27,12 @@ const Topbar = () => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>)=> {
         event.preventDefault();
         navigate(`/search/${name}`, { state: [filteredData] })
+        setName("");
+        setFilteredData([]);
+    }
+
+    const deleteFilteredData = () => {
+        setName("");
         setFilteredData([]);
     }
 
@@ -43,11 +49,15 @@ const Topbar = () => {
                 </div>
             </Link>
             <div className='flex justify-center w-full z-auto'>
-                <form className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24' onSubmit={handleSubmit}>
+                <form 
+                    className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24' 
+                    onSubmit={handleSubmit}
+                >
                     <AiOutlineSearch className='text-gray-500 text-xl'/>
                     <input 
                         className="bg-gray-100 text-black pl-3 outline-0"
                         aria-label="Search"
+                        value={name}
                         onChange={handleChange} 
                         placeholder="Search a pokemon..."
                     /> 
@@ -55,7 +65,7 @@ const Topbar = () => {
                 {filteredData.length > 0 &&
                     <ul className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-40 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'>
                         {filteredData.map((item) => (
-                            <SearchResults key={item.id} item={item} />
+                            <SearchResults key={item.id} item={item} deleteFilteredData={deleteFilteredData} />
                         ))}
                     </ul>  
                 }         
@@ -65,4 +75,4 @@ const Topbar = () => {
     )
 }
 
-export default Topbar
+export default Topbar;
