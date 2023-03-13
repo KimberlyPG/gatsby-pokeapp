@@ -7,12 +7,13 @@ import SearchResults from './SearchResults';
 
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
-import { useKeyPress } from "./hooks/useKeyPress";
-import { useClickOutsideSearchList } from './hooks/useClickOutsideSearchList';
+import { useKeyPress } from '../hooks/useKeyPress';
+import { useClickOutsideSearchList } from '../hooks/useClickOutsideSearchList';
 
 const Topbar = () => {
     const { allPokemon } = useContext(PokemonContext);
     const selectRef = useRef<HTMLUListElement>(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
     const [filteredData, setFilteredData] = React.useState<Node[]>([]);
     const [inputText, setinputText] = useState<string>("");
@@ -20,6 +21,7 @@ const Topbar = () => {
     const downPress = useKeyPress("ArrowDown");
     const upPress = useKeyPress("ArrowUp");
     const [cursor, setCursor] = useState<number>(-1);
+    const clickOutside = useClickOutsideSearchList(formRef);
     const [cursorHover, setCursorHover] = useState<Node>({
         name: '',
         id: '',
@@ -35,11 +37,13 @@ const Topbar = () => {
         image: '',
     });
 
-    const checkClickOutside = useClickOutsideSearchList(selectRef);
-    if(checkClickOutside) {
-        deleteFilteredData();
-    }
 
+    useEffect(() => {
+        if(clickOutside) {
+            setFilteredData([]);
+        }
+    }, [clickOutside])
+ 
     const filterPokemonOptions = (pokeName: string) => {
         const filtered = allPokemon.nodes.filter((item: Node) => {
             if(pokeName !== '') return item.name.includes(pokeName);
@@ -57,8 +61,8 @@ const Topbar = () => {
 
     const handleClick = (event: MouseEvent<HTMLInputElement>) => {
         event.preventDefault();
-        setinputText(event.target.value.toLowerCase());
-        const pokeName = event.target.value.toLowerCase();
+        setinputText((event.target as HTMLInputElement).value.toLowerCase());
+        const pokeName = (event.target as HTMLInputElement).value.toLowerCase();
         filterPokemonOptions(pokeName);
     }
     
@@ -128,6 +132,7 @@ const Topbar = () => {
                 <form 
                     className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24' 
                     onSubmit={handleSubmit}
+                    ref={formRef}
                 >
                     <AiOutlineSearch className='text-gray-500 text-xl'/>
                     <input 
