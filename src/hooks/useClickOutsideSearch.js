@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useClickOutsideSearchList (ref) {
+export function useClickOutsideSearch (ref) {
     const [outsideClick, setOutsideClick] = useState(false);
 
 	useEffect(() => {
@@ -8,7 +8,7 @@ export function useClickOutsideSearchList (ref) {
 			if (ref.current && !ref.current.contains(event.target)) {
 				setOutsideClick(true);
 			} 
-			else if (ref.current && ref.current.contains(event.target)) {
+			else {
 				setOutsideClick(false);
 			} 
 		}
