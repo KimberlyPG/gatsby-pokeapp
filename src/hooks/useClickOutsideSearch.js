@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useClickOutsideSearch (ref) {
+export const useClickOutsideSearch = (ref) => {
     const [outsideClick, setOutsideClick] = useState(false);
 
 	useEffect(() => {
