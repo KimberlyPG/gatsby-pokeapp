@@ -2,13 +2,11 @@ import React, { ChangeEvent, FormEvent, useContext, useEffect, useState, useRef,
 import { AiOutlineSearch } from "react-icons/ai";
 import { navigate } from 'gatsby';
 
-import SearchResults from './SearchResults';
+import AutocompleteSearch from './AutocompleteSearch';
 
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
-import { useKeyPress } from '../hooks/useKeyPress';
 import { useClickOutsideSearch } from '../hooks/useClickOutsideSearch';
-import { initialNodeValues } from '../initialDataValues/initialDataValues';
 
 const SearchBar = () => {
     const { allPokemon } = useContext(PokemonContext);
@@ -20,11 +18,7 @@ const SearchBar = () => {
     const [filteredData, setFilteredData] = useState<Node[]>([]);
     const [inputText, setinputText] = useState<string>("");
     const [selected, setSelected] = useState<string>("");
-    const [cursor, setCursor] = useState<number>(-1);
-    const [cursorHover, setCursorHover] = useState<Node>(initialNodeValues);
 
-    const downPress = useKeyPress("ArrowDown");
-    const upPress = useKeyPress("ArrowUp");
     const clickOutside = useClickOutsideSearch(searchBarRef);
     
     const filterPokemonOptions = (pokeName: string) => {
@@ -36,6 +30,10 @@ const SearchBar = () => {
 
     const deleteFilteredData = () => {
         setFilteredData([]);
+    }
+
+    const getSelectedPokemon = (name: string) => {
+        setSelected(name)
     }
 
     useEffect(() => {
@@ -70,32 +68,6 @@ const SearchBar = () => {
         deleteFilteredData();
     }
     
-    useEffect(() => {
-        if (filteredData.length && downPress) {
-            setCursor(prevState => prevState < filteredData.length - 1 ? prevState + 1 : prevState);
-        }
-    }, [downPress]);
-
-    useEffect(() => {
-        if (filteredData.length && upPress) {
-            setCursor(prevState => (prevState > -1 ? prevState - 1 : prevState));
-        }
-    }, [upPress]);
-
-    useEffect(() => {
-        if (filteredData.length && cursorHover) {
-          setCursor(filteredData.indexOf(cursorHover));
-        }
-      }, [cursorHover]);
-
-      useEffect(() => {
-        if(cursor > -1) {
-            setSelected(filteredData[cursor]?.name);
-        } else {
-            setSelected(inputText)
-        }
-      }, [cursor]);
-  
     const scrollWithKey = (event: KeyboardEvent<HTMLInputElement>) => {
         const selected = (ulRef?.current?.querySelector(".bg-gray-100"));
         if(event.code === "ArrowUp") {
@@ -129,22 +101,13 @@ const SearchBar = () => {
                     ref={inputRef}
                 /> 
             </form> 
-            {filteredData.length > 0 &&
-                <ul 
-                    className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-52 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
-                    ref={ulRef}
-                >
-                    {filteredData.map((item, i) => (
-                        <SearchResults 
-                            key={item.id} 
-                            item={item} 
-                            deleteFilteredData={deleteFilteredData} 
-                            active={i === cursor}
-                            setCursorHover={setCursorHover}
-                        />
-                    ))}
-                </ul>  
-            }         
+            <AutocompleteSearch 
+                filteredData={filteredData} 
+                deleteFilteredData={deleteFilteredData} 
+                getSelectedPokemon={getSelectedPokemon} 
+                inputText={inputText} 
+                ulRef={ulRef} 
+            />
         </div>      
     )
 }
