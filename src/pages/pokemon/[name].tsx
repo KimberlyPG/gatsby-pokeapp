@@ -10,6 +10,7 @@ import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
 import { PokemonData, PokemonDescription, Evolution } from "../../types/types";
 import { initialPokemonDataValues, initialPokemonDescriptionValues, initialEvolutionChainValues } from "../../initialDataValues/initialDataValues";
+import { capitalizeName } from "../../utils/capitalizeName";
 
 interface Name {
     name: string;
@@ -45,7 +46,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     return (
         <>
-            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName?.charAt(0).toUpperCase() + pokemonName?.slice(1)} N.°{data?.id}</h3>
+            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{capitalizeName(pokemonName)} N.°{data?.id}</h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
                 <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                     {sprites_dreamWorld !== null ? (

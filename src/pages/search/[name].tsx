@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import PokemonTypes from '../../components/PokemonTypes';
 import { ResultsLocation } from '../../types/types';
+import { capitalizeName } from '../../utils/capitalizeName';
 
 interface Name {
     name: string;
@@ -33,8 +34,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                                 alt={`${item?.name} image`} 
                             />
                             <div className='flex flex-col space-y-4'>
-                                {/* <h1 className='text-gray-500 text-xl'>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h1>   */}
-                                <h1 className='text-gray-500 text-xl'>{item?.name}</h1>
+                                <h1 className='text-gray-500 text-xl'>{capitalizeName(item?.name)}</h1>
                                 <PokemonTypes types={item?.types} parent="pokemon" handleClick={() => null} />
                             </div>
                         </div>
