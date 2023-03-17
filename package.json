@@ -23,6 +23,7 @@
     "@material/mwc-linear-progress": "^0.27.0",
     "@mui/material": "^5.11.11",
     "axios": "^1.1.2",
+    "deepmerge": "^4.3.0",
     "gatsby": "^5.7.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-image": "^3.7.0",
@@ -41,6 +42,8 @@
     "tsconfig.json": "^1.0.11"
   },
   "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "autoprefixer": "^10.4.12",
     "file-loader": "^6.2.0",
     "gatsby-plugin-postcss": "^6.7.0",

@@ -9,6 +9,7 @@ import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
 import { PokemonData, PokemonDescription, Evolution } from "../../types/types";
+import { initialPokemonDataValues, initialPokemonDescriptionValues, initialEvolutionChainValues } from "../../initialDataValues/initialDataValues";
 
 interface Name {
     name: string;
@@ -20,41 +21,9 @@ interface PokemonProps {
 
 const Pokemon = ({ params }: PageProps<PokemonProps>) => {
     const pokemonName = params.name;
-    const [data, setData] = useState<PokemonData>({
-        id: 0,
-        sprites: {
-            other: {
-                dream_world: {
-                    front_default: "",
-                },
-                home: {
-                    front_default: "",
-                },
-            }
-        },
-        stats: [],
-        types: [],
-    });
-    const [pokemonDescription, setPokemonDescription] = useState<PokemonDescription>({
-        color: {
-            name: "",
-            url:  "",
-        },
-        flavor_text_entries: [
-            { 
-                flavor_text: "",
-            }
-        ],
-    });
-    const [evolutionChain, setEvolutionChain] = useState<Evolution>({
-        chain: {
-            evolves_to: [],
-            species: {
-                name: "",
-                url: ""
-            }
-        }
-    });
+    const [data, setData] = useState<PokemonData>(initialPokemonDataValues);
+    const [pokemonDescription, setPokemonDescription] = useState<PokemonDescription>(initialPokemonDescriptionValues);
+    const [evolutionChain, setEvolutionChain] = useState<Evolution>(initialEvolutionChainValues);
 
     const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
     const sprites_home = data?.sprites?.other?.home.front_default;
@@ -76,7 +45,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     return (
         <>
-            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)} N.°{data?.id}</h3>
+            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{pokemonName?.charAt(0).toUpperCase() + pokemonName?.slice(1)} N.°{data?.id}</h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
                 <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
                     {sprites_dreamWorld !== null ? (
