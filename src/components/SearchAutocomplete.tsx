@@ -1,9 +1,11 @@
 
 import React, { FC, RefObject, useEffect, useState } from "react";
-import { useKeyPress } from "../hooks/useKeyPress";
-import { initialNodeValues } from "../initialDataValues/initialDataValues";
-import SearchResults from "./SearchResults";
+
+import AutocompleteCard from "./AutocompleteCard";
+
 import { Node } from "../types/types";
+import { initialNodeValues } from "../initialDataValues/initialDataValues";
+import { useKeyPress } from "../hooks/useKeyPress";
 
 type AutocompleteSearchProps = {
 	filteredData: Node[];
@@ -56,7 +58,7 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
 				ref={ulRef}
 			>
 				{filteredData.map((item, i) => (
-					<SearchResults 
+					<AutocompleteCard 
 						key={item.id} 
 						item={item} 
 						deleteFilteredData={deleteFilteredData} 

@@ -9,7 +9,7 @@ type SearchResultsProps = {
 	setCursorHover: Dispatch<SetStateAction<Node>>;
 }
 
-const SearchResults: FC<SearchResultsProps> = ({ item, deleteFilteredData, active, setCursorHover }) => {
+const AutocompleteCard: FC<SearchResultsProps> = ({ item, deleteFilteredData, active, setCursorHover }) => {
 	return (
 		<Link to={`/pokemon/${item.name}`} state={{ data: item}}> 
 			<li 
@@ -28,4 +28,4 @@ const SearchResults: FC<SearchResultsProps> = ({ item, deleteFilteredData, activ
 	)
 }
 
-export default SearchResults;
+export default AutocompleteCard;
