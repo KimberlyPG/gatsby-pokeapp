@@ -1,0 +1,78 @@
+import React, { FC, ChangeEvent, FormEvent, useRef, MouseEvent, KeyboardEvent, RefObject } from 'react';
+import { AiOutlineSearch } from "react-icons/ai";
+
+type SearchFormProps = {
+    navigateOnSubmit: () => void;
+    selected: string;
+    filterPokemonOptions: (arg0: string) => void;
+    getSelectedPokemon: (arg0: string) => void;
+    getInputText: (arg0: string) => void;
+    ulRef: RefObject<HTMLUListElement>
+}
+
+const SearchForm: FC<SearchFormProps> = ({ 
+        navigateOnSubmit, 
+        selected, 
+        filterPokemonOptions, 
+        getSelectedPokemon, 
+        getInputText, 
+        ulRef, 
+    }) => {
+    const inputRef = useRef<HTMLInputElement>(null);
+    
+    const handleSubmit = (event: FormEvent<HTMLFormElement>)=> {
+        event.preventDefault();
+        navigateOnSubmit();
+    }
+
+    const handleClick = (event: MouseEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        getInputText((event.target as HTMLInputElement).value.toLowerCase());
+        const pokeName = (event.target as HTMLInputElement).value.toLowerCase();
+        filterPokemonOptions(pokeName);
+    }
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        getInputText(event.target.value);
+        getSelectedPokemon(event.target.value);
+        const pokeName = event.target.value.toLowerCase();
+        filterPokemonOptions(pokeName);
+    }
+
+    const scrollWithKey = (event: KeyboardEvent<HTMLInputElement>) => {
+        const selected = (ulRef?.current?.querySelector(".bg-gray-100"));
+        if(event.code === "ArrowUp") {
+            event.preventDefault();
+            const input = inputRef.current as HTMLInputElement;
+            input.setSelectionRange(input.value.length, input.value.length);
+        }
+        setTimeout(() => {
+            selected?.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            })
+        }, 100);
+    };
+
+    return (
+        <form 
+            className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24' 
+            onSubmit={handleSubmit}       
+        >
+            <AiOutlineSearch className='text-gray-500 text-xl'/>
+            <input 
+                className="bg-gray-100 text-black pl-3 outline-0"
+                aria-label="Search"
+                value={selected || ""}
+                onClick={handleClick}
+                onChange={handleChange} 
+                onKeyDown={scrollWithKey}
+                placeholder="Search a pokemon..."
+                ref={inputRef}
+            /> 
+        </form> 
+    )
+}
+
+export default SearchForm;
