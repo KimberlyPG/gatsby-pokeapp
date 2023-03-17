@@ -10,21 +10,21 @@ interface PokemonContainerProps {
 }
 
 const PokemonContainer: FC<PokemonContainerProps> = ({ children, pokemonDescription }) => {
-  return (
-    <div className="flex justify-center p-5"
-        style={{
-            backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`, 
-            backgroundImage:`linear-gradient(0deg, rgba(244, 244, 244,0.8), rgba(244, 244, 244,0.8)), 
-            url(${pokeballBg})`,
-            backgroundAttachment: 'fixed',
-            backgroundSize: 'contain', 
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-        }}
-    >
-        {children}
-    </div>
-  )
+	return (
+		<div className="flex justify-center p-5"
+			style={{
+				backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`, 
+				backgroundImage:`linear-gradient(0deg, rgba(244, 244, 244,0.8), rgba(244, 244, 244,0.8)), 
+				url(${pokeballBg})`,
+				backgroundAttachment: 'fixed',
+				backgroundSize: 'contain', 
+				backgroundPosition: 'center center',
+				backgroundRepeat: 'no-repeat',
+			}}
+		>
+			{children}
+		</div>
+	)
 }
 
 export default PokemonContainer;

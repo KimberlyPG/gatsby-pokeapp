@@ -5,7 +5,7 @@ import '../styles/global.css'
 
 const IndexPage = () => {  
 	return (
-			<PokemonList />
+		<PokemonList />
 	)
 }
 
