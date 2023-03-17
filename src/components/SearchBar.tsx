@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useContext, useEffect, useState, useRef,
 import { navigate } from 'gatsby';
 
 import SearchForm from './SearchForm';
-import AutocompleteSearch from './AutocompleteSearch';
+import SearchAutocomplete from './SearchAutocomplete';
 
 import { Node } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
@@ -65,7 +65,7 @@ const SearchBar = () => {
                 getInputText={getInputText}
                 ulRef={ulRef}
             />
-            <AutocompleteSearch 
+            <SearchAutocomplete 
                 filteredData={filteredData} 
                 deleteFilteredData={deleteFilteredData} 
                 getSelectedPokemon={getSelectedPokemon} 
