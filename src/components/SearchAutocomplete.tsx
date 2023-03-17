@@ -38,15 +38,15 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
         if (filteredData.length && cursorHover) {
           setCursor(filteredData.indexOf(cursorHover));
         }
-      }, [cursorHover]);
+    }, [cursorHover]);
 
-      useEffect(() => {
+    useEffect(() => {
         if(cursor > -1) {
             getSelectedPokemon(filteredData[cursor]?.name);
         } else {
             getSelectedPokemon(inputText)
         }
-      }, [cursor]);
+    }, [cursor]);
 
   return (
     <>

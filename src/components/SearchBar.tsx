@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext, useEffect, useState, useRef, MouseEvent, KeyboardEvent } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { navigate } from 'gatsby';
 
 import SearchForm from './SearchForm';
@@ -47,7 +47,7 @@ const SearchBar = () => {
 
     const navigateOnSubmit = () => {
         if(filteredData.some(list => list.name === selected)) {
-            navigate(`/pokemon/${selected}`, { state: [filteredData] });
+            navigate(`/pokemon/${selected}`);
         } 
         else {
             navigate(`/search/${selected}`, { state: [filteredData] });

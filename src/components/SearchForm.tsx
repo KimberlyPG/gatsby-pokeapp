@@ -27,16 +27,16 @@ const SearchForm: FC<SearchFormProps> = ({
 
     const handleClick = (event: MouseEvent<HTMLInputElement>) => {
         event.preventDefault();
-        getInputText((event.target as HTMLInputElement).value.toLowerCase());
         const pokeName = (event.target as HTMLInputElement).value.toLowerCase();
+        getInputText(pokeName);
         filterPokemonOptions(pokeName);
     }
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
-        getInputText(event.target.value);
-        getSelectedPokemon(event.target.value);
         const pokeName = event.target.value.toLowerCase();
+        getInputText(pokeName);
+        getSelectedPokemon(pokeName);
         filterPokemonOptions(pokeName);
     }
 
