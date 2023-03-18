@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import SearchBar from './SearchBar';
 
-const TopBar = () => {
+const Topbar = () => {
     return (
         <div className='flex h-14 items-center shadow-md'>
             <Link to="/">
@@ -22,4 +22,4 @@ const TopBar = () => {
     )
 }
 
-export default TopBar;
+export default Topbar;
