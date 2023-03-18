@@ -1,6 +1,6 @@
 import React, { ReactNode, FC } from 'react'
 
-import Topbar from './Topbar';
+import TopBar from './TopBar';
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className='h-screen w-screen overflow-y-scroll scrollbar-hide'>
-        <Topbar />
+        <TopBar />
         <div className='h-full overflow-y-scroll'>{children}</div>
     </div>
   )
