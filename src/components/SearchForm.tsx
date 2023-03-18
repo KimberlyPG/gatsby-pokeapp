@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent, FormEvent, useRef, MouseEvent, KeyboardEvent, RefObject } from 'react';
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 
 type SearchFormProps = {
     navigateOnSubmit: () => void;
@@ -55,14 +55,20 @@ const SearchForm: FC<SearchFormProps> = ({
         }, 100);
     };
 
+    const handleCloseClick = () => {
+        getInputText("");
+        getSelectedPokemon("");
+        filterPokemonOptions("");
+    }
+
     return (
         <form 
-            className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24' 
+            className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24 hover:border-blue-200' 
             onSubmit={handleSubmit}       
         >
             <AiOutlineSearch className='text-gray-500 text-xl'/>
             <input 
-                className="bg-gray-100 text-black pl-3 outline-0"
+                className="bg-gray-100 text-black pl-3 outline-0 w-full"
                 aria-label="Search"
                 value={selected || ""}
                 onClick={handleClick}
@@ -71,6 +77,12 @@ const SearchForm: FC<SearchFormProps> = ({
                 placeholder="Search a pokemon..."
                 ref={inputRef}
             /> 
+            {selected.length > 0 &&
+            <AiOutlineClose 
+                className='text-gray-500 text-xl hover:bg-gray-200 rounded-full m-1 cursor-pointer' 
+                onClick={handleCloseClick} 
+            />
+            }
         </form> 
     )
 }
