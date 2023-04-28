@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import { Link } from "gatsby";
 
 import { Node } from '../types/types';
@@ -9,6 +9,17 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
+
+    const replaceImage = (error) => {
+        const image = item.sprites.normal;
+        if(image.indexOf("♀") !== -1 || image.indexOf("♂") !== -1) {
+            const newImage = image.replace("♀", "-m").replace("♂", "-f")
+            error.target.src = newImage; 
+        } else if(item.sprites.normal.indexOf("'") !== -1){
+            const newImage = image.replace("'", "");
+            error.target.src = newImage; 
+        } 
+    }
     return (
         <Link to={`/pokemon/${item.name}`} > 
             <div className='shadow-md relative bg-gray-100 w-40 rounded-lg cursor-pointer hover:bg-gray-200 bg-opacity-70 mb-5'>
@@ -20,6 +31,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                         className='flex justify-center mt-8'               
                         src={item.sprites.normal}
                         alt={`${item.name} image`} 
+                        onError={replaceImage}
                     />
                     <h1 className='text-gray-500 text-lg'>{item.name}</h1>
                     <PokemonTypes types={item.type} parent="PokemonCard" handleClick={() => null} />
