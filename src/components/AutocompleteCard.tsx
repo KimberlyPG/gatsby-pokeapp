@@ -18,8 +18,8 @@ const AutocompleteCard: FC<SearchResultsProps> = ({ item, deleteFilteredData, ac
 				onMouseMoveCapture={() => setCursorHover(item)}
 			>
 				<img
-					className='flex justify-center w-12'               
-					src={item.image} 
+					className='flex justify-center w-14'               
+					src={item.sprites.normal} 
 					alt={`${item.name} image`} 
 				/>
 				<h1 className='text-gray-500'>{item.name}</h1>

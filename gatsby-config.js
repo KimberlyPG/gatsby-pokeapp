@@ -10,12 +10,13 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-source-pokeapi`,
-      options: {
-        nbOfPokemons: 800,
-      },
-    },
+    `gatsby-source-poke`,
+    // {
+    //   resolve: `gatsby-source-pokeapi`,
+    //   options: {
+    //     nbOfPokemons: 386,
+    //   },
+    // },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

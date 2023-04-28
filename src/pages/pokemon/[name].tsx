@@ -21,7 +21,7 @@ interface PokemonProps {
 }
 
 const Pokemon = ({ params }: PageProps<PokemonProps>) => {
-    const pokemonName = params.name;
+    const pokemonName = params.name.toLowerCase();
     const [data, setData] = useState<PokemonData>(initialPokemonDataValues);
     const [pokemonDescription, setPokemonDescription] = useState<PokemonDescription>(initialPokemonDescriptionValues);
     const [evolutionChain, setEvolutionChain] = useState<Evolution>(initialEvolutionChainValues);

@@ -8,9 +8,9 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
     return (
-        <div className='h-screen w-screen overflow-y-scroll scrollbar-hide'>
+        <div className='flex flex-col h-screen'>            
             <TopBar />
-            <div className='h-full overflow-y-scroll'>{children}</div>
+            <div className='h-full overflow-y-scroll scroll-smooth'>{children}</div>
         </div>
     )
 }

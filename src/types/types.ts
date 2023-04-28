@@ -1,17 +1,30 @@
 export interface HomeProps {
-    allPokemon: AllPokemon;
+    allPokemons: AllPokemons;
 }
 
-export interface AllPokemon {
+export interface AllPokemons {
     nodes: Node[];
 }
 
 export interface Node {
-    name:  string;
-    id: string;
-    stats: Stats;
-    types: string[];
-    image: string;
+    name:            string;
+    id:              string;
+    total:           number;
+    hp:              number;
+    sp_def:          number;
+    sp_atk:          number;
+    defense:         number;
+    attack:          number;
+    type:            string[];
+    speed:           number;
+    national_number: string;
+    natl_num:        number;
+    sprites:         Sprites;
+}
+
+export interface Sprites {
+    normal: string;
+    large: string;
 }
 
 export interface Stats {
@@ -329,16 +342,8 @@ export interface ResultsLocation {
 }
 
 export interface State {
-    "0": The0[];
+    "0": Node[];
     key: string;
-}
-
-export interface The0 {
-    id:    string;
-    name:  string;
-    stats: Stats;
-    types: string[];
-    image: string;
 }
 
 export interface Stats {

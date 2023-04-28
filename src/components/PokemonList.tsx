@@ -14,16 +14,16 @@ const PokemonList: FC = () => {
 	const [pokemonFilter, setPokemonFilter] = useState<Node[]>();
 
 	useEffect(() => {
-		setAllPokemon(query.allPokemon);
+		setAllPokemon(query.allPokemons);
 	}, [])
 
 	useEffect(() => {
 		if(typeSelected === "all") {
-			setPokemonFilter(query.allPokemon.nodes);
+			setPokemonFilter(query.allPokemons.nodes.slice(0, 386));
 		}
 		else {
-			const filtered = query.allPokemon.nodes.filter((item: Node) => {
-				return item.types.includes(typeSelected);
+			const filtered = query.allPokemons.nodes.slice(0, 386).filter((item: Node) => {
+				return item.type.includes(typeSelected);
 			})
 			setPokemonFilter(filtered)
 		}
@@ -31,22 +31,26 @@ const PokemonList: FC = () => {
 
   const query =  useStaticQuery(graphql`
 	query HomeQuery { 
-		allPokemon {
+		allPokemons {
 			nodes {
-				id
-				name
-				stats {
-					attack
-					defense
-					special_attack
-					hp
-					special_defense
-					speed
-					}
-				types
-				image 
-				}
+			  name
+			  id
+			  total
+			  hp
+			  sp_def
+			  sp_atk
+			  defense
+			  attack
+			  type
+			  speed
+			  national_number
+			  natl_num
+			  sprites {
+				normal
+				large 
+			  }
 			}
+		  }
 		}
 	`);
 
@@ -54,7 +58,7 @@ const PokemonList: FC = () => {
         event.preventDefault();
         setTypeSelected((event.target as HTMLInputElement).value);
     }
-
+	console.log(query.allPokemons.nodes)
     return (
 		<>
 			<div className='flex ml-32 mr-32 mt-5'>
