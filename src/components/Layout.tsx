@@ -10,7 +10,11 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     return (
         <div className='flex flex-col h-screen'>            
             <TopBar />
-            <div className='h-full overflow-y-scroll scroll-smooth'>{children}</div>
+            <div 
+                className='h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'
+            >
+                {children}
+            </div>
         </div>
     )
 }

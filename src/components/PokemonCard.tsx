@@ -34,7 +34,11 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                         onError={replaceImage}
                     />
                     <h1 className='text-gray-500 text-lg'>{item.name}</h1>
-                    <PokemonTypes types={item.type} parent="PokemonCard" handleClick={() => null} />
+                    <PokemonTypes 
+                        types={item.type} 
+                        parent="PokemonCard" 
+                        handleClick={() => null} 
+                    />
                 </div>
             </div>
         </Link>
