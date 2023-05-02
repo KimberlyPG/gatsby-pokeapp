@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { types } from '../utils/pokemon-types'
 import { typeColor } from '../utils/types-colors'
 
-const PokemonTypesFilter = ({ handleClick }) => {
+interface PokemonTypesFilterProps {
+    handleClick: (arg0: string) => void;
+}
+
+const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
     return (
         <div className='flex flex-col mx-10 mt-5 space-y-2'>
             <button 
