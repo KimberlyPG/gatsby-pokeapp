@@ -17,9 +17,10 @@ const SearchBar = () => {
     const [filteredData, setFilteredData] = useState<Node[]>([]);
     const [inputText, setinputText] = useState<string>("");
     const [selected, setSelected] = useState<string>("");
+    const [searchInput, setSearchInput] = useState(false);
 
-    const clickOutside = useClickOutsideSearch(searchBarRef);
-    
+    useClickOutsideSearch(searchBarRef, searchInput, setSearchInput);
+
     const filterPokemonOptions = (pokeName: string) => {
         const filtered = allPokemon.nodes.filter((item: Node) => {
             if(pokeName !== '') return item.name.includes(pokeName);
@@ -40,10 +41,10 @@ const SearchBar = () => {
     }
 
     useEffect(() => {
-        if(clickOutside) {
+        if(!searchInput) {
             deleteFilteredData();
         }
-    }, [clickOutside])
+    }, [searchInput])
 
     const navigateOnSubmit = () => {
         if(filteredData.some(list => list.name === selected)) {
@@ -56,7 +57,9 @@ const SearchBar = () => {
     }
 
     return (
-        <div className='flex justify-center w-full z-auto' ref={searchBarRef}>
+        <div className='flex justify-center w-fit z-auto' ref={searchBarRef} 
+            onClick={() => setSearchInput(!searchInput)}
+        >
             <SearchForm 
                 navigateOnSubmit={navigateOnSubmit}
                 selected={selected}

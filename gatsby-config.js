@@ -11,12 +11,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-source-poke`,
-    // {
-    //   resolve: `gatsby-source-pokeapi`,
-    //   options: {
-    //     nbOfPokemons: 386,
-    //   },
-    // },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

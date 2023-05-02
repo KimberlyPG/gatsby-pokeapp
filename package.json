@@ -32,8 +32,6 @@
     "gatsby-remark-lazy-load": "^1.0.2",
     "gatsby-source-filesystem": "^5.7.0",
     "gatsby-source-poke": "^1.0.1",
-    "gatsby-source-pokeapi": "^0.1.0",
-    "gatsby-source-pokedex": "^1.0.3",
     "gatsby-transformer-remark": "^6.7.0",
     "gatsby-transformer-sharp": "^5.7.0",
     "graphql": "^16.6.0",

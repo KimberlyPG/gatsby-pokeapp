@@ -78,10 +78,10 @@ const SearchForm: FC<SearchFormProps> = ({
                 ref={inputRef}
             /> 
             {selected.length > 0 &&
-            <AiOutlineClose 
-                className='text-gray-500 text-xl hover:bg-gray-200 rounded-full m-1 cursor-pointer' 
-                onClick={handleCloseClick} 
-            />
+                <AiOutlineClose 
+                    className='text-gray-500 text-xl hover:bg-gray-200 rounded-full m-1 cursor-pointer' 
+                    onClick={handleCloseClick} 
+                />
             }
         </form> 
     )

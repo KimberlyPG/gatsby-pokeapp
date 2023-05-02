@@ -50,26 +50,26 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
         }
     }, [cursor]);
 
-  return (
-    <>
-		{filteredData.length > 0 &&
-			<ul 
-				className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-52 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
-				ref={ulRef}
-			>
-				{filteredData.map((item, i) => (
-					<AutocompleteCard 
-						key={item.id} 
-						item={item} 
-						deleteFilteredData={deleteFilteredData} 
-						active={i === cursor}
-						setCursorHover={setCursorHover}
-					/>
-				))}
-			</ul>  
-		}   
-    </>
-  )
+    return (
+        <>
+            {filteredData.length > 0 &&
+                <ul 
+                    className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-52 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
+                    ref={ulRef}
+                >
+                    {filteredData.map((item, i) => (
+                        <AutocompleteCard 
+                            key={item.id} 
+                            item={item} 
+                            deleteFilteredData={deleteFilteredData} 
+                            active={i === cursor}
+                            setCursorHover={setCursorHover}
+                        />
+                    ))}
+                </ul>  
+            }   
+        </>
+    )
 }
 
-export default AutocompleteSearch
+export default AutocompleteSearch;

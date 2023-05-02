@@ -1,23 +1,17 @@
-import { useEffect, useState, MouseEvent, RefObject } from "react";
+import { useEffect, RefObject } from "react";
 
-export const useClickOutsideSearch = (ref: RefObject<HTMLDivElement>) => {
-    const [outsideClick, setOutsideClick] = useState(false);
+export const useClickOutsideSearch = (ref: RefObject<HTMLDivElement>, searchInput, setSearchInput) => {
 
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent<HTMLElement>) {
-			if (ref.current && !ref.current.contains(event.target as Node)) {
-				setOutsideClick(true);
-			} 
-			else {
-				setOutsideClick(false);
-			} 
-		}
-		document.addEventListener("mousedown", () => handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", () => handleClickOutside);
-		};
+    useEffect(() => {
+        if (!searchInput) return;
+        function handleClick(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setSearchInput(false);
+        }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [searchInput]);
 
-	}, [ref]);
-
-	return outsideClick;
-  }
+}
