@@ -10,8 +10,8 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
     return (
         <div className='flex flex-col mx-10 mt-5 space-y-2'>
             <button 
-                className="text-gray-700 text-sm text-center text-bold rounded-full px-3 py-1 text-lg 
-                hover:opacity-50 text-gray-700 mr-2 border-2 cursor-pointer w-ful" 
+                className="w-full text-gray-700 dark:text-gray-100 text-sm text-center text-bold rounded-full px-3 py-1 text-lg 
+                hover:opacity-50 mr-2 border-2 dark:border-gray-800 cursor-pointer w-ful" 
                 onClick={() => handleClick("all")}
             >
                 all

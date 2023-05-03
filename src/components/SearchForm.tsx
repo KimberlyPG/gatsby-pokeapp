@@ -63,12 +63,13 @@ const SearchForm: FC<SearchFormProps> = ({
 
     return (
         <form 
-            className='flex items-center shadow-sm border-2 bg-gray-100 border-gray-200 rounded-lg p-1 lg:w-80 sm:w-60 xs:w-24 hover:border-blue-200' 
+            className='flex items-center shadow-sm border bg-gray-100 dark:bg-[#1E2022] border-gray-200 dark:border-[#736b5e] rounded-lg 
+            p-1 lg:w-80 sm:w-60 xs:w-24 hover:border-blue-200 dark:hover:border-yellow-600' 
             onSubmit={handleSubmit}       
         >
             <AiOutlineSearch className='text-gray-500 text-xl'/>
             <input 
-                className="bg-gray-100 text-black pl-3 outline-0 w-full"
+                className="bg-gray-100 dark:bg-[#1E2022] text-black dark:text-white pl-3 outline-0 w-full"
                 aria-label="Search"
                 value={selected || ""}
                 onClick={handleClick}

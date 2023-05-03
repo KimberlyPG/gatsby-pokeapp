@@ -10,7 +10,6 @@ export const useClickOutsideSearch = (ref: RefObject<HTMLDivElement>, searchInpu
         }
         }
         window.addEventListener("click", handleClick);
-        // clean up
         return () => window.removeEventListener("click", handleClick);
     }, [searchInput]);
 

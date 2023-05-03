@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
 
 import SearchBar from './SearchBar';
+import ThemeToggle from './ThemeToggle';
 
 const TopBar = () => {
     return (
@@ -14,10 +15,11 @@ const TopBar = () => {
                         src="../assets/pokeballTransparent.jpg" 
                         alt="pokeball image" 
                     />
-                    <p className='flex text-gray-700 text-xl font-bold'>Pokedex</p>
+                    <p className='flex text-gray-700 text-xl font-bold dark:text-gray-100'>Pokedex</p>
                 </div>
             </Link>
             <SearchBar />     
+            <ThemeToggle />
         </div>
     )
 }
