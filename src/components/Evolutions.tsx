@@ -12,7 +12,7 @@ interface EvolutionProps {
 const Evolutions: FC<EvolutionProps> = ({ evolutionChain }) => {
 	return (
 		<div className="justify-center w-2/4 mt-4 mx-auto">
-			<p className="flex justify-center text-gray-800 font-semibold w-32 p-1 text-2xl">Evolutions</p> 
+			<p className="flex justify-center text-gray-800 dark:text-gray-100 font-semibold w-32 p-1 text-2xl">Evolutions</p> 
 			<div className="flex py-10 px-20 items-center bg-gray-200 bg-opacity-70 mb-5 rounded-tr-2xl rounded-bl-2xl">
 				{evolutionChain.chain &&
 					<EvolutionCard url={evolutionChain.chain.species.url} name={evolutionChain.chain.species.name} />              

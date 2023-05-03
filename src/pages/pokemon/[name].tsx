@@ -46,9 +46,9 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     return (
         <>
-            <h3 className="flex text-gray-600 text-3xl justify-center pt-5 font-semibold">{capitalizeName(pokemonName)} N.°{data?.id}</h3>
+            <h3 className="flex text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">{capitalizeName(pokemonName)} N.°{data?.id}</h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
-                <div className="grid w-96 h-full border rounded place-content-center p-5 bg-gray-100">
+                <div className="grid w-96 h-full border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
                     {sprites_dreamWorld !== null ? (
                         <img
                             style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
@@ -66,14 +66,16 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     }
                     <PokemonStats stats={data.stats} id={data.id} />
                 </div>
-                <div className="border w-96 p-3 bg-gray-100 bg-gray-100 bg-opacity-60">
-                    <p className="grid text-gray-600 text-lg justify-items-center mt-4">{description_format && JSON.parse(description_format)}</p>
-                    <h3 className="text-gray-600 text-sm mt-5 text-gray-500">Type</h3>
+                <div className="border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 dark:bg-[#1E2022] dark:bg-opacity-60">
+                    <p className="grid text-gray-600 dark:text-white text-lg justify-items-center mt-4">
+                        {description_format && JSON.parse(description_format)}
+                    </p>
+                    <h3 className="text-gray-600 dark:text-gray-100 text-sm mt-5 text-gray-500">Type</h3>
                     <div className="flex">
                         {data?.types?.map((item) => (
                             <p 
                                 key={item.type.name+item.slot}
-                                className="rounded-lg text-white text-lg  w-20 text-center mr-4 mt-3 px-3" 
+                                className="rounded-lg text-white text-lg w-20 text-center mr-4 mt-3 px-3" 
                                 style={{backgroundColor: `${typeColor(item.type.name)}`}}
                             >
                                 {item.type.name}
