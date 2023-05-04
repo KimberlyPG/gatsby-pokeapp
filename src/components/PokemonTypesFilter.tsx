@@ -8,7 +8,7 @@ interface PokemonTypesFilterProps {
 
 const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
     return (
-        <div className='flex flex-col mx-10 mt-5 space-y-2'>
+        <div className='flex flex-col my-5 space-y-2'>
             <button 
                 className="w-full text-gray-700 dark:text-gray-100 text-sm text-center text-bold rounded-full px-3 py-1 text-lg 
                 hover:opacity-50 mr-2 border-2 dark:border-gray-800 cursor-pointer w-ful" 
@@ -19,7 +19,7 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
             {types.map((item) => (
                 <button 
                     key={item.id} 
-                    className={`group p-2 rounded-full shadow-sm flex hover:shadow-lg hover:shadow-[${item.bg}] cursor-pointer`} 
+                    className={`p-2 rounded-full shadow-sm flex hover:shadow-lg hover:shadow-[${item.bg}] cursor-pointer`} 
                     style={{backgroundColor: `${typeColor(item.name)}`}}
                     onClick={() => handleClick(item.name)}
                 >
@@ -28,7 +28,7 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                         src={item.image}
                         onClick={() => handleClick(item.name)}
                     />
-                    <p className='group-hover:flex text-white ml-2 text-sm'>{item.name}</p>
+                    <p className='w-full text-white ml-2 text-sm pr-1'>{item.name}</p>
                 </button>
             ))}
         </div>
