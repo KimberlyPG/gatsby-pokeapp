@@ -54,7 +54,7 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
         <>
             {filteredData.length > 0 &&
                 <ul 
-                    className='bg-white border lg:w-80 sm:w-60 xs:w-24 max-h-52 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
+                    className='bg-white border dark:border-gray-600 lg:w-80 sm:w-60 xs:w-24 max-h-52 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
                     ref={ulRef}
                 >
                     {filteredData.map((item, i) => (

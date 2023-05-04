@@ -67,7 +67,7 @@ const SearchForm: FC<SearchFormProps> = ({
             p-1 lg:w-80 sm:w-60 xs:w-24 hover:border-blue-200 dark:hover:border-yellow-600' 
             onSubmit={handleSubmit}       
         >
-            <AiOutlineSearch className='text-gray-500 text-xl'/>
+            <AiOutlineSearch className='text-gray-500 dark:text-gray-200 text-xl'/>
             <input 
                 className="bg-gray-100 dark:bg-[#1E2022] text-black dark:text-white pl-3 outline-0 w-full"
                 aria-label="Search"
@@ -80,7 +80,7 @@ const SearchForm: FC<SearchFormProps> = ({
             /> 
             {selected.length > 0 &&
                 <AiOutlineClose 
-                    className='text-gray-500 text-xl hover:bg-gray-200 rounded-full m-1 cursor-pointer' 
+                    className='w-5 h-5 text-gray-500 dark:text-white text-xl hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full m-1 cursor-pointer' 
                     onClick={handleCloseClick} 
                 />
             }
