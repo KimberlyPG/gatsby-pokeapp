@@ -26,7 +26,7 @@ const EvolutionCard: FC<EvolutionCardProps> = ({ url, name }) => {
                     alt="" 
                     />
             </div>
-            <p className="flex text-gray-700 text-xl justify-center">
+            <p className="flex text-gray-700 dark:text-white text-xl justify-center">
                 {name.charAt(0).toUpperCase() + name.slice(1)}
             </p>
         </Link>
