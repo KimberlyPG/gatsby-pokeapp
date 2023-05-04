@@ -20,7 +20,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
 
     return (
         <div className='mt-10'>
-            <h2 className='flex justify-center text-2xl text-gray-600'>
+            <h2 className='flex justify-center text-2xl text-gray-600 dark:text-white'>
                 Results of 
                 <span className='text-orange-600'>&nbsp;{pokemonName}</span>
             </h2>
@@ -29,7 +29,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                     <Link 
                         key={item.id} 
                         to={`/pokemon/${item?.name}`}
-                        className='flex w-96 bg-gray-100 hover:bg-gray-300 rounded-2xl mx-auto items-center my-10'
+                        className='flex w-96 bg-gray-100 dark:bg-[#1E2022] hover:bg-gray-300 rounded-2xl mx-auto items-center my-10'
                     >
                         <img
                             className='flex justify-center'               

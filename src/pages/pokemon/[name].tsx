@@ -46,7 +46,9 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     return (
         <>
-            <h3 className="flex text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">{capitalizeName(pokemonName)} N.°{data?.id}</h3>
+            <h3 className="flex text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">
+                {capitalizeName(pokemonName)} N.°{data?.id}
+            </h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
                 <div className="grid w-96 h-full border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
                     {sprites_dreamWorld !== null ? (
