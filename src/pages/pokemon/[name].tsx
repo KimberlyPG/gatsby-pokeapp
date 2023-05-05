@@ -46,7 +46,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     return (
         <>
-            <h3 className="flex text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">
+            <h3 className="flex w-screen text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">
                 {capitalizeName(pokemonName)} N.°{data?.id}
             </h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>

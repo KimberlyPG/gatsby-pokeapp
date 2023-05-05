@@ -19,8 +19,8 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
     const pokemonName = params.name as string;
 
     return (
-        <div className='mt-10'>
-            <h2 className='flex justify-center text-2xl text-gray-600 dark:text-white'>
+        <div className='mt-10 w-screen overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
+            <h2 className='flex justify-center text-2xl text-gray-600 dark:text-white '>
                 Results of 
                 <span className='text-orange-600'>&nbsp;{pokemonName}</span>
             </h2>
