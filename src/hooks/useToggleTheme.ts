@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
 export function useToggleTheme () {
-	const [theme, setTheme] = useState<string>(localStorage.theme);
-	const colorTheme = theme === "dark" ? "light" : "dark";
-
 	const isBrowser = typeof window !== "undefined"
+	const [theme, setTheme] = useState<string>(
+		isBrowser ? window.localStorage.theme : "light"
+	);
+	const colorTheme = theme === "dark" ? "light" : "dark";
 
 	useEffect(() => {
 		const root = window.document.documentElement;
