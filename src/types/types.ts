@@ -51,7 +51,7 @@ export interface PokemonData {
     order?:                    number;
     past_types?:               PastType[];
     species?:                  Species;
-    sprites:                  Sprites;
+    sprites:                  PokemonDataSprites;
     stats:                    Stat[];
     types:                    Type[];
     weight?:                   number;
@@ -120,7 +120,7 @@ export interface Versions {
     "generation-viii": GenerationViii;
 }
 
-export interface Sprites {
+export interface  PokemonDataSprites {
     back_default?:       string;
     back_female?:        null;
     back_shiny?:         string;
