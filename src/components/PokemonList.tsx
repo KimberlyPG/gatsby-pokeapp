@@ -18,10 +18,10 @@ const PokemonList: FC = () => {
 
 	useEffect(() => {
 		if(typeSelected === "all") {
-			setPokemonFilter(query.allPokemons.nodes.slice(0, 386));
+			setPokemonFilter(query.allPokemons.nodes);
 		}
 		else {
-			const filtered = query.allPokemons.nodes.slice(0, 386).filter((item: Node) => {
+			const filtered = query.allPokemons.nodes.filter((item: Node) => {
 				return item.type.includes(typeSelected);
 			})
 			setPokemonFilter(filtered)
@@ -30,7 +30,7 @@ const PokemonList: FC = () => {
 
   const query =  useStaticQuery(graphql`
 	query HomeQuery { 
-		allPokemons {
+		allPokemons(limit: 251) {
 			nodes {
 			  name
 			  id

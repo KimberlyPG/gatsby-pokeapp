@@ -27,6 +27,7 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                         className='h-5 w-5'
                         src={item.image}
                         onClick={() => handleClick(item.name)}
+                        alt={`${item.name} icon`}
                     />
                     <p className='w-full text-white ml-2 text-sm pr-1'>{item.name}</p>
                 </button>
