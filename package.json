@@ -1,6 +1,9 @@
 {
   "name": "poke-site",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.19.2"
+  },
   "private": true,
   "description": "poke-site",
   "author": "KimberlyPG",
