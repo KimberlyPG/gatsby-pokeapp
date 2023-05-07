@@ -21,7 +21,7 @@ const EvolutionCard: FC<EvolutionCardProps> = ({ url, name }) => {
                 }}  
             >                                   
                 <img 
-                    className="w-48"
+                    className="w-36"
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${url.slice(42, -1)}.png`} 
                     alt="" 
                     />
