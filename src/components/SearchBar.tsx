@@ -23,7 +23,7 @@ const SearchBar = () => {
 
     const filterPokemonOptions = (pokeName: string) => {
         const filtered = allPokemon.nodes.filter((item: Node) => {
-            if(pokeName !== '') return item.name.includes(pokeName);
+            if(pokeName !== '') return item.name.toLowerCase().includes(pokeName.toLowerCase());
         })
         setFilteredData(filtered.slice(0,10));
     }
