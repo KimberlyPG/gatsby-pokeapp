@@ -23,7 +23,7 @@ module.exports = {
 			  mergeDefaultDirectives: true,
 			  directives: {
 				"script-src": "'self' 'unsafe-inline'",
-				"style-src": 'unsafe-inline',
+				"style-src": "'self' 'unsafe-inline'",
 				"img-src": "'self' data: https:"
 			  }
 			}
