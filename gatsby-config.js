@@ -22,7 +22,7 @@ module.exports = {
 			  mergeStyleHashes: true, 
 			  mergeDefaultDirectives: true,
 			  directives: {
-				"style-src": "'self' 'unsafe-inline'",
+				"style-src": 'unsafe-inline',
 				"img-src": "'self' data: https:"
 			  }
 			}
