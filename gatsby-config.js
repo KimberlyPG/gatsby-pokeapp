@@ -14,7 +14,20 @@ module.exports = {
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
 		`gatsby-source-poke`,
-		`gatsby-plugin-csp`,
+		{
+			resolve: `gatsby-plugin-csp`,
+			options: {
+			  disableOnDev: true,
+			  reportOnly: false, 
+			  mergeStyleHashes: true, 
+			  mergeDefaultDirectives: true,
+			  directives: {
+				"script-src": "'self' https",
+				"style-src": "'self' 'unsafe-inline'",
+				"img-src": "'self' data: https:"
+			  }
+			}
+		},
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
