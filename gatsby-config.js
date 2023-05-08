@@ -14,21 +14,7 @@ module.exports = {
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
 		`gatsby-source-poke`,
-		{
-			resolve: `gatsby-plugin-csp`,
-			options: {
-			  disableOnDev: true,
-			  reportOnly: false, 
-			  mergeScriptHashes: true,
-			  mergeStyleHashes: true,
-			  mergeDefaultDirectives: true,
-			  directives: {
-				"script-src": "'self' www.google-analytics.com",
-				"style-src": "'self' 'unsafe-inline'",
-				"img-src": "'self' data: www.google-analytics.com"
-			  }
-			}
-		},
+		`gatsby-plugin-csp`,
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
