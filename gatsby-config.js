@@ -24,7 +24,8 @@ module.exports = {
 			  directives: {
 				"script-src": "'self' https:",
 				"style-src": "'self' 'unsafe-inline'",
-				"img-src": "'self' data: https:"
+				"img-src": "'self' data: https:",
+				"script-src-attr": "'unsafe-hashes' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM='"
 			  }
 			}
 		},
