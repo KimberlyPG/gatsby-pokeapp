@@ -22,7 +22,7 @@ module.exports = {
 			  mergeStyleHashes: true, 
 			  mergeDefaultDirectives: true,
 			  directives: {
-				"style-src": "'self' 'sha256-+b5dhCnFKLQjTs+HsVHv9sybaHIy5tgdKW5+ous6Za4=' 'sha256-n6qp5RzqWFPk8bwgYOlYGoExLtqxN33EngZLqOl9uWw='",
+				"style-src": "'self' 'sha256-+b5dhCnFKLQjTs+HsVHv9sybaHIy5tgdKW5+ous6Za4=' 'sha256-n6qp5RzqWFPk8bwgYOlYGoExLtqxN33EngZLqOl9uWw=' 'unsafe-inline'",
 				"img-src": "'self' data: https:"
 			  }
 			}
