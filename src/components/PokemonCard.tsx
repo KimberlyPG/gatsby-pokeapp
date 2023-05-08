@@ -29,7 +29,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                 </p>
                 <div className='grid place-items-center pb-5'>
                     <img
-                        className='flex justify-center mt-8 w-fit h-fit'               
+                        className='flex justify-center mt-8'               
                         src={item.sprites.normal}
                         alt={`${item.name} image`} 
                         onError={replaceImage}
