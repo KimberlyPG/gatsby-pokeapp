@@ -29,6 +29,7 @@
     "deepmerge": "^4.3.1",
     "gatsby": "^5.7.0",
     "gatsby-image": "^3.11.0",
+    "gatsby-plugin-html-attributes": "^1.0.5",
     "gatsby-plugin-image": "^3.7.0",
     "gatsby-plugin-manifest": "^5.9.0",
     "gatsby-plugin-sharp": "^5.7.0",

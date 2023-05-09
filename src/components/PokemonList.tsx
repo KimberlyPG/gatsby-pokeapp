@@ -63,7 +63,7 @@ const PokemonList: FC = () => {
 				<PokemonTypesFilter handleClick={handleClick} />
 			</div>
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
-				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 gap-1 h-fit'>
+				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
 					{pokemonFilter?.map((item: Node) => (
 						<PokemonCard key={item.id} item={item} /> 
 					))}

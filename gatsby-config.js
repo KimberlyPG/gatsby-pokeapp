@@ -30,6 +30,12 @@ module.exports = {
 				`gatsby-remark-lazy-load`,
 			]
 			}
+		},
+		{
+			resolve: 'gatsby-plugin-html-attributes',
+			options: {
+			  lang: 'en-GB'
+			}
 		}
     ],
 }
