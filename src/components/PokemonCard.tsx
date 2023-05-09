@@ -29,12 +29,13 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                 </p>
                 <div className='grid place-items-center pb-5'>
                     <img
-                        className='flex justify-center mt-8 w-fit h-fit'               
+                        className='flex justify-center mt-8 w-fit h-fit'      
+                        srcSet={`${item.sprites.normal} 1x`}         
                         src={item.sprites.normal}
                         alt={`${item.name} image`} 
                         onError={replaceImage}
                     />
-                    <h1 className='text-gray-500 text-lg font-semibold'>{item.name}</h1>
+                    <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{item.name}</h1>
                     <PokemonTypes 
                         types={item.type} 
                         parent="PokemonCard" 
