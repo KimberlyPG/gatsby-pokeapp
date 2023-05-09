@@ -364,9 +364,17 @@ export interface GraphCmsData {
 
 export interface PokemonV2Pokemon {
     pokemon_v2_pokemonsprites: PokemonV2Pokemonsprite[];
-    pokemon_v2_pokemontypes: [];
+    pokemon_v2_pokemontypes: PokemonV2Type[];
 }
 
 export interface PokemonV2Pokemonsprite {
     sprites: string;
+}
+
+export interface PokemonV2Type {
+    pokemon_v2_type: TypeName;
+}
+
+export interface TypeName {
+    name: string;
 }

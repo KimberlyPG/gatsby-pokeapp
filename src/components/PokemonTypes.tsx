@@ -2,8 +2,10 @@ import React, { FC, MouseEventHandler } from 'react'
 
 import { typeColor } from '../utils/types-colors'
 
+import { PokemonV2Type } from '../types/types';
+
 interface PokemonTypesProps {
-    types: string[];
+    types: PokemonV2Type[];
     parent: string;
     handleClick: MouseEventHandler<HTMLButtonElement>;
 }
@@ -13,7 +15,7 @@ const PokemonTypes: FC<PokemonTypesProps> = ({ types, parent, handleClick }) => 
         <div className="flex space-x-2">
             {types.map((item, index) => (
                 <p 
-                    key={item+index}
+                    key={item.pokemon_v2_type.name+index}
                     className={`text-white text-sm text-center opacity-80 rounded-md px-2`} 
                     style={{backgroundColor: `${typeColor(item.pokemon_v2_type.name)}`}}
                 >
