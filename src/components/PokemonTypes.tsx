@@ -15,9 +15,9 @@ const PokemonTypes: FC<PokemonTypesProps> = ({ types, parent, handleClick }) => 
                 <p 
                     key={item+index}
                     className={`text-white text-sm text-center opacity-80 rounded-md px-2`} 
-                    style={{backgroundColor: `${typeColor(item)}`}}
+                    style={{backgroundColor: `${typeColor(item.pokemon_v2_type.name)}`}}
                 >
-                    <span className='drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]'>{item}</span>
+                    <span className='drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]'>{item.pokemon_v2_type.name}</span>
                 </p>
             ))}
         </div>

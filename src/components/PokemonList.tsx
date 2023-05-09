@@ -61,11 +61,19 @@ const PokemonList: FC = () => {
 			name
 			generation_id
 			pokemon_v2_pokemons {
-			pokemon_v2_pokemonsprites {
-				sprites
+				pokemon_v2_pokemonsprites {
+					sprites
+				}
+				pokemon_v2_pokemontypes {
+					pokemon_v2_type {
+					  name
+					}
+				}
 			}
+			pokemon_v2_pokemoncolor {
+				name
+			  }
 			}
-		}
 		}
 	}`
 	);
@@ -90,20 +98,7 @@ const PokemonList: FC = () => {
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
 				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
 					{query2.graphCmsData.pokemon_v2_pokemonspecies?.map((item: GraphCmsData) => (
-						<div key={item.id} className='shadow-md relative bg-gray-100 dark:bg-[#1E2022] w-40 rounded-lg cursor-pointer 
-						hover:bg-gray-200 dark:hover:bg-zinc-800 bg-opacity-70 mb-5 '>
-							<p className="text-center absolute text-gray-300 dark:text-gray-100 m-3 text-2xl opacity-80">
-								#{item.id}
-							</p>
-							<div className='grid place-items-center pb-5'>
-								<img
-									className='flex justify-center mt-8 w-[120px] h-[120px]'      
-									src={JSON.parse(item.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0].sprites)?.other[`official-artwork`].front_default?.replace("/media", "https://raw.githubusercontent.com/PokeAPI/sprites/master")} 
-									alt={`${item.name} image`} 
-								/>
-								<h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{item.name}</h1>
-							</div>
-						</div>
+						<PokemonCard key={item.id} item={item} /> 				
 					))}
 				</div>
 			</div>

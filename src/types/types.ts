@@ -364,6 +364,7 @@ export interface GraphCmsData {
 
 export interface PokemonV2Pokemon {
     pokemon_v2_pokemonsprites: PokemonV2Pokemonsprite[];
+    pokemon_v2_pokemontypes: [];
 }
 
 export interface PokemonV2Pokemonsprite {
