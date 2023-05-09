@@ -354,3 +354,18 @@ export interface Stats {
     special_defense: number;
     speed:           number;
 }
+
+export interface GraphCmsData {
+    id:                  number;
+    name:                string;
+    generation_id:       number;
+    pokemon_v2_pokemons: PokemonV2Pokemon[];
+}
+
+export interface PokemonV2Pokemon {
+    pokemon_v2_pokemonsprites: PokemonV2Pokemonsprite[];
+}
+
+export interface PokemonV2Pokemonsprite {
+    sprites: string;
+}

@@ -3,6 +3,7 @@ import PokemonList from '../components/PokemonList';
 import SEO from "../components/SEO";
 
 import '../styles/global.css'
+import { graphql } from "gatsby";
 
 const IndexPage = () => {  
 	return (

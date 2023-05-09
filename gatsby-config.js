@@ -36,6 +36,14 @@ module.exports = {
 			options: {
 			  lang: 'en-GB'
 			}
-		}
+		},
+		{
+			resolve: 'gatsby-source-graphql',
+			options: {
+			  typeName: 'GRAPHCMS',
+			  fieldName: 'graphCmsData',
+			  url: 'https://beta.pokeapi.co/graphql/v1beta',
+			}
+		  },
     ],
 }

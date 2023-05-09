@@ -36,6 +36,7 @@
     "gatsby-remark-images": "^7.7.0",
     "gatsby-remark-lazy-load": "^1.0.2",
     "gatsby-source-filesystem": "^5.7.0",
+    "gatsby-source-graphql": "^5.9.0",
     "gatsby-source-poke": "^1.0.1",
     "gatsby-transformer-remark": "^6.7.0",
     "gatsby-transformer-sharp": "^5.7.0",
