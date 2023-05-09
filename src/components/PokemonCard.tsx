@@ -33,7 +33,6 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                         srcSet={`${item.sprites.normal} 1x`}         
                         src={item.sprites.normal}
                         alt={`${item.name} image`} 
-                        onError={replaceImage}
                     />
                     <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{item.name}</h1>
                     <PokemonTypes 
