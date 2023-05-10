@@ -18,42 +18,17 @@ const PokemonList: FC = () => {
 
 	// useEffect(() => {
 	// 	if(typeSelected === "all") {
-	// 		setPokemonFilter(query.allPokemons.nodes);
+	// 		setPokemonFilter(query.graphCmsData.pokemon_v2_pokemonspecies);
 	// 	}
 	// 	else {
-	// 		const filtered = query.allPokemons.nodes.filter((item: Node) => {
-	// 			return item.type.includes(typeSelected);
+	// 		const filtered = query.graphCmsData.pokemon_v2_pokemonspecies.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes?.filter((item: GraphCmsData) => {
+	// 			return item.pokemon_v2_type?.name.includes(typeSelected);
 	// 		})
 	// 		setPokemonFilter(filtered)
 	// 	}
 	// }, [typeSelected])
 
-//   const query =  useStaticQuery(graphql`
-// 	query HomeQuery { 
-// 		allPokemons(limit: 251) {
-// 			nodes {
-// 			  name
-// 			  id
-// 			  total
-// 			  hp
-// 			  sp_def
-// 			  sp_atk
-// 			  defense
-// 			  attack
-// 			  type
-// 			  speed
-// 			  national_number
-// 			  natl_num
-// 			  sprites {
-// 				normal
-// 				large 
-// 			  }
-// 			}
-// 		  }
-// 		}
-// 	`);
-
-	const query2 = useStaticQuery(graphql`
+	const query = useStaticQuery(graphql`
 	query MyQuery {
 		graphCmsData {
 		pokemon_v2_pokemonspecies(order_by: {generation_id: asc, id: asc}) {
@@ -77,7 +52,6 @@ const PokemonList: FC = () => {
 		}
 	}`
 	);
-	console.log(query2.graphCmsData.pokemon_v2_pokemonspecies)
 
 	const handleClick = (type: string) => {
 		setTypeSelected(type)
@@ -97,7 +71,7 @@ const PokemonList: FC = () => {
 			</div> */}
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
 				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
-					{query2.graphCmsData.pokemon_v2_pokemonspecies?.map((item: GraphCmsData) => (
+					{query.graphCmsData.pokemon_v2_pokemonspecies?.slice(0, 36).map((item: GraphCmsData) => (
 						<PokemonCard key={item.id} item={item} /> 				
 					))}
 				</div>
