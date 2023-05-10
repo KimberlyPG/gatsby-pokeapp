@@ -342,7 +342,7 @@ export interface ResultsLocation {
 }
 
 export interface State {
-    "0": Node[];
+    "0": GraphPokemonData[];
     key: string;
 }
 
@@ -355,7 +355,7 @@ export interface Stats {
     speed:           number;
 }
 
-export interface GraphCmsData {
+export interface GraphPokemonData {
     id:                  number;
     name:                string;
     generation_id:       number;
