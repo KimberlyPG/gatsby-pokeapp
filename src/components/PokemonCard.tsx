@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Link } from "gatsby";
 
-import { GraphCmsData } from '../types/types';
+import { GraphPokemonData } from '../types/types';
 import PokemonTypes from './PokemonTypes';
 
 interface PokemonCardProps {
-    item: GraphCmsData;
+    item: GraphPokemonData;
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
