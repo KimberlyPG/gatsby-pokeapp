@@ -13,7 +13,6 @@ module.exports = {
 		`gatsby-plugin-image`,
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
-		`gatsby-source-poke`,
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
