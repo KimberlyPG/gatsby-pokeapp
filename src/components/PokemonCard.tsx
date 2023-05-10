@@ -19,7 +19,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                 </p>
                 <div className='grid place-items-center pb-5'>
                     <img
-                        className='flex justify-center mt-8'      
+                        className='flex justify-center mt-8 w-[120px] h-[120px]'      
                         src={JSON.parse(item.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0].sprites)?.other[`official-artwork`].front_default?.replace("/media", "https://raw.githubusercontent.com/PokeAPI/sprites/master")} 
                         alt={`${item.name} image`} 
                     />

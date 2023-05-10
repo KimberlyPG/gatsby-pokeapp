@@ -10,23 +10,25 @@ import PokemonTypesFilter from './PokemonTypesFilter';
 const PokemonList: FC = () => {
 	const { setAllPokemon } = useContext(PokemonContext);
 	const [typeSelected, setTypeSelected] = useState<string>("all");
-	const [pokemonFilter, setPokemonFilter] = useState<Node[]>();
+	const [pokemonFilter, setPokemonFilter] = useState<GraphCmsData[]>();
 
-	// useEffect(() => {
-	// 	setAllPokemon(query.allPokemons);
-	// }, [])
+	useEffect(() => {
+		setAllPokemon(query.allPokemons);
+	}, [])
 
-	// useEffect(() => {
-	// 	if(typeSelected === "all") {
-	// 		setPokemonFilter(query.graphCmsData.pokemon_v2_pokemonspecies);
-	// 	}
-	// 	else {
-	// 		const filtered = query.graphCmsData.pokemon_v2_pokemonspecies.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes?.filter((item: GraphCmsData) => {
-	// 			return item.pokemon_v2_type?.name.includes(typeSelected);
-	// 		})
-	// 		setPokemonFilter(filtered)
-	// 	}
-	// }, [typeSelected])
+	useEffect(() => {
+		if(typeSelected === "all") {
+			setPokemonFilter(query.graphCmsData.pokemon_v2_pokemonspecies);
+		}
+		else {
+			const filtered = query.graphCmsData.pokemon_v2_pokemonspecies.filter((item: GraphCmsData) => {
+				return item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.some((element) => 
+					element.pokemon_v2_type?.name === typeSelected
+				)
+			})
+			setPokemonFilter(filtered)
+		}
+	}, [typeSelected])
 
 	const query = useStaticQuery(graphql`
 	query MyQuery {
@@ -62,16 +64,9 @@ const PokemonList: FC = () => {
 			<div className='h-full mx-5 sticky top-0 overflow-y-scroll scrollbar-hide'>
 				<PokemonTypesFilter handleClick={handleClick} />
 			</div>
-			{/* <div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
-				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
-					{pokemonFilter?.map((item: Node) => (
-						<PokemonCard key={item.id} item={item} /> 
-					))}
-				</div>
-			</div> */}
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
 				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
-					{query.graphCmsData.pokemon_v2_pokemonspecies?.slice(0, 36).map((item: GraphCmsData) => (
+					{pokemonFilter?.slice(0, 36).map((item: GraphCmsData) => (
 						<PokemonCard key={item.id} item={item} /> 				
 					))}
 				</div>
