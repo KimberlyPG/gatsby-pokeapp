@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect, useState, useRef, MouseEvent } from 'react';
 import { graphql, useStaticQuery } from 'gatsby'
 
 import PokemonCard from './PokemonCard';
@@ -6,6 +6,7 @@ import PokemonCard from './PokemonCard';
 import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
 import PokemonTypesFilter from './PokemonTypesFilter';
+import { AiOutlineArrowUp } from 'react-icons/ai';
 
 const PokemonList: FC = () => {
 	const query = useStaticQuery(graphql`
@@ -82,12 +83,38 @@ const PokemonList: FC = () => {
 		setHasMore(isMore);
 	}, [pokemonList]); 
 
+	const [showButton, setShowButton] = useState(false);
+	const divRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const showScrollToShow = (event: MouseEvent<HTMLButtonElement>) => {
+			if(event.currentTarget.scrollTop > 300) {
+				setShowButton(true);
+			} else {
+				setShowButton(false);
+			}
+		}
+
+		divRef?.current?.addEventListener('scroll', showScrollToShow);
+
+		return () => {
+			divRef?.current?.removeEventListener('scroll', showScrollToShow)
+		}
+	}, [])
+
+	const scrollToTop = () => {
+		divRef?.current?.scroll({
+		  top: 0,
+		  behavior: "smooth"
+		});
+	  };
+
     return (
-		<div className='flex h-full w-screen'>
+		<div className="flex h-full w-screen">
 			<div className='h-full mx-5 sticky top-0 overflow-y-scroll scrollbar-hide'>
 				<PokemonTypesFilter handleClick={handleClick} />
 			</div>
-			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300'>
+			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300' ref={divRef}>
 				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
 					{typeSelected === "all" ?  (
 						pokemonList.map((item: GraphPokemonData) => (
@@ -112,6 +139,15 @@ const PokemonList: FC = () => {
 						<p className='w-full text-center my-5 text-gray-300'>No More Pokemon</p>
 					)}
 				</div>
+				}
+				{showButton &&
+				<button 
+					type="button" 
+					className='fixed bottom-5 right-7 z-50 p-4 bg-blue-400 rounded-full text-white'
+					onClick={scrollToTop}
+				>
+					<AiOutlineArrowUp />
+				</button>
 				}
 			</div>
 		</div>
