@@ -2,6 +2,7 @@ import React, {FC, useContext, useEffect, useState, useRef, MouseEvent } from 'r
 import { graphql, useStaticQuery } from 'gatsby'
 
 import PokemonCard from './PokemonCard';
+import Dropdown from './Dropdown';
 
 import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
@@ -36,8 +37,10 @@ const PokemonList: FC = () => {
 
 	const { setAllPokemon } = useContext(PokemonContext);
 	const [typeSelected, setTypeSelected] = useState<string>("all");
-	
-	const allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies;
+	const [gen, setGen] = useState("all");
+
+	let allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies;
+
 	const [pokemonList, setPokemonList] = useState([...allPokemonList.slice(0, 36)]);
 	const [pokemonTypeFilter, setPokemonTypeFilter] = useState<GraphPokemonData[]>();
 	const [loadMore, setLoadMore] = useState(false);
@@ -47,6 +50,14 @@ const PokemonList: FC = () => {
 		setAllPokemon(query.graphCmsData.pokemon_v2_pokemonspecies);
 	}, [])
 
+	if(gen !== "all") {
+		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {return el.generation_id === parseInt(gen)})
+	}
+
+	useEffect(() => {
+		setPokemonList([...allPokemonList.slice(0, 36)])
+	}, [gen])
+
 	useEffect(() => {
 		const filtered = allPokemonList.filter((item: GraphPokemonData) => {
 			return item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.some((element) => 
@@ -54,7 +65,7 @@ const PokemonList: FC = () => {
 			)
 		})
 		setPokemonTypeFilter(filtered);
-	}, [typeSelected])
+	}, [typeSelected, gen])
 
 	const handleClick = (type: string) => {
 		setTypeSelected(type)
@@ -107,14 +118,15 @@ const PokemonList: FC = () => {
 		  top: 0,
 		  behavior: "smooth"
 		});
-	  };
+	};
 
     return (
-		<div className="flex h-full w-screen">
+		<div className="flex h-full  w-screen">
 			<div className='h-full mx-5 sticky top-0 overflow-y-scroll scrollbar-hide'>
 				<PokemonTypesFilter handleClick={handleClick} />
 			</div>
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300' ref={divRef}>
+				<Dropdown setGen={setGen} />
 				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
 					{typeSelected === "all" ?  (
 						pokemonList.map((item: GraphPokemonData) => (
@@ -123,8 +135,8 @@ const PokemonList: FC = () => {
 					):(
 						pokemonTypeFilter?.map((item: GraphPokemonData) => (
 							<PokemonCard key={item.id} item={item} /> 				
-						))
-					)}
+							))
+							)}
 				</div>
 				{typeSelected === "all" && 
 				<div className='flex w-full justify-center'>
@@ -151,7 +163,6 @@ const PokemonList: FC = () => {
 				}
 			</div>
 		</div>
-		
     )
 }
 
