@@ -54,6 +54,10 @@ const PokemonList: FC = () => {
 		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {return el.generation_id === parseInt(gen)})
 	}
 
+	const changeGen = (generation) => {
+		setGen(generation)
+	}
+
 	useEffect(() => {
 		setPokemonList([...allPokemonList.slice(0, 36)])
 	}, [gen])
@@ -126,7 +130,7 @@ const PokemonList: FC = () => {
 				<PokemonTypesFilter handleClick={handleClick} />
 			</div>
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300' ref={divRef}>
-				<Dropdown setGen={setGen} />
+				<Dropdown changeGen={changeGen} />
 				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
 					{typeSelected === "all" ?  (
 						pokemonList.map((item: GraphPokemonData) => (
