@@ -1,6 +1,6 @@
-import React, { useEffect, useState, MouseEvent } from 'react'
+import React, { useEffect, useState, MouseEvent, RefObject } from 'react'
 
-export const useScrollToTop = (divRef) => {
+export const useScrollToTop = (divRef: RefObject<HTMLDivElement>) => {
 	const [showButton, setShowButton] = useState(false);
 
 	useEffect(() => {

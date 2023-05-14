@@ -1,7 +1,11 @@
-import React from "react";
+import React, { ChangeEvent, FC } from "react";
 
-const Dropdown = ({ changeGen }) => {
-    const getDropdownValue = (event) => {
+interface DropdownProps {
+    changeGen: (arg: string) => void;
+}
+
+const Dropdown: FC<DropdownProps> = ({ changeGen }) => {
+    const getDropdownValue = (event: ChangeEvent<HTMLSelectElement>) => {
         changeGen(event.target.value);
     }
     return (

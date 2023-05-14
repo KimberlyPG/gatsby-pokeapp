@@ -55,7 +55,9 @@ const PokemonList: FC = () => {
 	}, [])
 
 	if(gen !== "all") {
-		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {return el.generation_id === parseInt(gen)})
+		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {
+			return el.generation_id === parseInt(gen)
+		})
 	}
 
 	const changeGen = (generation: SetStateAction<string>) => {
