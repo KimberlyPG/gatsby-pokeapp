@@ -1,4 +1,4 @@
-import React, {FC, useContext, useEffect, useState, useRef, MouseEvent } from 'react';
+import React, {FC, useContext, useEffect, useState, useRef, SetStateAction } from 'react';
 import { graphql, useStaticQuery } from 'gatsby'
 
 import PokemonCard from './PokemonCard';
@@ -8,6 +8,7 @@ import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
 import PokemonTypesFilter from './PokemonTypesFilter';
 import { AiOutlineArrowUp } from 'react-icons/ai';
+import { useScrollToTop } from '../hooks/useScrollToTop';
 
 const PokemonList: FC = () => {
 	const query = useStaticQuery(graphql`
@@ -46,6 +47,9 @@ const PokemonList: FC = () => {
 	const [loadMore, setLoadMore] = useState(false);
 	const [hasMore, setHasMore] = useState(allPokemonList.length > 36);
 
+	const divRef = useRef<HTMLDivElement>(null);
+	const showButton = useScrollToTop(divRef)
+
 	useEffect(() => {
 		setAllPokemon(query.graphCmsData.pokemon_v2_pokemonspecies);
 	}, [])
@@ -54,7 +58,7 @@ const PokemonList: FC = () => {
 		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {return el.generation_id === parseInt(gen)})
 	}
 
-	const changeGen = (generation) => {
+	const changeGen = (generation: SetStateAction<string>) => {
 		setGen(generation)
 	}
 
@@ -78,7 +82,7 @@ const PokemonList: FC = () => {
 	const handleLoadMore = () => {
 		setLoadMore(true);
 	}
-   
+
 	useEffect(() => {
 		if (loadMore && hasMore) {
 			const currentLength = pokemonList.length;
@@ -92,30 +96,10 @@ const PokemonList: FC = () => {
 		}
 	}, [loadMore, hasMore]) 
    
-
 	useEffect(() => {
 		const isMore = pokemonList.length < allPokemonList.length;
 		setHasMore(isMore);
 	}, [pokemonList]); 
-
-	const [showButton, setShowButton] = useState(false);
-	const divRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const showScrollToShow = (event: MouseEvent<HTMLButtonElement>) => {
-			if(event.currentTarget.scrollTop > 300) {
-				setShowButton(true);
-			} else {
-				setShowButton(false);
-			}
-		}
-
-		divRef?.current?.addEventListener('scroll', showScrollToShow);
-
-		return () => {
-			divRef?.current?.removeEventListener('scroll', showScrollToShow)
-		}
-	}, [])
 
 	const scrollToTop = () => {
 		divRef?.current?.scroll({
