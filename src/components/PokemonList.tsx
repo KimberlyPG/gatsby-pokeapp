@@ -49,6 +49,7 @@ const PokemonList: FC = () => {
 
 	const divRef = useRef<HTMLDivElement>(null);
 	const showButton = useScrollToTop(divRef)
+	const isMounted = useRef(false);
 
 	useEffect(() => {
 		setAllPokemon(query.graphCmsData.pokemon_v2_pokemonspecies);
@@ -81,16 +82,32 @@ const PokemonList: FC = () => {
 		setTypeSelected(type)
     }
 
+	
+	const scrollToBottom = () => {
+        divRef?.current?.scroll({
+            top: divRef.current.scrollHeight,
+            behavior: "smooth",
+        });
+    };
+
 	const handleLoadMore = () => {
-		setLoadMore(true);
+		setLoadMore(true);		
 	}
+	
+	useEffect(() => {
+	if (isMounted.current) {
+		scrollToBottom();
+	} else {
+		isMounted.current = true;
+	}
+	}, [loadMore])
 
 	useEffect(() => {
 		if (loadMore && hasMore) {
 			const currentLength = pokemonList.length;
 			const isMore = currentLength < allPokemonList.length;
 			const nextResults = isMore ? 
-				allPokemonList.slice(currentLength, currentLength + 36)
+				allPokemonList.slice(currentLength, currentLength + 27)
 			: 
 				[]
 				setPokemonList([...pokemonList, ...nextResults]);
@@ -133,7 +150,7 @@ const PokemonList: FC = () => {
 					{hasMore ? (
 						<button 
 							className='text-center text-white font-semibold my-5 bg-[#4DAD5B] py-1 px-2 rounded-md' 
-							onClick={handleLoadMore}
+							onClick={() => handleLoadMore()}
 						>
 								Load More Pokemon
 						</button>
