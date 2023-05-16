@@ -22,6 +22,7 @@
     "@apollo/client": "^3.7.10",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@material-tailwind/react": "^2.0.1",
     "@material/linear-progress": "^14.0.0",
     "@material/mwc-linear-progress": "^0.27.0",
     "@mui/material": "^5.11.13",
