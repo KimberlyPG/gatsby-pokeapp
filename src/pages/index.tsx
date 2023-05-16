@@ -1,5 +1,5 @@
 import * as React from "react";
-import PokemonList from '../components/PokemonList';
+import Pokedex from '../components/Pokedex';
 import SEO from "../components/SEO";
 
 import '../styles/global.css'
@@ -7,7 +7,7 @@ import { graphql } from "gatsby";
 
 const IndexPage = () => {  
 	return (
-		<PokemonList />
+		<Pokedex />
 	)
 }
 

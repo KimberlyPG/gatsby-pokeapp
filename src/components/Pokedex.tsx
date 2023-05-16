@@ -1,16 +1,16 @@
 import React, {FC, useContext, useEffect, useState, useRef, SetStateAction } from 'react';
+import { AiOutlineArrowUp } from 'react-icons/ai';
 import { graphql, useStaticQuery } from 'gatsby'
 
-import PokemonCard from './PokemonCard';
 import Dropdown from './Dropdown';
+import PokedexCards from './PokedexCards';
+import PokemonTypesFilter from './PokemonTypesFilter';
 
+import { useScrollToTop } from '../hooks/useScrollToTop';
 import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
-import PokemonTypesFilter from './PokemonTypesFilter';
-import { AiOutlineArrowUp } from 'react-icons/ai';
-import { useScrollToTop } from '../hooks/useScrollToTop';
 
-const PokemonList: FC = () => {
+const Pokedex: FC = () => {
 	const query = useStaticQuery(graphql`
 	query MyQuery {
 		graphCmsData {
@@ -117,43 +117,33 @@ const PokemonList: FC = () => {
 			</div>
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300' ref={divRef}>
 				<Dropdown changeGen={changeGen} />
-				<div className='mt-5 grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 place-items-center mr-5 h-fit'>
-					{typeSelected === "all" ?  (
-						pokemonList.map((item: GraphPokemonData) => (
-							<PokemonCard key={item.id} item={item} /> 				
-						))
-					):(
-						pokemonTypeFilter?.map((item: GraphPokemonData) => (
-							<PokemonCard key={item.id} item={item} /> 				
-						))
-					)}
-				</div>
+				<PokedexCards typeSelected={typeSelected} pokemonList={pokemonList} pokemonTypeFilter={pokemonTypeFilter} />
 				{typeSelected === "all" && 
-				<div className='flex w-full justify-center'>
-					{hasMore ? (
-						<button 
-							className='text-center text-white font-semibold my-5 bg-[#4DAD5B] py-1 px-2 rounded-md' 
-							onClick={() => handleLoadMore()}
-						>
-								Load More Pokemon
-						</button>
-					) : (
-						<p className='w-full text-center my-5 text-gray-300'>No More Pokemon</p>
-					)}
-				</div>
+					<div className='flex w-full justify-center'>
+						{hasMore ? (
+							<button 
+								className='text-center text-white font-semibold my-5 bg-[#4DAD5B] py-1 px-2 rounded-md' 
+								onClick={() => handleLoadMore()}
+							>
+									Load More Pokemon
+							</button>
+						) : (
+							<p className='w-full text-center my-5 text-gray-300'>No More Pokemon</p>
+						)}
+					</div>
 				}
 				{showButton &&
-				<button 
-					type="button" 
-					className='fixed bottom-5 right-7 z-50 p-4 bg-blue-400 rounded-full text-white'
-					onClick={scrollToTop}
-				>
-					<AiOutlineArrowUp />
-				</button>
+					<button 
+						type="button" 
+						className='fixed bottom-5 right-7 z-50 p-4 bg-blue-400 rounded-full text-white'
+						onClick={scrollToTop}
+					>
+						<AiOutlineArrowUp />
+					</button>
 				}
 			</div>
 		</div>
     )
 }
 
-export default PokemonList;
+export default Pokedex;
