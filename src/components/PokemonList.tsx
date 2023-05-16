@@ -49,7 +49,6 @@ const PokemonList: FC = () => {
 
 	const divRef = useRef<HTMLDivElement>(null);
 	const showButton = useScrollToTop(divRef)
-	const isMounted = useRef(false);
 
 	useEffect(() => {
 		setAllPokemon(query.graphCmsData.pokemon_v2_pokemonspecies);
@@ -82,26 +81,10 @@ const PokemonList: FC = () => {
 		setTypeSelected(type)
     }
 
-	
-	const scrollToBottom = () => {
-        divRef?.current?.scroll({
-            top: divRef.current.scrollHeight,
-            behavior: "smooth",
-        });
-    };
-
 	const handleLoadMore = () => {
 		setLoadMore(true);		
 	}
 	
-	useEffect(() => {
-	if (isMounted.current) {
-		scrollToBottom();
-	} else {
-		isMounted.current = true;
-	}
-	}, [loadMore])
-
 	useEffect(() => {
 		if (loadMore && hasMore) {
 			const currentLength = pokemonList.length;
@@ -128,13 +111,13 @@ const PokemonList: FC = () => {
 	};
 
     return (
-		<div className="flex h-full  w-screen">
+		<div className="flex h-full w-screen">
 			<div className='h-full mx-5 sticky top-0 overflow-y-scroll scrollbar-hide'>
 				<PokemonTypesFilter handleClick={handleClick} />
 			</div>
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300' ref={divRef}>
 				<Dropdown changeGen={changeGen} />
-				<div className='mt-5 grid xl:grid-cols-9 lg:grid-cols-7 sm:grid-cols-5 xs:grid-cols-3 place-items-center mr-5 h-fit'>
+				<div className='mt-5 grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 place-items-center mr-5 h-fit'>
 					{typeSelected === "all" ?  (
 						pokemonList.map((item: GraphPokemonData) => (
 							<PokemonCard key={item.id} item={item} /> 				
@@ -142,8 +125,8 @@ const PokemonList: FC = () => {
 					):(
 						pokemonTypeFilter?.map((item: GraphPokemonData) => (
 							<PokemonCard key={item.id} item={item} /> 				
-							))
-							)}
+						))
+					)}
 				</div>
 				{typeSelected === "all" && 
 				<div className='flex w-full justify-center'>

@@ -9,7 +9,7 @@ const Dropdown: FC<DropdownProps> = ({ changeGen }) => {
         changeGen(event.target.value);
     }
     return (
-        <div className="flex justify-end items-center mr-10 mt-5">
+        <div className="flex xs:flex-col sm:flex-row justify-end items-center mr-10 mt-5">
             <p className="text-gray-400 dark:text-gray-300 mr-3">Select generation</p>
             <div className="w-fit rounded-md bg-gradient-to-r from-green-500 via-blue-500 to-indigo-500 
             dark:bg-gradient-to-r from-green-600 via-blue-600 to-indigo-600 p-0.5">
