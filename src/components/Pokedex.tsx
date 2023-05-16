@@ -106,18 +106,12 @@ const Pokedex: FC = () => {
 
     return (
 		<div className="flex h-full w-screen">
-			<div className='h-full mx-5 sticky top-0 overflow-y-scroll scrollbar-hide'>
-				<PokemonTypesFilter handleClick={handleClick} />
-			</div>
+			<PokemonTypesFilter handleClick={handleClick} />
 			<div className='w-full h-full overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-gray-300' ref={divRef}>
 				<Dropdown changeGen={changeGen} />
 				<PokedexCards typeSelected={typeSelected} pokemonList={pokemonList} pokemonTypeFilter={pokemonTypeFilter} />
-				{typeSelected === "all" && 
-					<LoadMoreButton hasMore={hasMore} handleLoadMore={handleLoadMore} />
-				}
-				{showButton &&
-					<ScrollTopButton divRef={divRef} />
-				}
+				<LoadMoreButton typeSelected={typeSelected} hasMore={hasMore} handleLoadMore={handleLoadMore} />
+				<ScrollTopButton showButton={showButton} divRef={divRef} />
 			</div>
 		</div>
     );
