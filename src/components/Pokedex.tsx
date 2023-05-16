@@ -1,5 +1,4 @@
 import React, {FC, useContext, useEffect, useState, useRef, SetStateAction } from 'react';
-import { AiOutlineArrowUp } from 'react-icons/ai';
 import { graphql, useStaticQuery } from 'gatsby'
 
 import Dropdown from './Dropdown';
@@ -10,6 +9,7 @@ import LoadMoreButton from './LoadMoreButton';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
+import ScrollTopButton from './ScrollTopButton';
 
 const Pokedex: FC = () => {
 	const query = useStaticQuery(graphql`
@@ -104,13 +104,6 @@ const Pokedex: FC = () => {
 		setHasMore(isMore);
 	}, [pokemonList]); 
 
-	const scrollToTop = () => {
-		divRef?.current?.scroll({
-		  top: 0,
-		  behavior: "smooth"
-		});
-	};
-
     return (
 		<div className="flex h-full w-screen">
 			<div className='h-full mx-5 sticky top-0 overflow-y-scroll scrollbar-hide'>
@@ -123,17 +116,11 @@ const Pokedex: FC = () => {
 					<LoadMoreButton hasMore={hasMore} handleLoadMore={handleLoadMore} />
 				}
 				{showButton &&
-					<button 
-						type="button" 
-						className='fixed bottom-5 right-7 z-50 p-4 bg-blue-400 rounded-full text-white'
-						onClick={scrollToTop}
-					>
-						<AiOutlineArrowUp />
-					</button>
+					<ScrollTopButton divRef={divRef} />
 				}
 			</div>
 		</div>
-    )
+    );
 }
 
 export default Pokedex;
