@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PokemonCard from './PokemonCard';
 import InformationMessage from './InformationMessage';
 
 import { GraphPokemonData } from '../types/types';
 
-const PokedexCards = ({ typeSelected, pokemonList, pokemonTypeFilter}) => {
+interface PokedexCardsProps {
+    typeSelected: string;
+    pokemonList: GraphPokemonData[];
+    pokemonTypeFilter: GraphPokemonData[] | undefined;
+}
+
+const PokedexCards: FC<PokedexCardsProps> = ({ typeSelected, pokemonList, pokemonTypeFilter}) => {
     return (
         <>
             {typeSelected === "all" ? (
@@ -24,9 +30,9 @@ const PokedexCards = ({ typeSelected, pokemonList, pokemonTypeFilter}) => {
                             <PokemonCard key={item.id} item={item} /> 		
                         ))}
                     </div>		
-                        ):(
-                            <InformationMessage />
-                        )
+                    ):(
+                        <InformationMessage />
+                    )
             )}     
         </>
     );

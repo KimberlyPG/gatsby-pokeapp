@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import PokemonTypes from '../../components/PokemonTypes';
 import { ResultsLocation } from '../../types/types';
 import { capitalizeName } from '../../utils/capitalizeName';
+import { spritesHandler } from '../../utils/spritesHandler';
 
 interface Name {
     name: string;
@@ -33,7 +34,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                     >
                         <img
                             className='flex justify-center w-[120px]'               
-                            src={JSON.parse(item.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0].sprites)?.other[`official-artwork`].front_default?.replace("/media", "https://raw.githubusercontent.com/PokeAPI/sprites/master")} 
+                            src={spritesHandler(item)} 
                             alt={`${item?.name} image`} 
                         />
                         <div className='flex flex-col space-y-4'>

@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import { Link } from "gatsby";
 
-import { GraphPokemonData } from '../types/types';
 import PokemonTypes from './PokemonTypes';
+
+import { GraphPokemonData } from '../types/types';
+import { spritesHandler } from '../utils/spritesHandler';
 
 interface PokemonCardProps {
     item: GraphPokemonData;
@@ -21,7 +23,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                 <div className='grid place-items-center pb-5'>
                     <img
                         className='flex justify-center mt-8 max-w-[120px] max-h-[120px]'      
-                        src={JSON.parse(item.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0].sprites)?.other[`official-artwork`].front_default?.replace("/media", "https://raw.githubusercontent.com/PokeAPI/sprites/master")} 
+                        src={spritesHandler(item)} 
                         alt={`${item.name} image`} 
                     />
                     <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{item.name}</h1>

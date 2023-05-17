@@ -30,6 +30,8 @@ const Dropdown: FC<DropdownProps> = ({ changeGen }) => {
             <p className="text-gray-400 dark:text-gray-300 mr-3">Select generation</p>
             <div className="w-48 right-0">
             <Select
+                role="listbox"
+                type="button"
                 classNames={{
                     menuButton: ({ isDisabled }) => (
                         `dark:bg-[#181A1B] flex text-sm text-gray-500 border border-gray-300 rounded shadow-sm transition-all duration-300 outline-none ${

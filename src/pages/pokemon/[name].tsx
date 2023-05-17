@@ -4,6 +4,7 @@ import { PageProps } from "gatsby";
 import PokemonContainer from "../../components/PokemonContainer";
 import PokemonStats from "../../components/PokemonStats";
 import Evolutions from "../../components/Evolutions";
+import PokeballSpinner from '../../components/PokeballSpinner';
 
 import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
@@ -44,6 +45,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
           getPokemonEvolutions();      
     }, [pokemonDescription])
 
+    if(!data || !pokemonDescription || !evolutionChain) return <PokeballSpinner />
     return (
         <>
             <h3 className="flex w-screen text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">
