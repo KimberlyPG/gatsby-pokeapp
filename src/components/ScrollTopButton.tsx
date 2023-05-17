@@ -20,7 +20,7 @@ const ScrollTopButton: FC<ScrollTopButtonProps> = ({ showButton, divRef }) => {
             {showButton &&
                 <button 
                 type="button" 
-                className='fixed bottom-5 right-7 z-50 p-4 bg-blue-400 rounded-full text-white'
+                className='fixed bottom-5 right-7 z-50 p-4 bg-blue-400 rounded-full text-white animate-bounce'
                 onClick={scrollToTop}
                 >
                     <AiOutlineArrowUp />
