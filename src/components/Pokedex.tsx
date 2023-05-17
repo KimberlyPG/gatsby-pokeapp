@@ -10,6 +10,7 @@ import { useScrollToTop } from '../hooks/useScrollToTop';
 import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
 import ScrollTopButton from './ScrollTopButton';
+import { useFilterPokemon } from '../hooks/useFilterPokemon';
 
 const Pokedex: FC = () => {
 	const query = useStaticQuery(graphql`
@@ -44,16 +45,21 @@ const Pokedex: FC = () => {
 	let allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies;
 
 	const [pokemonList, setPokemonList] = useState([...allPokemonList.slice(0, 36)]);
-	const [pokemonTypeFilter, setPokemonTypeFilter] = useState<GraphPokemonData[]>();
 	const [loadMore, setLoadMore] = useState(false);
 	const [hasMore, setHasMore] = useState(allPokemonList.length > 36);
 
 	const divRef = useRef<HTMLDivElement>(null);
+
 	const showButton = useScrollToTop(divRef)
+	const pokemonTypeFilter = useFilterPokemon(allPokemonList, typeSelected, gen)
 
 	useEffect(() => {
 		setAllPokemon(query.graphCmsData.pokemon_v2_pokemonspecies);
 	}, [])
+	
+	const handleClick = (type: string) => {
+		setTypeSelected(type)
+	}
 
 	if(gen !== "all") {
 		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {
@@ -68,19 +74,6 @@ const Pokedex: FC = () => {
 	useEffect(() => {
 		setPokemonList([...allPokemonList.slice(0, 36)])
 	}, [gen])
-
-	useEffect(() => {
-		const filtered = allPokemonList.filter((item: GraphPokemonData) => {
-			return item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.some((element) => 
-				element.pokemon_v2_type?.name === typeSelected
-			)
-		})
-		setPokemonTypeFilter(filtered);
-	}, [typeSelected, gen])
-
-	const handleClick = (type: string) => {
-		setTypeSelected(type)
-    }
 
 	const handleLoadMore = () => {
 		setLoadMore(true);		
