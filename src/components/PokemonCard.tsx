@@ -5,6 +5,7 @@ import PokemonTypes from './PokemonTypes';
 
 import { GraphPokemonData } from '../types/types';
 import { spritesHandler } from '../utils/spritesHandler';
+import { capitalizeName } from '../utils/capitalizeName';
 
 interface PokemonCardProps {
     item: GraphPokemonData;
@@ -27,7 +28,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                         width={120}
                         height={120}
                     />
-                    <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{item.name}</h1>
+                    <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{capitalizeName(item.name)}</h1>
                     <PokemonTypes 
                         types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} 
                         parent="PokemonCard" 
