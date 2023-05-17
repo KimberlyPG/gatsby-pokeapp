@@ -2,16 +2,18 @@ import React, { useEffect, useState, FC } from "react";
 import { PageProps } from "gatsby";
 
 import PokemonContainer from "../../components/PokemonContainer";
+import PokeballSpinner from '../../components/PokeballSpinner';
 import PokemonStats from "../../components/PokemonStats";
 import Evolutions from "../../components/Evolutions";
-import PokeballSpinner from '../../components/PokeballSpinner';
+import PokemonDetails from "../../components/PokemonDetails";
 
 import { typeColor } from "../../utils/types-colors";
 import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
-import { PokemonData, PokemonDescription, Evolution } from "../../types/types";
+import { PokemonData, PokemonDescriptionT, Evolution } from "../../types/types";
 import { initialPokemonDataValues, initialPokemonDescriptionValues, initialEvolutionChainValues } from "../../initialDataValues/initialDataValues";
 import { capitalizeName } from "../../utils/capitalizeName";
+import { descriptionFormat } from "../../utils/descriptionFormat";
 
 interface Name {
     name: string;
@@ -24,12 +26,11 @@ interface PokemonProps {
 const Pokemon = ({ params }: PageProps<PokemonProps>) => {
     const pokemonName = params?.name?.toLowerCase();
     const [data, setData] = useState<PokemonData>(initialPokemonDataValues);
-    const [pokemonDescription, setPokemonDescription] = useState<PokemonDescription>(initialPokemonDescriptionValues);
+    const [pokemonDescription, setPokemonDescription] = useState<PokemonDescriptionT>(initialPokemonDescriptionValues);
     const [evolutionChain, setEvolutionChain] = useState<Evolution>(initialEvolutionChainValues);
 
-    const sprites_dreamWorld = data?.sprites?.other?.dream_world.front_default;
-    const sprites_home = data?.sprites?.other?.home.front_default;
-    const description_format = JSON.stringify(pokemonDescription?.flavor_text_entries?.[0].flavor_text)?.toString().replaceAll("\\n", " ").replace("\\f", " ").replace("POKéMON", "pokémon");
+    const pokemonImage = data?.sprites?.other?.['official-artwork']?.front_default;
+    const description_format = descriptionFormat(pokemonDescription);
 
     useEffect(() => {
         getPokemonData(pokemonName, "pokemon", setData);
@@ -52,25 +53,16 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                 {capitalizeName(pokemonName)} N.°{data?.id}
             </h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
-                <div className="grid w-96 h-full border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
-                    {sprites_dreamWorld !== null ? (
-                        <img
-                            style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
-                            className="border rounded mt-10" 
-                            src={sprites_dreamWorld} 
-                            alt="pokemon image" 
-                        />
-                    ):(
-                        <img
-                            className="border rounded" 
-                            src={sprites_home} 
-                            alt="pokemon image" 
-                        />
-                    )
-                    }
+                <div className="grid w-96 h-max border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
+                    <img
+                        style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
+                        className="border rounded mt-10" 
+                        src={pokemonImage} 
+                        alt="pokemon image" 
+                    />
                     <PokemonStats stats={data.stats} id={data.id} />
                 </div>
-                <div className="border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 dark:bg-[#1E2022] dark:bg-opacity-60">
+                <div className="h-full border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 dark:bg-[#1E2022] dark:bg-opacity-60">
                     <p className="grid text-gray-600 dark:text-white text-lg justify-items-center mt-4">
                         {description_format && JSON.parse(description_format)}
                     </p>
@@ -86,16 +78,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                             </p>
                         ))}
                     </div>
-                    <div className="bg-blue-400 rounded-lg mt-5 p-5">
-                        <div>
-                            <p className="text-blue-800 text-sm ">Weight</p>
-                            <p className="text-white text-sm ">{data.weight}</p>
-                        </div>
-                        <div>
-                            <p className="text-blue-800 text-sm">Height</p>
-                            <p className="text-white text-sm">{data.height}</p>
-                        </div>
-                    </div>
+                    <PokemonDetails data={data} />
                 </div>
             </PokemonContainer>
             <Evolutions evolutionChain={evolutionChain} />

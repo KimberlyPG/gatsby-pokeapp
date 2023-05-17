@@ -217,7 +217,7 @@ export interface Stat {
     stat:      Species;
 }
 
-export interface PokemonDescription {
+export interface PokemonDescriptionT {
     base_happiness?:        number;
     capture_rate?:          number;
     color:                  Color;
