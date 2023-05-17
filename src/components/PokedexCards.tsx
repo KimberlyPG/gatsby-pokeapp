@@ -16,7 +16,7 @@ const PokedexCards: FC<PokedexCardsProps> = ({ typeSelected, pokemonList, pokemo
         <>
             {typeSelected === "all" ? (
                 <div className='mt-5 mr-5 h-fit grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 
-                    md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 place-items-center'>
+                    md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 place-items-center gap-2'>
                     {pokemonList.map((item: GraphPokemonData) => (
                         <PokemonCard key={item.id} item={item} /> 				
                     ))} 
