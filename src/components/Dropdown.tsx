@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Select from "react-tailwindcss-select";
 
 interface DropdownProps {
@@ -18,10 +18,10 @@ const Dropdown: FC<DropdownProps> = ({ changeGen }) => {
         { value: "7", label: "Generation 7" },
         { value: "8", label: "Generation 8" },
     ];
-    const [gen, setGen] = useState(options[0]);
+    const [generation, setGeneration] = useState<{value: string, label: string}>(options[0]);
 
-    const getDropdownValue = (value: ChangeEvent<HTMLSelectElement>) => {
-        setGen(value);
+    const getDropdownValue = (value: {value: string, label: string}) => {
+        setGeneration(value);
         changeGen(value.value);
     }
 
@@ -49,7 +49,7 @@ const Dropdown: FC<DropdownProps> = ({ changeGen }) => {
                         }`
                         )
                     }}
-                value={gen}
+                value={generation}
                 onChange={getDropdownValue}
                 options={options}
             />
