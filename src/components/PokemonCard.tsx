@@ -1,50 +1,39 @@
 import React, { FC } from 'react';
 import { Link } from "gatsby";
 
-import { Node } from '../types/types';
 import PokemonTypes from './PokemonTypes';
 
+import { GraphPokemonData } from '../types/types';
+import { spritesHandler } from '../utils/spritesHandler';
+import { capitalizeName } from '../utils/capitalizeName';
+
 interface PokemonCardProps {
-    item: Node;
+    item: GraphPokemonData;
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
 
-    const replaceImage = (error) => {
-        const image = item.sprites.normal;
-        if(image.indexOf("♀") !== -1 || image.indexOf("♂") !== -1) {
-            const newImage = image.replace("♀", "-m").replace("♂", "-f")
-            error.target.src = newImage; 
-        } else if(item.sprites.normal.indexOf("'") !== -1){
-            const newImage = image.replace("'", "");
-            error.target.src = newImage; 
-        } 
-    }
     return (
         <Link to={`/pokemon/${item.name}`} > 
-            <div className='shadow-md relative bg-gray-100 dark:bg-[#1E2022] w-40 rounded-lg cursor-pointer 
-            hover:bg-gray-200 dark:hover:bg-zinc-800 bg-opacity-70 mb-5 '>
+            <div className='shadow-md relative bg-gray-100 dark:bg-[#1E2022] rounded-lg cursor-pointer hover:bg-gray-200 
+                dark:hover:bg-zinc-800 bg-opacity-70 mb-5 hover:mb-1'>
                 <p className="text-center absolute text-gray-300 dark:text-gray-100 m-3 text-2xl opacity-80">
-                    #{item.national_number}
+                    #{item.id}
                 </p>
-                <div className='grid place-items-center pb-5'>
+                <div className='flex flex-col items-center justify-center pb-5 w-full px-5'>
                     <img
-                        className='flex justify-center mt-8 w-fit h-fit'      
-                        srcSet={`${item.sprites.normal} 1x`}         
-                        src={item.sprites.normal}
+                        className='flex justify-center mt-8'      
+                        src={spritesHandler(item)} 
                         alt={`${item.name} image`} 
-                        onError={replaceImage}
+                        width={130}
+                        height={130}
                     />
-                    <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{item.name}</h1>
-                    <PokemonTypes 
-                        types={item.type} 
-                        parent="PokemonCard" 
-                        handleClick={() => null} 
-                    />
+                    <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{capitalizeName(item.name)}</h1>
+                    <PokemonTypes types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} />
                 </div>
             </div>
         </Link>
-    )
+    );
 }
 
 export default PokemonCard;

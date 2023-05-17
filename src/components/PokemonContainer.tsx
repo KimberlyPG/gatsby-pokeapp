@@ -1,12 +1,12 @@
 import React, {FC, ReactNode} from 'react'
 
 import { pokemonColor } from '../utils/pokemon-colors'
-import { PokemonDescription } from '../types/types';
+import { PokemonDescriptionT } from '../types/types';
 import pokeballBg from "../assets/pokeballBg.jpg"
 
 interface PokemonContainerProps {
     children: ReactNode;
-    pokemonDescription: PokemonDescription;
+    pokemonDescription: PokemonDescriptionT;
 }
 
 const PokemonContainer: FC<PokemonContainerProps> = ({ children, pokemonDescription }) => {

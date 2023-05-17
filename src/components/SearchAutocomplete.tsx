@@ -3,12 +3,12 @@ import React, { FC, RefObject, useEffect, useState } from "react";
 
 import AutocompleteCard from "./AutocompleteCard";
 
-import { Node } from "../types/types";
-import { initialNodeValues } from "../initialDataValues/initialDataValues";
+import { GraphPokemonData } from "../types/types";
+import { initialPokemonValues } from "../initialDataValues/initialDataValues";
 import { useKeyPress } from "../hooks/useKeyPress";
 
 type AutocompleteSearchProps = {
-	filteredData: Node[];
+	filteredData: GraphPokemonData[];
 	deleteFilteredData: () => void;
 	getSelectedPokemon: (arg0: string) => void;
 	inputText: string;
@@ -20,7 +20,7 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
     const upPress = useKeyPress("ArrowUp");
 	
 	const [cursor, setCursor] = useState<number>(-1);
-    const [cursorHover, setCursorHover] = useState<Node>(initialNodeValues);
+    const [cursorHover, setCursorHover] = useState<GraphPokemonData>(initialPokemonValues);
 
 	useEffect(() => {
         if (filteredData.length && downPress) {

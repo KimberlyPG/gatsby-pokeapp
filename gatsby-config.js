@@ -13,7 +13,6 @@ module.exports = {
 		`gatsby-plugin-image`,
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
-		`gatsby-source-poke`,
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
@@ -30,6 +29,20 @@ module.exports = {
 				`gatsby-remark-lazy-load`,
 			]
 			}
-		}
+		},
+		{
+			resolve: 'gatsby-plugin-html-attributes',
+			options: {
+			  lang: 'en-GB'
+			}
+		},
+		{
+			resolve: 'gatsby-source-graphql',
+			options: {
+			  typeName: 'GRAPHCMS',
+			  fieldName: 'graphCmsData',
+			  url: 'https://beta.pokeapi.co/graphql/v1beta',
+			}
+		  },
     ],
 }

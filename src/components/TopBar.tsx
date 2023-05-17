@@ -15,7 +15,7 @@ const TopBar = () => {
                         src="../assets/pokeballTransparent.jpg" 
                         alt="pokeball image" 
                     />
-                    <p className='flex text-gray-700 text-xl font-bold dark:text-gray-100'>Pokedex</p>
+                    <p className='flex text-gray-700 text-xl font-bold dark:text-gray-100 hover:text-gray-600'>Pokedex</p>
                 </div>
             </Link>
             <SearchBar />     

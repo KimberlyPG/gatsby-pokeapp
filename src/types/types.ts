@@ -217,7 +217,7 @@ export interface Stat {
     stat:      Species;
 }
 
-export interface PokemonDescription {
+export interface PokemonDescriptionT {
     base_happiness?:        number;
     capture_rate?:          number;
     color:                  Color;
@@ -342,7 +342,7 @@ export interface ResultsLocation {
 }
 
 export interface State {
-    "0": Node[];
+    "0": GraphPokemonData[];
     key: string;
 }
 
@@ -353,4 +353,28 @@ export interface Stats {
     hp:              number;
     special_defense: number;
     speed:           number;
+}
+
+export interface GraphPokemonData {
+    id:                  number;
+    name:                string;
+    generation_id:       number;
+    pokemon_v2_pokemons: PokemonV2Pokemon[];
+}
+
+export interface PokemonV2Pokemon {
+    pokemon_v2_pokemonsprites: PokemonV2Pokemonsprite[];
+    pokemon_v2_pokemontypes: PokemonV2Type[];
+}
+
+export interface PokemonV2Pokemonsprite {
+    sprites: string;
+}
+
+export interface PokemonV2Type {
+    pokemon_v2_type: TypeName;
+}
+
+export interface TypeName {
+    name: string;
 }

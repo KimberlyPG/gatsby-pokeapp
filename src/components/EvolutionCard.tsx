@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Link } from 'gatsby'
 
 import pokeballIcon from "../assets/pokeballTransparent.jpg";
+import { capitalizeName } from '../utils/capitalizeName';
 
 interface EvolutionCardProps {
     url: string;
@@ -23,11 +24,11 @@ const EvolutionCard: FC<EvolutionCardProps> = ({ url, name }) => {
                     <img 
                         className="w-36"
                         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${url.slice(42, -1)}.png`} 
-                        alt="" 
+                        alt={`${name} image`} 
                         />
                 </div>
                 <p className="flex text-gray-700 dark:text-white text-xl justify-center">
-                    {name.charAt(0).toUpperCase() + name.slice(1)}
+                    {capitalizeName(name)}
                 </p>
             </Link>
         </div>

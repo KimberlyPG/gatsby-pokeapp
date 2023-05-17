@@ -1,12 +1,14 @@
 import React, {Dispatch, FC, SetStateAction} from 'react'
 import { Link } from 'gatsby';
-import { Node } from '../types/types';
+
+import { GraphPokemonData } from '../types/types';
+import { spritesHandler } from '../utils/spritesHandler';
 
 type SearchResultsProps = {
-    item: Node;
+    item: GraphPokemonData;
 	deleteFilteredData: () => void;
 	active: boolean;
-	setCursorHover: Dispatch<SetStateAction<Node>>;
+	setCursorHover: Dispatch<SetStateAction<GraphPokemonData>>;
 }
 
 const AutocompleteCard: FC<SearchResultsProps> = ({ item, deleteFilteredData, active, setCursorHover }) => {
@@ -19,7 +21,7 @@ const AutocompleteCard: FC<SearchResultsProps> = ({ item, deleteFilteredData, ac
 			>
 				<img
 					className='flex justify-center w-14'               
-					src={item.sprites.normal} 
+					src={spritesHandler(item)} 
 					alt={`${item.name} image`} 
 				/>
 				<h1 className='text-gray-500 dark:text-white'>{item.name}</h1>

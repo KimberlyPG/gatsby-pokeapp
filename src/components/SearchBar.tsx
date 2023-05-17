@@ -4,7 +4,7 @@ import { navigate } from 'gatsby';
 import SearchForm from './SearchForm';
 import SearchAutocomplete from './SearchAutocomplete';
 
-import { Node } from '../types/types';
+import { GraphPokemonData } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
 import { useClickOutsideSearch } from '../hooks/useClickOutsideSearch';
 
@@ -14,7 +14,7 @@ const SearchBar = () => {
     const ulRef = useRef<HTMLUListElement>(null);
     const searchBarRef = useRef<HTMLDivElement>(null);
     
-    const [filteredData, setFilteredData] = useState<Node[]>([]);
+    const [filteredData, setFilteredData] = useState<GraphPokemonData[]>([]);
     const [inputText, setinputText] = useState<string>("");
     const [selected, setSelected] = useState<string>("");
     const [searchInput, setSearchInput] = useState(false);
@@ -22,8 +22,8 @@ const SearchBar = () => {
     useClickOutsideSearch(searchBarRef, searchInput, setSearchInput);
 
     const filterPokemonOptions = (pokeName: string) => {
-        const filtered = allPokemon.nodes.filter((item: Node) => {
-            if(pokeName !== '') return item.name.toLowerCase().includes(pokeName.toLowerCase());
+        const filtered = allPokemon.filter((item: GraphPokemonData) => {
+            if(pokeName !== '') return item.name.includes(pokeName.toLowerCase()) 
         })
         setFilteredData(filtered.slice(0,10));
     }
