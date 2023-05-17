@@ -20,7 +20,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                 <p className="text-center absolute text-gray-300 dark:text-gray-100 m-3 text-2xl opacity-80">
                     #{item.id}
                 </p>
-                <div className='grid place-items-center pb-5'>
+                <div className='grid place-items-center pb-5 overflow-hidden'>
                     <img
                         className='flex justify-center mt-8 max-w-[120px] max-h-[120px]'      
                         src={spritesHandler(item)} 

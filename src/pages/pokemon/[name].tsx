@@ -53,7 +53,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                 {capitalizeName(pokemonName)} N.°{data?.id}
             </h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
-                <div className="grid w-96 h-max border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
+                <div className="grid w-96 h-[100hv] border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
                     <img
                         style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
                         className="border rounded mt-10" 
@@ -62,7 +62,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                     />
                     <PokemonStats stats={data.stats} id={data.id} />
                 </div>
-                <div className="h-full border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 dark:bg-[#1E2022] dark:bg-opacity-60">
+                <div className="h-[100hv] border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 dark:bg-[#1E2022] dark:bg-opacity-60">
                     <p className="grid text-gray-600 dark:text-white text-lg justify-items-center mt-4">
                         {description_format && JSON.parse(description_format)}
                     </p>
