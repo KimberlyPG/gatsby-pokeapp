@@ -83,7 +83,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
             </PokemonContainer>
             <Evolutions evolutionChain={evolutionChain} />
         </>
-    )
+    );
 }
 
 export default Pokemon;

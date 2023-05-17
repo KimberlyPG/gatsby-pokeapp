@@ -6,11 +6,9 @@ import { PokemonV2Type } from '../types/types';
 
 interface PokemonTypesProps {
     types: PokemonV2Type[];
-    parent: string;
-    handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const PokemonTypes: FC<PokemonTypesProps> = ({ types, parent, handleClick }) => {
+const PokemonTypes: FC<PokemonTypesProps> = ({ types }) => {
     return (
         <div className="flex space-x-2">
             {types.map((item, index) => (

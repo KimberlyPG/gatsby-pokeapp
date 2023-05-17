@@ -25,19 +25,15 @@ const PokemonCard: FC<PokemonCardProps> = ({ item }) => {
                         className='flex justify-center mt-8'      
                         src={spritesHandler(item)} 
                         alt={`${item.name} image`} 
-                        width={120}
-                        height={120}
+                        width={130}
+                        height={130}
                     />
                     <h1 className='text-gray-500 dark:text-gray-100 text-lg font-semibold'>{capitalizeName(item.name)}</h1>
-                    <PokemonTypes 
-                        types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} 
-                        parent="PokemonCard" 
-                        handleClick={() => null} 
-                    />
+                    <PokemonTypes types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} />
                 </div>
             </div>
         </Link>
-    )
+    );
 }
 
 export default PokemonCard;

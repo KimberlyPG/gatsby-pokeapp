@@ -39,7 +39,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                         />
                         <div className='flex flex-col space-y-4'>
                             <h1 className='text-gray-500 text-xl'>{capitalizeName(item?.name)}</h1>
-                            <PokemonTypes types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} parent="pokemon" handleClick={() => null} />
+                            <PokemonTypes types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} />
                         </div>
                     </Link>    
                 ))
