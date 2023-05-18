@@ -20,12 +20,12 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                 {types.map((item) => (
                     <button 
                         key={item.id} 
-                        className={`p-2 rounded-full shadow-sm flex hover:shadow-lg cursor-pointer w-full xs:mr-10 sm:mr-0`} 
+                        className={`group p-2 rounded-full shadow-sm flex hover:shadow-lg cursor-pointer w-full xs:mr-10 sm:mr-0 hover:opacity-80`} 
                         style={{backgroundColor: `${typeColor(item.name)}`}}
                         onClick={() => handleClick(item.name)}
                     >
                         <img 
-                            className='h-5 w-5'
+                            className='h-5 w-5 group-hover:animate-spin'
                             src={item.image}
                             onClick={() => handleClick(item.name)}
                             alt={`${item.name} icon`}

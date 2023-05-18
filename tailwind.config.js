@@ -7,7 +7,14 @@ module.exports = {
     "./node_modules/react-tailwindcss-select/dist/index.esm.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-2deg)' },
+          '50%': { transform: 'rotate(2deg)' },
+        }
+      }
+    },
     screens: {
       'xs': '350px',
       'sm': '640px',
