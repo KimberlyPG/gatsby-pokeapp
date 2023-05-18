@@ -5,12 +5,11 @@ import Dropdown from './Dropdown';
 import PokedexCards from './PokedexCards';
 import PokemonTypesFilter from './PokemonTypesFilter';
 import LoadMoreButton from './LoadMoreButton';
+import ScrollTopButton from './ScrollTopButton';
 
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import { PokemonContext } from '../context/pokemon.context';
 import { GraphPokemonData } from '../types/types';
-import ScrollTopButton from './ScrollTopButton';
-import { useFilterPokemon } from '../hooks/useFilterPokemon';
 
 const Pokedex: FC = () => {
 	const query = useStaticQuery(graphql`
@@ -41,6 +40,7 @@ const Pokedex: FC = () => {
 	const { setAllPokemon } = useContext(PokemonContext);
 	const [typeSelected, setTypeSelected] = useState<string>("all");
 	const [gen, setGen] = useState("all");
+	const [pokemonTypeFilter, setPokemonTypeFilter] = useState<GraphPokemonData[]>();
 
 	let allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies;
 
@@ -49,24 +49,18 @@ const Pokedex: FC = () => {
 	const [hasMore, setHasMore] = useState(allPokemonList.length > 36);
 
 	const divRef = useRef<HTMLDivElement>(null);
-
 	const showButton = useScrollToTop(divRef)
-	const pokemonTypeFilter = useFilterPokemon(allPokemonList, typeSelected, gen)
 
 	useEffect(() => {
 		setAllPokemon(query.graphCmsData.pokemon_v2_pokemonspecies);
 	}, [])
 	
-	const handleClick = (type: string) => {
-		setTypeSelected(type)
-	}
-
 	if(gen !== "all") {
 		allPokemonList = query.graphCmsData.pokemon_v2_pokemonspecies.filter((el: GraphPokemonData) => {
 			return el.generation_id === parseInt(gen)
 		})
 	}
-
+	
 	const changeGen = (generation: SetStateAction<string>) => {
 		setGen(generation)
 	}
@@ -74,6 +68,19 @@ const Pokedex: FC = () => {
 	useEffect(() => {
 		setPokemonList([...allPokemonList.slice(0, 36)])
 	}, [gen])
+
+	useEffect(() => {
+		const filtered = allPokemonList.filter((item: GraphPokemonData) => {
+			return item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.some((element) => 
+				element.pokemon_v2_type?.name === typeSelected
+			)
+		})
+		setPokemonTypeFilter(filtered);
+	}, [typeSelected, gen])
+
+	const handleClick = (type: string) => {
+		setTypeSelected(type)
+	}
 
 	const handleLoadMore = () => {
 		setLoadMore(true);		
@@ -90,7 +97,7 @@ const Pokedex: FC = () => {
 				setPokemonList([...pokemonList, ...nextResults]);
 				setLoadMore(false);
 		}
-	}, [loadMore, hasMore]) 
+	}, [loadMore, hasMore])
    
 	useEffect(() => {
 		const isMore = pokemonList.length < allPokemonList.length;
