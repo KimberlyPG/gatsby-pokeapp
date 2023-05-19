@@ -5,6 +5,7 @@ import PokemonTypes from '../../components/PokemonTypes';
 import { ResultsLocation } from '../../types/types';
 import { capitalizeName } from '../../utils/capitalizeName';
 import { spritesHandler } from '../../utils/spritesHandler';
+import { pokemonColor } from '../../utils/pokemon-colors';
 
 interface Name {
     name: string;
@@ -30,15 +31,22 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                     <Link 
                         key={item.id} 
                         to={`/pokemon/${item?.name}`}
-                        className='flex w-96 bg-gray-100 dark:bg-[#1E2022] hover:bg-gray-300 dark:hover:bg-zinc-800 rounded-2xl mx-auto items-center my-10 space-x-3'
+                        className={`flex w-96 bg-gray-100 dark:bg-[#1E2022] hover:bg-gray-300 dark:hover:bg-zinc-800 
+                        rounded-2xl mx-auto items-center my-10 space-x-3 bg-[url('../assets/pokeballBg.svg')] bg-no-repeat bg-right
+                        dark:bg-[url('../assets/pokeballBgDark.svg')] bg-auto`}
                     >
                         <img
-                            className='flex justify-center w-[120px]'               
+                            className='flex justify-center w-[120px] hover:animate-[wiggle_1s_ease-in-out_infinite]'               
                             src={spritesHandler(item)} 
                             alt={`${item?.name} image`} 
                         />
                         <div className='flex flex-col space-y-4'>
-                            <h1 className='text-gray-500 text-xl'>{capitalizeName(item?.name)}</h1>
+                            <h1 
+                                className='text-gray-500 text-3xl' 
+                                style={{color: pokemonColor(item.pokemon_v2_pokemoncolor.name)}}
+                            >
+                                {capitalizeName(item?.name)}
+                            </h1>
                             <PokemonTypes types={item.pokemon_v2_pokemons[0].pokemon_v2_pokemontypes} />
                         </div>
                     </Link>    
