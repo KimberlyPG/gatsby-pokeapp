@@ -3,25 +3,25 @@ export const pokemonColor = (color: string) => {
 
     switch(color) {
         case 'red': 
-            newColor = '#EDC3C5'
+            newColor = '#EE8130'
             break;
         case 'blue':
-            newColor = '#B9DAEC'
+            newColor = '#6390F0'
             break;
         case 'yellow':
-            newColor = '#EDEBC3'
+            newColor = '#F7D02C'
             break;
         case 'green':
-            newColor = '#C3EDC7'
+            newColor = '#7AC74C'
             break;
         case 'purple':
-            newColor = '#E9DAF2'
+            newColor = '#A33EA1'
             break;
         case 'brown':
-            newColor = '#EDE0C3'
+            newColor = '#A8A77A'
             break;
         case'pink':
-            newColor = '#F2DAEC'
+            newColor = '#D685AD'
             break;
     }
     return newColor;

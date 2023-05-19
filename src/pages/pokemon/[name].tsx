@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC } from "react";
+import React, { useEffect, useState } from "react";
 import { PageProps } from "gatsby";
 
 import PokemonContainer from "../../components/PokemonContainer";
@@ -8,7 +8,6 @@ import Evolutions from "../../components/Evolutions";
 import PokemonDetails from "../../components/PokemonDetails";
 
 import { typeColor } from "../../utils/types-colors";
-import { pokemonColor } from "../../utils/pokemon-colors";
 import { getPokemonData } from "../../api/getPokemonData";
 import { PokemonData, PokemonDescriptionT, Evolution } from "../../types/types";
 import { initialPokemonDataValues, initialPokemonDescriptionValues, initialEvolutionChainValues } from "../../initialDataValues/initialDataValues";
@@ -53,16 +52,17 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                 {capitalizeName(pokemonName)} N.°{data?.id}
             </h3>
             <PokemonContainer pokemonDescription={pokemonDescription}>
-                <div className="grid w-96 h-[100hv] border dark:border-0 rounded place-content-center p-5 bg-gray-100 dark:bg-[#1E2022]">
+                <div className="grid w-96 h-[100hv] border dark:border-0 rounded place-content-center 
+                p-5 bg-gray-100 dark:bg-[#1E2022] shadow-2xl">
                     <img
-                        style={{backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`}}
-                        className="border rounded mt-10" 
+                        className="mt-10 bg-gray-200 dark:bg-[#1E2022]" 
                         src={pokemonImage} 
                         alt="pokemon image" 
                     />
                     <PokemonStats stats={data.stats} id={data.id} />
                 </div>
-                <div className="h-[100hv] border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 dark:bg-[#1E2022] dark:bg-opacity-60">
+                <div className="h-[100hv] border dark:border-0 w-96 p-3 bg-gray-100 bg-opacity-60 
+                dark:bg-[#1E2022] dark:bg-opacity-60 shadow-2xl">
                     <p className="grid text-gray-600 dark:text-white text-lg justify-items-center mt-4">
                         {description_format && JSON.parse(description_format)}
                     </p>

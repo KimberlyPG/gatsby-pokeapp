@@ -1,8 +1,7 @@
-import React, {FC, ReactNode} from 'react'
+import React, { FC, ReactNode } from 'react'
 
 import { pokemonColor } from '../utils/pokemon-colors'
 import { PokemonDescriptionT } from '../types/types';
-import pokeballBg from "../assets/pokeballBg.jpg"
 
 interface PokemonContainerProps {
     children: ReactNode;
@@ -10,15 +9,16 @@ interface PokemonContainerProps {
 }
 
 const PokemonContainer: FC<PokemonContainerProps> = ({ children, pokemonDescription }) => {
+	console.log(pokemonDescription?.color?.name)
 	return (
-		<div className="flex justify-center p-5 dark:bg-[#1E2022] dark:bg-opacity-80"
+		<div className={`sm:flex xs:flex-grow justify-center p-5 dark:bg-[#1E3022] bg-white
+		bg-[linear-gradient(to_right_bottom,rgba(240,240,240,0.7),rgba(240,240,240,0.7)),url('../assets/pokeballBg.svg')]
+		dark:bg-[linear-gradient(to_right_bottom,rgba(10,10,10,0.9),rgba(10,10,10,0.9)),url('../assets/pokeballBgDark.svg')]`}	
 			style={{
-				backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`, 
-				backgroundImage:`linear-gradient(0deg, rgba(244, 244, 244,0.8), rgba(244, 244, 244,0.8)), 
-				url(${pokeballBg})`,
+				backgroundColor: `${pokemonColor(pokemonDescription?.color?.name)}`,
 				backgroundAttachment: 'fixed',
 				backgroundSize: 'contain', 
-				backgroundPosition: 'center center',
+				backgroundPosition: 'right',
 				backgroundRepeat: 'no-repeat',
 			}}
 		>

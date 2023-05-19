@@ -14,10 +14,10 @@ const PokemonTypes: FC<PokemonTypesProps> = ({ types }) => {
             {types.map((item, index) => (
                 <p 
                     key={item.pokemon_v2_type.name+index}
-                    className={`text-white text-sm text-center opacity-80 rounded-md px-2`} 
-                    style={{backgroundColor: `${typeColor(item.pokemon_v2_type.name)}`}}
+                    className={`text-white text-sm text-center opacity-80 rounded-lg px-2 border font-semibold`} 
+                    style={{borderColor: `${typeColor(item.pokemon_v2_type.name)}`, color: `${typeColor(item.pokemon_v2_type.name)}`}}
                 >
-                    <span className='drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]'>{item.pokemon_v2_type.name}</span>
+                    <span>{item.pokemon_v2_type.name}</span>
                 </p>
             ))}
         </div>
