@@ -13,7 +13,7 @@ interface PokedexCardsProps {
 
 const PokedexCards: FC<PokedexCardsProps> = ({ typeSelected, pokemonList, pokemonTypeFilter}) => {
     return ( 
-        <div className='mx-5 my-5'>
+        <div className='xs:mr-2 sm:mr-10 my-5'>
             {typeSelected === "all" ? (
                 <div className='w-full grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 
                     md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 xxs:grid-cols-1 place-items-center gap-4'>
