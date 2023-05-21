@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { SlMenu } from 'react-icons/Sl';
+import { SlMenu } from 'react-icons/sl';
 import { ToggleMenuContext } from '../context/toggleMenu.context';
 
 export const ToggleTypesMenu = () => {
