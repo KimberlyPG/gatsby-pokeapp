@@ -13,14 +13,14 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
     
     return (
         <div className={`h-full sm:mx-5 text-sm xs:sticky xs:top-0 overflow-y-scroll scrollbar-hide sm:relative sm:z-0 sm:mt-0 sm:bg-transparent px-5
-        ${show ? "xxs:relative xxs:z-0 xxs:bg-transparent":
-        "absolute xxs:z-40 xxs:bg-gray-200 xxs:dark:bg-[#181a1b] xxs:bg-opacity-85 xxs:shadow-2xl xs:shadow-none xs:bg-transparent dark:xs:bg-transparent"}`}>
+            ${show ? "xxs:relative xxs:z-0 xxs:bg-transparent":
+            "xxs:bg-gray-100 xxs:dark:bg-[#181a1b] xxs:bg-opacity-85 xxs:shadow-2xl xs:shadow-none xs:bg-transparent dark:xs:bg-transparent"}`}>
             <div className='flex flex-col my-5 space-y-2'>
                 <p className="text-gray-400 dark:text-gray-300 xxs:hidden md:flex justify-center">Types</p>
                 <ToggleTypesMenu />
                 <button 
-                    className={`w-full text-gray-700 dark:text-gray-100 sm:text-sm text-center text-bold rounded-full px-3 py-1 
-                    hover:opacity-50 mr-2 border-2 dark:border-gray-800 cursor-pointer font-semibold ${!show && "border border-gray-300"}`} 
+                    className={`w-full text-gray-700 dark:text-gray-100 sm:text-sm text-center text-bold rounded-full px-3 py-1 hover:opacity-50 
+                        mr-2 border-2 dark:border-gray-800 cursor-pointer font-semibold ${!show && "border border-gray-300"}`} 
                     onClick={() => handleClick("all")}
                 >
                     all
@@ -28,7 +28,7 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                 {types.map((item) => (
                     <button 
                         key={item.id} 
-                        className={`relative w-full group p-2 rounded-full shadow-sm flex hover:shadow-lg cursor-pointer w-full hover:opacity-80`} 
+                        className={`w-full group p-2 rounded-full shadow-sm flex hover:shadow-lg cursor-pointer hover:opacity-80`} 
                         style={{backgroundColor: `${typeColor(item.name)}`}}
                         onClick={() => handleClick(item.name)}
                     >
@@ -38,8 +38,8 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                             onClick={() => handleClick(item.name)}
                             alt={`${item.name} icon`}
                         />
-                        <p className={`w-fit text-white xxs:ml-4 sm:ml-2 text-sm xxs:pr-8 xxs:pr-3 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] 
-                        ${show ? "xxs:hidden sm:flex": "flex"}`} >
+                        <p className={`text-white xxs:ml-4 sm:ml-2 text-sm xxs:mr-12 lg:mr-5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] 
+                            ${show ? "xxs:hidden sm:flex": "flex"}`} >
                             {item.name}
                         </p>
                     </button>
