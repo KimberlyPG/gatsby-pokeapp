@@ -16,7 +16,6 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
             ${show ? "xxs:relative xxs:z-0 xxs:bg-transparent":
             "xxs:bg-gray-100 xxs:dark:bg-[#181a1b] xxs:bg-opacity-85 xxs:shadow-2xl xs:shadow-none xs:bg-transparent dark:xs:bg-transparent"}`}>
             <div className='flex flex-col my-5 space-y-2'>
-                <p className="text-gray-400 dark:text-gray-300 xxs:hidden md:flex justify-center">Types</p>
                 <ToggleTypesMenu />
                 <button 
                     className={`w-full text-gray-700 dark:text-gray-100 sm:text-sm text-center text-bold rounded-full px-3 py-1 hover:opacity-50 
