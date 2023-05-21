@@ -6,10 +6,12 @@ import SearchAutocomplete from './SearchAutocomplete';
 
 import { GraphPokemonData } from '../types/types';
 import { PokemonContext } from '../context/pokemon.context';
+import { showSearchbarContext } from '../context/showSearchbar.context';
 import { useClickOutsideSearch } from '../hooks/useClickOutsideSearch';
 
 const SearchBar = () => {
     const { allPokemon } = useContext(PokemonContext);
+    const { showElement } = useContext(showSearchbarContext);
     
     const ulRef = useRef<HTMLUListElement>(null);
     const searchBarRef = useRef<HTMLDivElement>(null);
@@ -41,10 +43,10 @@ const SearchBar = () => {
     }
 
     useEffect(() => {
-        if(!searchInput) {
+        if(!searchInput || !showElement) {
             deleteFilteredData();
-        }
-    }, [searchInput])
+        } 
+    }, [searchInput, showElement])
 
     const navigateOnSubmit = () => {
         if(filteredData.some(list => list.name === selected)) {
@@ -57,7 +59,7 @@ const SearchBar = () => {
     }
 
     return (
-        <div className='flex justify-center w-fit z-auto' ref={searchBarRef} 
+        <div className={`flex justify-center sm:w-fit z-auto ${showElement ? "xxs:w-full":"xxs:w-fit"}`} ref={searchBarRef} 
             onClick={() => setSearchInput(!searchInput)}
         >
             <SearchForm 

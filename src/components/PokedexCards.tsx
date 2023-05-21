@@ -12,11 +12,11 @@ interface PokedexCardsProps {
 }
 
 const PokedexCards: FC<PokedexCardsProps> = ({ typeSelected, pokemonList, pokemonTypeFilter}) => {
-    return (
-        <>
+    return ( 
+        <div className='xs:mr-2 sm:mr-10 my-5'>
             {typeSelected === "all" ? (
-                <div className='mt-5 mx-auto w-fit h-fit grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 
-                    md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 place-items-center gap-4'>
+                <div className='w-full grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 
+                    md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 xxs:grid-cols-1 place-items-center gap-4'>
                     {pokemonList.map((item: GraphPokemonData) => (
                         <PokemonCard key={item.id} item={item} /> 				
                     ))} 
@@ -24,8 +24,8 @@ const PokedexCards: FC<PokedexCardsProps> = ({ typeSelected, pokemonList, pokemo
 
             ):(
                 pokemonTypeFilter && pokemonTypeFilter?.length > 0 ? (
-                    <div className='mt-5 mx-auto w-fit h-fit grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 
-                        md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 place-items-center gap-4'>
+                    <div className='mt-5 sm:pr-5 xs:px-3 mx-auto w-fit h-fit grid 3xl:grid-cols-9 2xl:grid-cols-8 xl:grid-cols-7 lg:grid-cols-5 
+                        md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 xxs:grid-cols-1 place-items-center gap-4'>
                         {pokemonTypeFilter?.map((item: GraphPokemonData) => (
                             <PokemonCard key={item.id} item={item} /> 		
                         ))}
@@ -34,7 +34,7 @@ const PokedexCards: FC<PokedexCardsProps> = ({ typeSelected, pokemonList, pokemo
                         <InformationMessage />
                     )
             )}     
-        </>
+        </div>
     );
 }
 

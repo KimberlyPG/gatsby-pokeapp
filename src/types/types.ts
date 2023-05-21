@@ -360,6 +360,7 @@ export interface GraphPokemonData {
     name:                string;
     generation_id:       number;
     pokemon_v2_pokemons: PokemonV2Pokemon[];
+    pokemon_v2_pokemoncolor: ColorName;
 }
 
 export interface PokemonV2Pokemon {
@@ -376,5 +377,9 @@ export interface PokemonV2Type {
 }
 
 export interface TypeName {
+    name: string;
+}
+
+export interface ColorName {
     name: string;
 }

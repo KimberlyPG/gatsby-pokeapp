@@ -26,9 +26,9 @@ const Dropdown: FC<DropdownProps> = ({ changeGen }) => {
     }
 
     return (
-        <div className="flex xs:flex-col sm:flex-row justify-end items-center mr-10 mt-5">
-            <p className="text-gray-400 dark:text-gray-300 mr-3">Select generation</p>
-            <div className="w-48 right-0">
+        <div className="xxs:w-48 sm:w-fit flex xxs:flex-col sm:flex-row justify-end items-center sm:mr-10 mt-5 xxs:ml-auto xxs:mr-0">
+            <p className="text-gray-400 dark:text-gray-300 xs:mr-3">Select generation</p>
+            <div className="w-48 right-0 xxs:ml-auto xxs:mr-0">
             <Select
                 role="listbox"
                 type="button"
