@@ -47,7 +47,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
 
     if(!data || !pokemonDescription || !evolutionChain) return <PokeballSpinner />
     return (
-        <>
+        <div className="pb-10">
             <h3 className="flex w-screen text-gray-600 dark:text-gray-100 text-3xl justify-center pt-5 font-semibold">
                 {capitalizeName(pokemonName)} N.°{data?.id}
             </h3>
@@ -82,7 +82,7 @@ const Pokemon = ({ params }: PageProps<PokemonProps>) => {
                 </div>
             </PokemonContainer>
             <Evolutions evolutionChain={evolutionChain} />
-        </>
+        </div>
     );
 }
 
