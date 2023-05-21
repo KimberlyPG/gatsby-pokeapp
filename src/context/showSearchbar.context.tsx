@@ -12,7 +12,7 @@ interface ShowSearchbarProviderProps {
 export const ShowSearchbarProvider = ({ children }: ShowSearchbarProviderProps) => {
     const [showElement, setShowElement] = useState<boolean>(false);
     const value = {showElement, setShowElement};
-
+    
     return (
         <showSearchbarContext.Provider value={value}>
             {children}

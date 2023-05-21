@@ -4,8 +4,6 @@ import { ToggleMenuContext } from '../context/toggleMenu.context';
 
 export const ToggleTypesMenu = () => {
     const{show, setShow} = useContext(ToggleMenuContext);
-    console.log(show)
-
     return (
         <div className='flex'>
             <p className={`flex gray-300 items-center sm:w-full sm:justify-center text-gray-400 dark:text-gray-300 px-2

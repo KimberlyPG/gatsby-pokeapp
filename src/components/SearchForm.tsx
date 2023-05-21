@@ -85,7 +85,7 @@ const SearchForm: FC<SearchFormProps> = ({
                 onSubmit={handleSubmit}       
             >
                 <AiOutlineSearch 
-                    className={`sm:text-xl ${!showElement ? "xxs:text-2xl xxs:text-black xxs:dark:text-white":
+                    className={`sm:text-xl sm:disabled ${!showElement ? "xxs:text-2xl xxs:text-black xxs:dark:text-white":
                         "xxs:text-gray-500 xxs:dark:text-gray-200"}`} 
                     onClick={showSearchBar}
                 />
