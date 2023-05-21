@@ -13,7 +13,7 @@ const EvolutionCard: FC<EvolutionCardProps> = ({ url, name }) => {
     return (
         <div>
             <Link to={`/pokemon/${name}`}>
-                <div className="rounded-full p-4"
+                <div className="rounded-full xxs:p-2 sm:p-4"
                     style={{
                         backgroundImage: `url(${pokeballIcon})`,
                         backgroundSize: 'contain', 
