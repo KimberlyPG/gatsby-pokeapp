@@ -15,7 +15,8 @@ const AutocompleteCard: FC<SearchResultsProps> = ({ item, deleteFilteredData, ac
 	return (
 		<Link to={`/pokemon/${item.name}`} state={{ data: item}}> 
 			<li 
-				className={`flex items-center cursor-pointer item ${active ? "bg-gray-100 dark:bg-[#131516]" : "bg-white dark:bg-[#181A1B]"}`} 
+				className={`flex items-center cursor-pointer xxs:px-10 xxs:space-x-5 sm:px-0 sm:space-x-2 
+				${active ? "bg-gray-100 dark:bg-[#131516]" : "bg-white dark:bg-[#181A1B]"}`} 
 				onClick={() => deleteFilteredData()}
 				onMouseMoveCapture={() => setCursorHover(item)}
 			>

@@ -38,7 +38,7 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                             onClick={() => handleClick(item.name)}
                             alt={`${item.name} icon`}
                         />
-                        <p className={`text-white xxs:ml-4 sm:ml-2 text-sm xxs:mr-12 lg:mr-5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] 
+                        <p className={`text-white xxs:ml-4 sm:ml-2 text-sm xxs:mr-14 lg:mr-5 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] 
                             ${show ? "xxs:hidden sm:flex": "flex"}`} >
                             {item.name}
                         </p>

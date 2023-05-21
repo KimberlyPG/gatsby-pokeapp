@@ -72,19 +72,20 @@ const SearchForm: FC<SearchFormProps> = ({
     }
 
     return (
-        <div className={`flex justify-end items-center rounded-full lg:w-80 sm:w-60 xxs:full ${showElement && "xxs:w-full"}`}>
+        <div className={`flex justify-end items-center rounded-full lg:w-80 xxs:full ${showElement && "xxs:w-full"}`}>
             <AiOutlineArrowLeft 
                 className={`text-2xl mr-3 text-black dark:text-white sm:hidden ${showElement ? "flex":"hidden"}`} 
                 onClick={hideSearchBar} 
             />
             <form 
-                className={`flex items-center border sm:bg-gray-100 sm:dark:bg-[#1E2022] border-gray-200 dark:border-[#736b5e] rounded-lg 
+                className={`flex items-center border sm:bg-gray-100 sm:dark:bg-[#1E2022] xxs:border-gray-200 dark:border-[#736b5e] rounded-lg 
                     p-1 lg:w-80 sm:w-60 xxs:w-full hover:border-blue-200 dark:hover:border-yellow-600 
-                    ${showElement ? "xxs:shadow-sm ":"xxs:border-0 xxs:bg-transparent xxs:shadow-none"}`} 
+                    ${showElement ? "xxs:shadow-sm xxs:border xxs:shadow-sm xxs:bg-gray-100":"xxs:border-0 xxs:bg-transparent xxs:shadow-none"}`} 
                 onSubmit={handleSubmit}       
             >
                 <AiOutlineSearch 
-                    className={`text-gray-500 dark:text-gray-200 sm:text-xl ${!showElement && "xxs:text-2xl xxs:text-black xxs:dark:text-white"}`} 
+                    className={`sm:text-xl ${!showElement ? "xxs:text-2xl xxs:text-black xxs:dark:text-white":
+                        "xxs:text-gray-500 xxs:dark:text-gray-200"}`} 
                     onClick={showSearchBar}
                 />
                 <input 
