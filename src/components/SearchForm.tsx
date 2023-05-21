@@ -78,16 +78,17 @@ const SearchForm: FC<SearchFormProps> = ({
                 onClick={hideSearchBar} 
             />
             <form 
-                className={`flex items-center xxs:shadow-sm border sm:bg-gray-100 dark:bg-[#1E2022] border-gray-200 dark:border-[#736b5e] rounded-lg 
-                p-1 lg:w-80 sm:w-60 xxs:w-full hover:border-blue-200 dark:hover:border-yellow-600 ${!showElement && "xxs:border-0 xxs:bg-transparent xxs:shadow-none"}`} 
+                className={`flex items-center border sm:bg-gray-100 sm:dark:bg-[#1E2022] border-gray-200 dark:border-[#736b5e] rounded-lg 
+                    p-1 lg:w-80 sm:w-60 xxs:w-full hover:border-blue-200 dark:hover:border-yellow-600 
+                    ${showElement ? "xxs:shadow-sm ":"xxs:border-0 xxs:bg-transparent xxs:shadow-none"}`} 
                 onSubmit={handleSubmit}       
             >
                 <AiOutlineSearch 
-                    className={`sm:text-gray-500 sm:dark:text-gray-200 sm:text-xl ${!showElement && "xxs:text-2xl xxs:text-black xxs:dark:text-white"}`} 
+                    className={`text-gray-500 dark:text-gray-200 sm:text-xl ${!showElement && "xxs:text-2xl xxs:text-black xxs:dark:text-white"}`} 
                     onClick={showSearchBar}
                 />
                 <input 
-                    className={`bg-gray-100 dark:bg-[#1E2022] text-black dark:text-white pl-3 outline-0 w-full ${!showElement && "xxs:hidden sm:flex"}`}
+                    className={`bg-gray-100 dark:bg-[#1E2022] text-black dark:text-white pl-3 outline-0 w-full ${!showElement && "xxs:hidden sm:flex xxs:bg-transparent"}`}
                     aria-label="Search"
                     value={selected || ""}
                     onClick={handleClick}
