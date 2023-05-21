@@ -1,11 +1,12 @@
 
-import React, { FC, RefObject, useEffect, useState } from "react";
+import React, { FC, RefObject, useContext, useEffect, useState } from "react";
 
 import AutocompleteCard from "./AutocompleteCard";
 
 import { GraphPokemonData } from "../types/types";
 import { initialPokemonValues } from "../initialDataValues/initialDataValues";
 import { useKeyPress } from "../hooks/useKeyPress";
+import { showSearchbarContext } from "../context/showSearchbar.context";
 
 type AutocompleteSearchProps = {
 	filteredData: GraphPokemonData[];
@@ -21,6 +22,8 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
 	
 	const [cursor, setCursor] = useState<number>(-1);
     const [cursorHover, setCursorHover] = useState<GraphPokemonData>(initialPokemonValues);
+
+    const { showElement } = useContext(showSearchbarContext);
 
 	useEffect(() => {
         if (filteredData.length && downPress) {
@@ -54,7 +57,8 @@ const AutocompleteSearch: FC<AutocompleteSearchProps> = ({ filteredData, deleteF
         <>
             {filteredData.length > 0 &&
                 <ul 
-                    className='bg-white border dark:border-gray-600 lg:w-80 sm:w-60 xs:w-24 max-h-52 overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-40'
+                    className={`bg-white border dark:border-gray-600 lg:w-80 sm:w-60 max-h-52 
+                    overflow-y-scroll scrollbar-hide rounded-lg absolute mt-9 z-50 ${showElement && "xxs:w-full"}`}
                     ref={ulRef}
                 >
                     {filteredData.map((item, i) => (
