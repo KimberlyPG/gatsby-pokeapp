@@ -31,7 +31,7 @@ const Results: FC<ResultsProps> = ({ location, params }) => {
                     <Link 
                         key={item.id} 
                         to={`/pokemon/${item?.name}`}
-                        className={`flex w-96 bg-gray-100 dark:bg-[#1E2022] hover:bg-gray-300 dark:hover:bg-zinc-800 
+                        className={`flex xxs:w-full xs:w-96 bg-gray-100 dark:bg-[#1E2022] hover:bg-gray-300 dark:hover:bg-zinc-800 
                         rounded-2xl mx-auto items-center my-10 space-x-3 bg-[url('../assets/pokeballBg.svg')] bg-no-repeat bg-right
                         dark:bg-[url('../assets/pokeballBgDark.svg')] bg-auto`}
                     >
