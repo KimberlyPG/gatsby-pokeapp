@@ -27,7 +27,7 @@ const PokemonTypesFilter: FC<PokemonTypesFilterProps> = ({ handleClick }) => {
                 {types.map((item) => (
                     <button 
                         key={item.id} 
-                        className={`w-full p-2 py-1 group rounded-full shadow-sm flex hover:shadow-lg cursor-pointer hover:opacity-80`} 
+                        className={`w-full p-2 py-1 group rounded-full shadow-sm flex hover:shadow-lg cursor-pointer hover:opacity-80 `} 
                         style={{backgroundColor: `${typeColor(item.name)}`}}
                         onClick={() => handleClick(item.name)}
                     >
