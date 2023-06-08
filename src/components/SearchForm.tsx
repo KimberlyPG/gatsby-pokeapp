@@ -80,8 +80,8 @@ const SearchForm: FC<SearchFormProps> = ({
             <form 
                 className={`flex items-center sm:border sm:bg-gray-100 sm:dark:bg-[#1E2022] sm:border-gray-200 sm:dark:border-[#736b5e] xxs:rounded-lg 
                     p-1 lg:w-80 sm:w-60 xxs:w-full sm:hover:border-blue-200 sm:dark:hover:border-yellow-600 
-                    ${showElement ? "xxs:border xxs:shadow-sm xxs:shadow-sm xxs:bg-gray-100 xxs:dark:bg-[#1E2022] xxs:hover:border-blue-200 dark:xxs:hover:border-yellow-600":
-                    "xxs:shadow-none xxs:border-0 xxs:bg-transparent xxs:shadow-none"}`} 
+                    ${showElement ? "xxs:border xxs:shadow-sm xxs:bg-gray-100 xxs:dark:bg-[#1E2022] xxs:hover:border-blue-200 dark:xxs:hover:border-yellow-600":
+                    "xxs:shadow-none xxs:border-0 xxs:bg-transparent"}`} 
                 onSubmit={handleSubmit}       
             >
                 <AiOutlineSearch 

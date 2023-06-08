@@ -27,7 +27,7 @@ const SearchBar = () => {
         const filtered = allPokemon.filter((item: GraphPokemonData) => {
             if(pokeName !== '') return item.name.includes(pokeName.toLowerCase()) 
         })
-        setFilteredData(filtered.slice(0,10));
+        setFilteredData(filtered);
     }
 
     const deleteFilteredData = () => {
