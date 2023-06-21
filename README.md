@@ -10,4 +10,8 @@ https://gatsbypokeappmaster.gatsbyjs.io/
 #results page
 ![image](https://user-images.githubusercontent.com/65067847/224188037-30229704-bdbd-4b53-9b5f-3f177146d320.png)
 
+#Mobile view
+![image](https://github.com/KimberlyPG/gatsby-pokeapp/assets/65067847/c8f9c6ea-614d-48cb-be22-8408627e65b7)
+
+
 
