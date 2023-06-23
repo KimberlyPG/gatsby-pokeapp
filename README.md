@@ -13,5 +13,9 @@ https://gatsbypokeappmaster.gatsbyjs.io/
 #Mobile view
 ![image](https://github.com/KimberlyPG/gatsby-pokeapp/assets/65067847/c8f9c6ea-614d-48cb-be22-8408627e65b7)
 
+#Dark mode
+![image](https://github.com/KimberlyPG/gatsby-pokeapp/assets/65067847/dbb7ff89-c26a-4081-928c-56c6354d709a)
+
+
 
 
