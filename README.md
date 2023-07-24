@@ -1,3 +1,5 @@
+# A Pokemon app! 
+
 ## Demo:
 https://gatsbypokeappmaster.gatsbyjs.io/
 
