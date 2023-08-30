@@ -3,7 +3,13 @@ import { AiOutlineRight, AiOutlineDown } from 'react-icons/ai';
 
 import EvolutionCard from './EvolutionCard';
 
-const EvolutionContainer = ({ element }) => {
+import { Chain } from '../types/types';
+
+interface EvolutionContainerProps {
+    element: Chain;
+}
+
+const EvolutionContainer: FC<EvolutionContainerProps> = ({ element }) => {
     return (
         <div className='flex flex-col lg:flex-row items-center'>
             <AiOutlineRight className="text-4xl mx-5 dark:text-gray-300 lg:flex xxs:hidden"/>

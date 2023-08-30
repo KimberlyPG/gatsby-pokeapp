@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { AiOutlineRight, AiOutlineDown } from 'react-icons/ai';
 
 import EvolutionCard from './EvolutionCard'
 
